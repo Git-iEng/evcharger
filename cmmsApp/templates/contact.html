@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <!--=============== CSS ===============-->
+    <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =ngi
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TKQV8LKX');</script>
+  <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+        <link rel="stylesheet" href="{% static 'css/ev-about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/consult-block.css' %}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="{% static 'images/logo1.png' %}">
+
+
+
+</head>
+
+<body>
+    {% include 'header.html' %}
+        
+<!-- <section class="ev-chargercontact-us-hero" style="--banner: url('/static/img/contact-hero.jpg');">
+  <div class="ev-chargercontact-us-shell">
+    <h1 class="ev-chargercontact-us-title">Contact Us</h1>
+  </div>
+</section> -->
+    <!-- Contact Us – Hero -->
+<section class="cmms-contact-form-section" style="background-image: url('../static/images/banner/banner.avif');">
+        <div class="cmms-contact-form-overlay"></div>
+        <div class="cmms-contact-form-container reveal-up">
+            <a href="#contact" style="color: white;"><span class="cmms-contact-form-badge">
+                    <span class="cmms-contact-form-dot reveal-up"></span> Contact us
+                </span>
+            </a>
+            <h1 class="cmms-contact-form-title reveal-up">Tell us what you need. We’ll build it</h1>
+
+        </div>
+    </section>
+
+<section class="ev-chargercall-us-anytime">
+  <div class="ev-chargercall-us-anytime__grid">
+
+    <!-- Mail -->
+    <article class="ev-chargercall-us-anytime__item">
+      <div class="ev-chargercall-us-anytime__icon">
+        <!-- Envelope -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3.5 7.5h17v9h-17z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M3.5 7.8l8.1 6.1c.4.3.9.3 1.3 0l7.9-6.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="12" cy="11" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M11 10.7c0-.6.4-1 1-1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="ev-chargercall-us-anytime__title">Mail Us 24/7</h3>
+      <div class="ev-chargercall-us-anytime__rule"></div>
+      <p class="ev-chargercall-us-anytime__text">
+        <a href="mailto:info@example.com">enquiries@iengaust.com.au</a><br>
+        <a href="mailto:support@example.com">support@iengaust.com.au</a>
+      </p>
+    </article>
+
+    <!-- Location -->
+    <article class="ev-chargercall-us-anytime__item">
+      <div class="ev-chargercall-us-anytime__icon">
+        <!-- Pin -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s7-7 7-11.2A7 7 0 0 0 5 9.8C5 14 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="12" cy="9.8" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </div>
+      <h3 class="ev-chargercall-us-anytime__title">Our Location</h3>
+      <div class="ev-chargercall-us-anytime__rule"></div>
+      <p class="ev-chargercall-us-anytime__text">
+        Australia, Fiji <br>and India
+        
+      </p>
+    </article>
+
+    <!-- Phone -->
+    <article class="ev-chargercall-us-anytime__item">
+      <div class="ev-chargercall-us-anytime__icon">
+  <!-- Phone with signal waves (new icon) -->
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <!-- handset -->
+    <path
+      d="M7.5 3.8l2.1 2.1c.3.3.4.7.2 1.1l-.7 1.6c-.1.3 0 .7.3 1l4.3 4.3c.3.3.7.4 1 .3l1.6-.7c.4-.2.8-.1 1.1.2l2.1 2.1c.4.4.5 1 .2 1.5l-.9 1.5c-.5.9-1.6 1.3-2.6 1-5.2-1.5-9.3-5.7-10.8-10.8-.3-1 .1-2.1 1-2.6l1.5-.9c.5-.3 1.1-.2 1.5.2z"
+      fill="none" stroke="currentColor" stroke-width="1.7"
+      stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- signal waves -->
+    <path d="M14.8 4.8a6.2 6.2 0 0 1 4.4 4.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M14.8 6.6a4.2 4.2 0 0 1 2.6 2.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M14.8 8.2a2.4 2.4 0 0 1 1.4 1.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+</div>
+      <h3 class="ev-chargercall-us-anytime__title">Call US 24/7</h3>
+      <div class="ev-chargercall-us-anytime__rule"></div>
+      <p class="ev-chargercall-us-anytime__text">
+        Office: <a href="tel:+12368954732">+61 (02) 8318 1490</a><br>
+        Phone: <a href="tel:+91238954732236">+61 (0)467 055 252</a>
+      </p>
+    </article>
+
+
+  </div>
+</section>
+
+
+<section class="section-meet-ieng-about" id="team">
+  <div class="container-meet-ieng-about">
+    <header class="header-meet-ieng-about">
+             <p class="eyebrow-ev-chargerwhat-we-bring reveal-up">Where We Operate</p>
+
+      <p class="subtitle-meet-ieng-about reveal-up saw">
+        iEngineering Australia operates across Australia, Fiji, and India, delivering reliable technology and asset management solutions to organizations of all sizes-from local enterprises to large multinational companies.
+
+
+      </p>
+    </header>
+
+
+<!-- =======================
+     NEPLAN - Locations
+     ======================= -->
+<section class="ev-chargerlocations-wrap">
+  <div class="ev-chargerlocations-grid">
+
+    <!-- Australia – Sydney -->
+    <article class="ev-chargerlocations-card ev-chargerlocations-card--au">
+      <header class="ev-chargerlocations-header">
+        <span class="ev-chargerlocations-icon" aria-hidden="true">
+          <!-- Location pin -->
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" fill="currentColor"/>
+          </svg>
+        </span>
+        <h3 class="ev-chargerlocations-title reveal-right">Australia – Sydney</h3>
+      </header>
+
+      <p class="ev-chargerlocations-phone reveal-right"><strong>Phone:</strong> +61 (02) 8318 1490</p>
+      <p class="ev-chargerlocations-email reveal-right">
+        <strong class="reveal-right reveal-right">Email:</strong>
+        <a href="mailto:enquiries@iengaust.com.au reveal-right">enquiries@iengaust.com.au</a>
+      </p>
+      <p class="ev-chargerlocations-address reveal-right">
+        Warawara Cct, Quakers Hill NSW 2763, Australia
+      </p>
+
+      <a class="ev-chargerlocations-map reveal-right" target="_blank" rel="noopener"
+         href="https://www.google.com/maps?ll=-33.723524,150.875902&z=5&t=m&hl=en-US&gl=US&mapclient=embed&cid=2860432314088839065">
+        View map
+      </a>
+    </article>
+
+    <!-- India – Pune -->
+    <article class="ev-chargerlocations-card ev-chargerlocations-card--in">
+      <header class="ev-chargerlocations-header">
+        <span class="ev-chargerlocations-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" fill="currentColor"/>
+          </svg>
+        </span>
+        <h3 class="ev-chargerlocations-title reveal-right">India – Pune</h3>
+      </header>
+
+      <p class="ev-chargerlocations-phone reveal-right"><strong>Phone:</strong> +91 9168627258</p>
+      <p class="ev-chargerlocations-email reveal-right">
+        <strong>Email:</strong>
+        <a href="mailto:shila@iengaust.com.au reveal-right">shila@iengaust.com.au</a>
+      </p>
+      <p class="ev-chargerlocations-address reveal-right">
+        Navale IT Zone, Office No. 501, 5th Floor, A-Wing, Near Navale Bridge, Mumbai-Bangalore Highway,
+        Narhe, Pune – 411041.
+      </p>
+
+      <a class="ev-chargerlocations-map reveal-right" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/place/Navale+IT+Zone+Phase2/@18.4597518,73.8199254,17z">
+        View map
+      </a>
+    </article>
+
+    <!-- Fiji – Suva -->
+    <article class="ev-chargerlocations-card ev-chargerlocations-card--fj">
+      <header class="ev-chargerlocations-header">
+        <span class="ev-chargerlocations-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" fill="currentColor"/>
+          </svg>
+        </span>
+        <h3 class="ev-chargerlocations-title reveal-right">Fiji – Suva</h3>
+      </header>
+
+      <p class="ev-chargerlocations-phone reveal-right"><strong>Phone:</strong> +679 9488589</p>
+      <p class="ev-chargerlocations-email reveal-right">
+        <strong>Email:</strong>
+        <a href="mailto:enquiries@iengaust.com.au reveal-right">enquiries@iengaust.com.au</a>
+      </p>
+      <p class="ev-chargerlocations-address reveal-right">
+      Suva, Fiji.
+      </p>
+
+      <a class="ev-chargerlocations-map reveal-right" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/search/Lot+17,+River+Drive+Pacific+Harbour+Navua+Suva+Fiji/">
+        View map
+      </a>
+    </article>
+
+  </div>
+</section>
+
+  </div>
+</section>
+
+{% include "components/contact_block.html" with form_only=True %}
+
+<!-- MAP SECTION -->
+<section class="ev-chargermap-location-">
+  <div class="nml-wrap">
+    <!-- Top-left "View larger map" -->
+    <a class="nml-view-link"
+       id="nml-view-link"
+       href="https://www.google.com/maps/@-18,140,3z"
+       target="_blank" rel="noopener">
+      View larger map
+    </a>
+
+    <!-- The map -->
+    <div id="nml-map"></div>
+
+ 
+  </div>
+</section>
+
+<!-- Leaflet CDN (place once per page/site) -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin="">
+</script>
+
+
+
+    {% load static %}
+    
+    {% include 'footer.html' %}
+
+    
+
+<script>(() => {
+  const SELECTOR = '.reveal-left, .reveal-right, .reveal-up, .reveal-down';
+
+  // Apply per-element delay from data attribute if provided
+  document.querySelectorAll(SELECTOR).forEach(el => {
+    const d = el.getAttribute('data-reveal-delay');
+    if (d) el.style.setProperty('--reveal-delay', /^\d+$/.test(d) ? `${d}ms` : d);
+  });
+
+  // Auto-stagger children inside a .reveal-group
+  document.querySelectorAll('.reveal-group[data-reveal-stagger]').forEach(group => {
+    const step = parseInt(group.dataset.revealStagger, 10) || 120; // ms
+    let i = 0;
+    group.querySelectorAll(SELECTOR).forEach(el => {
+      el.style.setProperty('--reveal-delay', `${i * step}ms`);
+      i++;
+    });
+  });
+
+  // Observe and toggle visibility (replays when scrolling back unless .reveal-once)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) target.classList.add('is-visible');
+      else if (!target.classList.contains('reveal-once'))
+        target.classList.remove('is-visible');
+    });
+  }, { threshold: 0.18 });
+
+  document.querySelectorAll(SELECTOR).forEach(el => io.observe(el));
+})();</script>
+   <script defer src="{% static 'js/neplan.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+    <script>
+(function(){
+  const mapEl = document.getElementById('nml-map');
+
+  // 1) Base "Map" (street) layer
+  const street = L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    { maxZoom: 19, attribution: '&copy; OpenStreetMap' }
+  );
+
+  // 2) Hybrid = satellite imagery + transparent labels overlay
+  const imagery = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}',
+    { maxZoom: 19, attribution: 'Tiles &copy; Esri - World Imagery' }
+  );
+  const labels = L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',
+    {
+      subdomains: 'abcd',
+      maxZoom: 20,
+      opacity: 0.95,
+      attribution: '&copy; OpenStreetMap contributors & CartoDB'
+    }
+  );
+  // LayerGroup allows us to add/remove both at once
+  const hybrid = L.layerGroup([imagery, labels]);
+
+  // Create map with default street layer
+  const map = L.map(mapEl, {
+    center: [-15, 120],
+    zoom: 3,
+    layers: [street],
+    zoomControl: true
+  });
+
+  // --- Your markers section (unchanged) ---
+  const LOCS = [
+    { title:'Australia – Sydney', lat:-33.723524, lng:150.875902, g:'https://www.google.com/maps?ll=-33.723524,150.875902&z=5&t=m&hl=en-US&gl=US&mapclient=embed&cid=2860432314088839065' },
+    { title:'India – Pune',      lat:18.4597518,  lng:73.8199254,  g:'https://maps.app.goo.gl/bDasJq7fErqsphp97' },
+    { title:'Fiji – Suva',       lat:-18.1654467, lng:178.1218869, g:'https://maps.app.goo.gl/cDMZMfo9R9Mfdm2Z7' },
+  ];
+  const pin = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    iconAnchor: [12,41], popupAnchor: [0,-34]
+  });
+  const group = L.featureGroup();
+  LOCS.forEach(p=>{
+    L.marker([p.lat,p.lng],{icon:pin})
+      .bindPopup(`<strong>${p.title}</strong><br>
+                  <a href="${p.g}" target="_blank" rel="noopener">Open in Google Maps</a>`)
+      .addTo(group);
+  });
+  group.addTo(map);
+  map.fitBounds(group.getBounds().pad(0.3));
+
+  // Set "View larger map" link by center/zoom
+  const viewLink = document.getElementById('nml-view-link');
+  function updateViewLink(){
+    const c = map.getCenter();
+    viewLink.href = `https://www.google.com/maps/@${c.lat.toFixed(5)},${c.lng.toFixed(5)},${map.getZoom()}z`;
+  }
+  map.on('moveend zoomend', updateViewLink);
+  updateViewLink();
+
+  // --- Toggle between street and hybrid ---
+  const toggles = document.querySelectorAll('.nml-toggle');
+  let currentBase = street;           // track current base for removal
+
+  function setBase(which){
+    if (map.hasLayer(currentBase)) map.removeLayer(currentBase);
+    currentBase = (which === 'hybrid') ? hybrid : street;
+    map.addLayer(currentBase);
+  }
+
+  toggles.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      toggles.forEach(b=>b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      setBase(btn.dataset.layer);
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const mapEl = document.getElementById('nml-map');
+
+  /* ---------- Base layers ---------- */
+  const street = L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    { maxZoom: 19, attribution: '&copy; OpenStreetMap' }
+  );
+
+  // Hybrid = imagery + transparent labels
+  const imagery = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}',
+    { maxZoom: 19, attribution: 'Tiles &copy; Esri - World Imagery' }
+  );
+  const labels = L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',
+    { subdomains: 'abcd', maxZoom: 20, opacity: 0.95, attribution: '&copy; OpenStreetMap & Carto' }
+  );
+  const hybrid = L.layerGroup([imagery, labels]);
+
+  /* ---------- Map ---------- */
+  const map = L.map(mapEl, {
+    center: [-15, 120],
+    zoom: 3,
+    layers: [street],
+    zoomControl: true
+  });
+
+  /* ---------- Pins ---------- */
+  const LOCS = [
+    { title:'Australia – Sydney', lat:-33.723524, lng:150.875902, g:'https://www.google.com/maps?q=-33.723524,150.875902' },
+    { title:'India – Pune',      lat:18.4597518,  lng:73.8225003,  g:'https://www.google.com/maps?q=18.4597518,73.8225003' },
+    { title:'Fiji – Suva',       lat:-18.1642523, lng:177.6272352, g:'https://www.google.com/maps?q=-18.1642523,177.6272352' },
+  ];
+  const pin = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    iconAnchor: [12,41], popupAnchor: [0,-34]
+  });
+  const group = L.featureGroup();
+  LOCS.forEach(p=>{
+    L.marker([p.lat,p.lng],{icon:pin})
+      .bindPopup(`<strong>${p.title}</strong><br>
+                  <a href="${p.g}" target="_blank" rel="noopener">Open in Google Maps</a>`)
+      .addTo(group);
+  });
+  group.addTo(map);
+  map.fitBounds(group.getBounds().pad(0.3));
+
+  /* ---------- Update “View larger map” link ---------- */
+  const viewLink = document.getElementById('nml-view-link');
+  function updateViewLink(){
+    const c = map.getCenter();
+    viewLink.href = `https://www.google.com/maps/@${c.lat.toFixed(5)},${c.lng.toFixed(5)},${map.getZoom()}z`;
+  }
+  map.on('moveend zoomend', updateViewLink);
+  updateViewLink();
+
+  /* ---------- Lock / enable interaction ---------- */
+  const container = map.getContainer();
+
+  function lockMap() {
+    map.scrollWheelZoom.disable();
+    map.touchZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
+    map.dragging.disable();
+    if (map.tap) map.tap.disable();
+    container.classList.add('map-locked');
+  }
+  function unlockMap() {
+    map.scrollWheelZoom.enable();
+    map.touchZoom.enable();
+    map.boxZoom.enable();
+    map.keyboard.enable();
+    map.dragging.enable();
+    if (map.tap) map.tap.enable();
+    container.classList.remove('map-locked');
+  }
+  lockMap();
+
+  // Helper overlay
+  const guard = document.createElement('div');
+  guard.className = 'nml-map-guard';
+  guard.innerHTML = `
+    <span>Click to interact · <kbd>Ctrl</kbd> + wheel to zoom</span>
+    <button type="button">Enable map</button>
+  `;
+  container.appendChild(guard);
+
+  guard.querySelector('button').addEventListener('click', () => {
+    unlockMap();
+    guard.style.display = 'none';
+  });
+
+  // Only allow wheel zoom with Ctrl
+  container.addEventListener('wheel', (e) => {
+    if (!e.ctrlKey) {
+      e.preventDefault();     // page keeps scrolling; map won’t zoom
+    } else if (!map.scrollWheelZoom.enabled()) {
+      unlockMap();
+      guard.style.display = 'none';
+    }
+  }, { passive: false });
+
+  // Re-lock when leaving the map
+  map.on('mouseout', () => {
+    lockMap();
+    guard.style.display = '';
+  });
+  map.on('touchend', () => {
+    lockMap();
+    guard.style.display = '';
+  });
+
+  /* ---------- (Optional) switch base layers programmatically ----------
+     Call setBase('hybrid') or setBase('street') from a UI button if you add one. */
+  let currentBase = street;
+  function setBase(which){
+    if (map.hasLayer(currentBase)) map.removeLayer(currentBase);
+    currentBase = (which === 'hybrid') ? hybrid : street;
+    map.addLayer(currentBase);
+  }
+  // Example: setBase('street'); setBase('hybrid');
+})();
+</script>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKQV8LKX" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+</body>
+
+</html>

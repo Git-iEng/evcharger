@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC Charger</title>
+    <!--=============== CSS ===============-->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TKQV8LKX');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="{% static 'css/dc-charging-station.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/consult-block.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/mobility.css' %}"> -->
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="{% static 'images/logo1.png' %}">
+    <link rel="stylesheet" href="{% static 'css/demoform.css' %}">
+    <script defer src="{% static 'js/demoform.js' %}"></script>
+
+
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    {% load static %}
+
+    <!-- ===================== DC CHARGER HERO ===================== -->
+    <section class="dc-charger-hero-dc" id="dc-charger-hero-dc" aria-label="DC Charger Hero">
+        <!-- Background image -->
+        <div class="dc-charger-hero-bg-dc" aria-hidden="true"></div>
+
+        <!-- Dark overlay (so text readable) -->
+        <div class="dc-charger-hero-overlay-dc" aria-hidden="true"></div>
+
+        <!-- Center content -->
+        <div class="dc-charger-hero-inner-dc">
+            <div class="dc-charger-hero-content-dc" data-reveal-dc>
+                <div class="dc-charger-hero-kicker-dc">DC Charger</div>
+
+                <h1 class="dc-charger-hero-title-dc">
+                    Powering the Future <br/>
+                    with DC Fast Charging
+                </h1>
+
+                <p class="dc-charger-hero-subtitle-dc">
+                    Ultra-fast, intelligent DC charging solutions built for today’s high-demand EV infrastructure.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DC CHARGER COPY SECTION (HTML) -->
+    <section class="dc-charger-copy-all-products">
+        <div class="dc-charger-copy__container-all-products">
+
+            <div class="dc-reveal-all-products">
+                <div class="dc-charger-kicker-all-products">DC CHARGER</div>
+                <h2 class="dc-charger-title-all-products">Accelerate your electric vehicle using our DC Charger.</h2>
+                <p class="dc-charger-lead-all-products">
+                    Globally people want Revolution in the Auto-Sector towards E-Mobility. Currently, lots of transport
+                    systems
+                    depend on fossil fuels, which is not environmentally friendly so manufacturers are transforming to
+                    E-Mobility.
+                </p>
+            </div>
+
+            <div class="dc-charger-grid-all-products">
+                <!-- LEFT: MAIN TEXT -->
+                <div class="dc-charger-richtext-all-products dc-reveal-all-products">
+                    <p>
+                        To assist our E-mobility customers, iEngineering Group is proud to provide high quality
+                        <span class="dc-inline-highlight-all-products">iPower series</span> fast charging solutions as a
+                        turnkey
+                        solution. The product range includes AC and DC charging stations characterized with high
+                        stability,
+                        good performance, and CE certified.
+                    </p>
+
+                    <p><span class="dc-inline-highlight-all-products">DC charging station</span> directly outputs direct
+                        current to charge the vehicle-mounted battery.</p>
+
+                    <div class="dc-divider-all-products"></div>
+
+                    <p>
+                        Our power options for DC chargers include 30kW, 60kW, 90kW, 120kW, 150kW or 40kW, 80kW, 160kW,
+                        180kW,
+                        or higher and the charging speed is fast. Also, we can customise EV chargers up to
+                        <span class="dc-inline-highlight-all-products">400kW</span>.
+                        These chargers can be installed in service/train stations, shopping & business car parks, bus
+                        routes or depots, etc.
+                    </p>
+
+                    <p>
+                        Because DC Fast Charging avoids the on-board charger’s limits and conversion, and delivers DC
+                        power directly to the battery,
+                        charging speed can be significantly enhanced. Charging periods vary depending on the battery
+                        capacity, dispenser output, and other factors,
+                        but most DC fast chargers can charge a vehicle to 80% in about an hour.
+                    </p>
+
+                    <p>
+                        Older automobiles were limited to charging at 50kW on DC units (if they could charge at all),
+                        but newer vehicles can accept up to 270kW.
+                        As battery sizes increased, DC chargers have grown with higher outputs some up to 350kW.
+                    </p>
+
+                    <p>
+                        For high mileage/long distance travel and large fleets, DC rapid charging is important.
+                        The quick turnaround allows drivers to recharge during the day or during a short stop rather
+                        than charging overnight.
+                    </p>
+                </div>
+
+                <!-- RIGHT: HIGHLIGHTS -->
+                <aside class="dc-charger-side-all-products dc-reveal-all-products">
+                    <div class="dc-charger-card-all-products">
+                        <h3 class="dc-charger-card__title-all-products">Power range</h3>
+                        <p class="dc-charger-card__text-all-products">
+                            Standard iPower DC options + custom builds up to <strong>400kW</strong>.
+                        </p>
+                        <div class="dc-charger-chips-all-products" aria-label="DC charger power options">
+                            <span class="dc-charger-chip-all-products">30kW</span>
+                            <span class="dc-charger-chip-all-products">60kW</span>
+                            <span class="dc-charger-chip-all-products">90kW</span>
+                            <span class="dc-charger-chip-all-products">120kW</span>
+                            <span class="dc-charger-chip-all-products">150kW</span>
+                            <span class="dc-charger-chip-all-products">180kW+</span>
+                        </div>
+                    </div>
+
+                    <div class="dc-charger-card-all-products">
+                        <h3 class="dc-charger-card__title-all-products">Best for</h3>
+                        <ul class="dc-charger-points-all-products">
+                            <li>Service / train stations, shopping & business car parks</li>
+                            <li>Bus routes and depots, fleet hubs</li>
+                            <li>High mileage and long-distance travel</li>
+                        </ul>
+                    </div>
+
+                    <div class="dc-charger-card-all-products">
+                        <h3 class="dc-charger-card__title-all-products">Fast charging benefit</h3>
+                        <p class="dc-charger-card__text-all-products">
+                            Direct DC power to the battery enables significantly faster charging often up to
+                            <strong>80% in ~1 hour</strong> (vehicle/battery dependent).
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION: OUR WORK (match screenshot) -->
+    <section class="our-work-all-products" data-our-work>
+        <div class="our-work__container-all-products">
+            <div class="our-work__grid-all-products">
+
+                <!-- LEFT IMAGE -->
+                <div class="our-work__media-all-products our-reveal-all-products">
+                    <div class="our-work__imgwrap-all-products">
+                        <img class="our-work__img-all-products"
+                            src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/673f2d6850d253c7e1d848a3_Mask%20group%20(4).jpg"
+                            alt="EV charging" loading="lazy" />
+                    </div>
+                </div>
+
+                <!-- RIGHT CONTENT -->
+                <div class="our-work__content-all-products">
+                    <div class="our-reveal-all-products">
+                        <div class="our-work__kicker-all-products">OUR WORK</div>
+                        <h2 class="our-work__title-all-products">Powering your space with expertise and reliability </h2>
+                        <p class="our-work__lead-all-products">
+                            We simplify your transition to electric mobility with a full turnkey approach. From design to commissioning, we ensure your charging infrastructure is safe, compliant, and perfectly tailored to your site. 
+                        </p>
+                    </div>
+
+                    <!-- GREEN BLOCK -->
+                    <div class="our-work__panel-all-products our-reveal-all-products" role="region"
+                        aria-label="Work highlights">
+                        <div class="our-work__panel-item-all-products">
+                            <h3 class="our-work__panel-title-all-products">Turnkey Solutions :</h3>
+                            <p class="our-work__panel-text-all-products">
+                                Feasibility studies for any location.<br>
+                                Level 3 design with respective utilities.<br>
+                                Level 1 construction work, if required.<br>
+                                Level 2 service work, if required.<br>
+                                Site installation work as per Australian standards.<br>
+                                EV charger manufacture and delivery.<br>
+                                Software installation &amp; commissioning.<br>
+                                Technical support &amp; training.<br>
+                                Preventive and reactive maintenance.<br>
+                                Spare parts &amp; software upgrade.
+                            </p>
+                        </div>
+
+                        <!-- <div class="our-work__panel-divider-all-products" aria-hidden="true"></div> -->
+
+                        <!-- <div class="our-work__panel-item-all-products">
+                            <h3 class="our-work__panel-title-all-products">The opportunities</h3>
+                            <p class="our-work__panel-text-all-products">
+                                Lorem ipsum dolor sit amet consectetur. Ipsum nulla lacinia orci enim ultricies est. Sit
+                                turpis dignissim suspendisse sit.
+                            </p>
+                        </div> -->
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <section class="ipower-suite-all-products js-revealwrap-all-products"
+        aria-label="iPower EV Charger Benefits and CCMS">
+        <div class="ipower-suite__container-all-products">
+
+            <!-- Header -->
+            <div class="ipower-suite__head-all-products js-reveal-all-products">
+                <div class="ipower-suite__kicker-all-products">WHY iPOWER</div>
+                <h2 class="ipower-suite__title-all-products">iPower series EV charger benefits & smart software</h2>
+                <p class="ipower-suite__subtitle-all-products">
+                    High-performance fast charging backed by a modern cloud platform and mobile app for operators and
+                    drivers.
+                </p>
+            </div>
+
+            <!-- TOP: Benefits (full-width) -->
+            <div class="ipower-suite__top-all-products js-reveal-all-products" data-stagger="0">
+                <div class="ipower-suite__card-all-products">
+                    <div class="ipower-suite__card-top-all-products">
+                        <span class="ipower-suite__chip-all-products">Benefits</span>
+                    </div>
+
+                    <ul class="ipower-suite__list-all-products">
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">High Efficiency</div>
+                        </li>
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">Cost Effective</div>
+                        </li>
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">Good Performance & Reliability</div>
+                        </li>
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">User Friendly & Backup Support</div>
+                        </li>
+                    </ul>
+
+                    <div class="ipower-suite__ctaRow-all-products">
+                        <a class="ipower-suite__cta-all-products" href="#contact">
+                            Request a quote <span class="ipower-suite__arrow-all-products" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTTOM: Two cards side-by-side -->
+            <div class="ipower-suite__bottomGrid-all-products">
+
+                <!-- CCMS / CMMS (2 images) -->
+                <article class="ipower-suite__mediaCard-all-products js-reveal-all-products" data-stagger="1">
+                    <div class="ipower-suite__mediaTop-all-products">
+                        <div>
+                            <div class="ipower-suite__mediaKicker-all-products">Software</div>
+                            <h3 class="ipower-suite__mediaTitle-all-products">CCMS </h3>
+                            <!-- (Cloud Charging Management System) -->
+                        </div>
+                        <span class="ipower-suite__pill-all-products">Operator dashboard</span>
+                    </div>
+
+                    <p class="ipower-suite__mediaText-all-products">
+                        We supply <strong>CCMS</strong> and a <strong>mobile app</strong>. Manage accessibility,
+                        remotely monitor stations,
+                        bill users through one system, and generate valuable usage data.
+                    </p>
+
+                    <!-- <a class="ipower-suite__imgWrap-all-products" href="#" aria-label="Open CCMS image 1">
+            <img class="ipower-suite__img-all-products"
+              src="https://via.placeholder.com/900x650.png?text=CCMS+Image+1"
+              alt="CCMS platform screenshot 1" loading="lazy" />
+            <span class="ipower-suite__imgOverlay-all-products" aria-hidden="true"></span>
+          </a> -->
+                    <a class="ipower-suite__imgWrapWide-all-products" href="#" aria-label="Open mobile app image">
+                        <img class="ipower-suite__imgWide-all-products"
+                            src="https://via.placeholder.com/1200x700.png?text=Mobile+App+Example" alt="CCMS platform"
+                            loading="lazy" />
+                        <span class="ipower-suite__imgOverlay-all-products" aria-hidden="true"></span>
+                    </a>
+
+                    <!-- <a class="ipower-suite__imgWrap-all-products" href="#" aria-label="Open CCMS image 2">
+            <img class="ipower-suite__img-all-products"
+              src="https://via.placeholder.com/900x650.png?text=CCMS+Image+2"
+              alt="CCMS platform screenshot 2" loading="lazy" />
+            <span class="ipower-suite__imgOverlay-all-products" aria-hidden="true"></span>
+          </a> -->
+
+                </article>
+
+                <!-- Mobile App -->
+                <article class="ipower-suite__mediaCard-all-products js-reveal-all-products" data-stagger="2">
+                    <div class="ipower-suite__mediaTop-all-products">
+                        <div>
+                            <div class="ipower-suite__mediaKicker-all-products">App</div>
+                            <h3 class="ipower-suite__mediaTitle-all-products">Mobile App experience</h3>
+                        </div>
+                        <span class="ipower-suite__pill-all-products">Driver friendly</span>
+                    </div>
+
+                    <p class="ipower-suite__mediaText-all-products">
+                        A smooth end-user journey for locating chargers, starting sessions, monitoring charging, and
+                        viewing billing details.
+                    </p>
+
+                    <a class="ipower-suite__imgWrapWide-all-products" href="#" aria-label="Open mobile app image">
+                        <img class="ipower-suite__imgWide-all-products"
+                            src="https://via.placeholder.com/1200x700.png?text=Mobile+App+Example"
+                            alt="Mobile app example screen" loading="lazy" />
+                        <span class="ipower-suite__imgOverlay-all-products" aria-hidden="true"></span>
+                    </a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+  {% include "components/contact_block.html" with form_only=True %}
+    {% include 'footer.html' %}
+
+    <script src="{% static 'js/main.js'%}"></script>
+
+    <script src="{% static 'js/dc-charging-station.js'%}"></script>
+
+    <script>
+        (function () {
+            const items = document.querySelectorAll(".dc-reveal-all-products");
+            if (!items.length) return;
+
+            // If user prefers reduced motion, just show everything
+            const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (prefersReduced) {
+                items.forEach(el => el.classList.add("is-inview-all-products"));
+                return;
+            }
+
+            const io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        // Re-trigger on every scroll (up/down): remove when out, add when in
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-inview-all-products");
+                        } else {
+                            entry.target.classList.remove("is-inview-all-products");
+                        }
+                    });
+                },
+                { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+            );
+
+            items.forEach(el => io.observe(el));
+        })();
+    </script>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKQV8LKX" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+</body>
+
+</html>

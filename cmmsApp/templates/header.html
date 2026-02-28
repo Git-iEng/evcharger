@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="{% static 'css/demo_form.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+
+
+</head>
+
+<body>
+    {% include 'request_demo_modal.html' %}
+    <!--=============== HEADER ===============-->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__data">
+                <a href="/" class="nav__logo">
+                    <img src="{% static 'images/logo.png' %}" alt="Company Logo" class="logo-img">
+                </a>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line nav__burger"></i>
+                    <i class="ri-close-line nav__close"></i>
+                </div>
+            </div>
+
+            <!--=============== NAV MENU ===============-->
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <!-- products Dropdown -->
+
+                    <!-- <li><a href="#" class="nav__link">Services</a></li> -->
+                    <!--=============== DROPDOWN 1 ===============-->
+                    <li class="dropdown__item">
+                        <div class="nav__link dropdown__trigger">
+                            <a href="/products/" class="dropdown__label">Products</a>
+                            <button type="button" class="dropdown__toggle" aria-label="Open Products menu"
+                                aria-expanded="false">
+                                <i class="ri-arrow-down-s-line dropdown__arrow" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                        <ul class="dropdown__menu">
+                            <li><a href="/dc-charging-station/" class="dropdown__link">DC Charging Stations</a></li>
+                            <li><a href="/emr-charging-station/" class="dropdown__link">Emergency Mobile EV Charger</a></li>
+                            <li><a href="/ac-charging-station/" class="dropdown__link">AC chargers</a></li>
+                            <li><a href="/portable-charging-station/" class="dropdown__link">Portable DC Chargers</a></li>
+                            <li><a href="/pantograph-system/" class="dropdown__link">Pantograph System </a></li>
+                        </ul>
+                    </li>
+
+
+                    <!-- <li><a href="/services/" class="nav__link">Services</a></li> -->
+                    <!--=============== DROPDOWN 2 ===============-->
+                    <!-- <li class="dropdown__item">
+                    <div class="nav__link">
+                            Resources<i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </div>
+
+                    <ul class="dropdown__menu">
+                          <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-user-line"></i> Case Studies
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-lock-line"></i> Blog/Articles
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-message-3-line"></i> Downloads
+                                </a>
+                            </li>
+                        </ul>
+                    </li> -->
+
+                    <li><a href="/about/" class="nav__link">About</a></li>
+                    <li><a href="/contact/" class="nav__link">Contact</a></li>
+                    <a href="#" class="book-demo-btn js-open-demo">
+                        Request Demo<i class="bi bi-arrow-right-circle"></i>
+                    </a>
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="{% static 'js/header.js'%}"></script>
+    <script defer src="{% static 'js/demo_form.js' %}"></script>
+</body>
+
+</html>

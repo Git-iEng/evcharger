@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantograph system</title>
+    <!--=============== CSS ===============-->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TKQV8LKX');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="{% static 'css/pan-charging-station.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/consult-block.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/mobility.css' %}"> -->
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="{% static 'images/logo1.png' %}">
+
+    <script defer src="{% static 'js/demoform.js' %}"></script>
+
+
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    {% load static %}
+    <!-- ===================== PANTOGRAPH HERO ===================== -->
+    <section class="pan-charger-hero-dc" id="pantograph-hero" aria-label="Pantograph Charging Hero">
+        <!-- Background image -->
+        <div class="pan-charger-hero-bg-dc" aria-hidden="true"
+            style="background-image:url('../static/images/pantograph-hero.webp');"></div>
+
+        <!-- Dark overlay (so text readable) -->
+        <div class="pan-charger-hero-overlay-dc" aria-hidden="true"></div>
+
+        <!-- Center content -->
+        <div class="pan-charger-hero-inner-dc">
+            <div class="pan-charger-hero-content-dc" data-reveal-dc>
+                <div class="pan-charger-hero-kicker-dc">Pantograph system</div>
+
+                <h1 class="pan-charger-hero-title-dc">
+                    Electric Bus<br />
+                    Pantograph Charging
+                </h1>
+
+                <p class="pan-charger-hero-subtitle-dc">
+                    Fast, reliable pantograph charging for depots and routes, powered by iPower systems up to 400 kW.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANTOGRAPH CHARGER COPY SECTION (HTML) -->
+    <section class="pan-charger-copy-all-products">
+        <div class="pan-charger-copy__container-all-products">
+
+            <div class="dc-reveal-all-products">
+                <div class="pan-charger-kicker-all-products">PANTOGRAPH CHARGING</div>
+                <h2 class="pan-charger-title-all-products">Electric bus rapid pantograph charging systems</h2>
+                <p class="pan-charger-lead-all-products">
+                    Electric buses can be fitted with a <strong>rapid pantograph charging system</strong>, enabling
+                    battery recharging
+                    both <strong>on-route (at stops)</strong> and at the <strong>depot</strong> supporting higher uptime
+                    and faster turnaround.
+                </p>
+            </div>
+
+            <div class="pan-charger-grid-all-products">
+                <!-- LEFT: MAIN TEXT -->
+                <div class="pan-charger-richtext-all-products dc-reveal-all-products">
+                    <p>
+                        Pantograph systems can be implemented in two ways:
+                        the pantograph can be mounted on the <span class="dc-inline-highlight-all-products">bus
+                            roof</span>, or on the
+                        <span class="dc-inline-highlight-all-products">charging mast</span> itself (an <strong>inverted
+                            pantograph</strong>).
+                    </p>
+
+                    <p>
+                        The existing infrastructure typically dictates which pantograph type is chosen.
+                        If a city already has chargers with overhead pantographs, operators often choose the
+                        <strong>inverted option</strong>, where only charging rails are fitted on the vehicle.
+                    </p>
+
+                    <div class="dc-divider-all-products"></div>
+
+                    <p>
+                        Pantograph chargers are street-side stations with an overhead framework above the roadway.
+                        When the bus arrives, contacts are lowered from the overhead unit and connect to rails on the
+                        forward roof of the bus,
+                        enabling high-power DC transfer for rapid charging.
+                    </p>
+
+                    <p>
+                        iEngineering Group can provide higher-range DC charging solutions for electric buses.
+                        Our <span class="dc-inline-highlight-all-products">iPower series</span> integrates the charger
+                        mainframe and pantograph
+                        into one elegant solution.
+                    </p>
+
+                    <p>
+                        This system supports three functional modules:
+                        <strong>connector charging</strong>, <strong>pantograph charging</strong>, and
+                        <strong>back-to-grid (DC to AC)</strong>.
+                        It is well suited for fast charging stations at route beginnings and terminals and can be
+                        customised up to
+                        <span class="dc-inline-highlight-all-products">400kW</span>.
+                    </p>
+                </div>
+
+                <!-- RIGHT: HIGHLIGHTS -->
+                <aside class="pan-charger-side-all-products dc-reveal-all-products">
+                    <div class="pan-charger-card-all-products">
+                        <h3 class="pan-charger-card__title-all-products">Pantograph options</h3>
+                        <p class="pan-charger-card__text-all-products">
+                            Choose based on infrastructure and fleet requirements.
+                        </p>
+                        <ul class="pan-charger-points-all-products">
+                            <li>Roof-mounted pantograph (on the bus)</li>
+                            <li>Inverted pantograph (on the charging mast)</li>
+                        </ul>
+                    </div>
+
+                    <div class="pan-charger-card-all-products">
+                        <h3 class="pan-charger-card__title-all-products">Where it’s used</h3>
+                        <ul class="pan-charger-points-all-products">
+                            <li>On-route rapid charging at selected stops</li>
+                            <li>Depot charging and fleet turnaround</li>
+                            <li>Fast charging at route start/end terminals</li>
+                        </ul>
+                    </div>
+
+                    <div class="pan-charger-card-all-products">
+                        <h3 class="pan-charger-card__title-all-products">iPower bus auto charging</h3>
+                        <p class="pan-charger-card__text-all-products">
+                            Integrated charger + pantograph with modular functions and custom output up to
+                            <strong>400kW</strong>.
+                        </p>
+                        <div class="pan-charger-chips-all-products" aria-label="Pantograph charger capabilities">
+                            <span class="pan-charger-chip-all-products">Connector charging</span>
+                            <span class="pan-charger-chip-all-products">Pantograph charging</span>
+                            <span class="pan-charger-chip-all-products">Back-to-grid (DC→AC)</span>
+                            <span class="pan-charger-chip-all-products">Up to 400kW</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: OUR WORK (match screenshot) -->
+    <section class="our-work-all-products" data-our-work>
+        <div class="our-work__container-all-products">
+            <div class="our-work__grid-all-products">
+
+                <!-- LEFT IMAGE -->
+                <div class="our-work__media-all-products our-reveal-all-products">
+                    <div class="our-work__imgwrap-all-products">
+                        <img class="our-work__img-all-products"
+                            src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/673f2d6850d253c7e1d848a3_Mask%20group%20(4).jpg"
+                            alt="EV charging" loading="lazy" />
+                    </div>
+                </div>
+
+                <!-- RIGHT CONTENT -->
+                <div class="our-work__content-all-products">
+                    <div class="our-reveal-all-products">
+                        <div class="our-work__kicker-all-products">From Depot Design to Depot-Wide Power </div>
+                        <h2 class="our-work__title-all-products">From Depot Design to Depot-Wide Power </h2>
+                        <p class="our-work__lead-all-products">
+                           We handle the entire specialized lifecycle of a pantograph installation to ensure your transition to a zero-emission fleet is seamless.    </p>
+                    </div>
+
+                    <!-- GREEN BLOCK -->
+                    <div class="our-work__panel-all-products our-reveal-all-products" role="region"
+                        aria-label="Work highlights">
+                        <div class="our-work__panel-item-all-products">
+                            <h3 class="our-work__panel-title-all-products">OUR TURNKEY PANTOGRAPH SERVICE </h3>
+                            <p class="our-work__panel-text-all-products">
+                                <strong>Infrastructure Design:</strong> We provide Level 3 ASP designs to coordinate high-power requirements with local electrical utilities. <br>
+                               <strong>Precision Engineering: </strong> Detailed site feasibility studies to determine the optimal placement of gantry structures for accurate vehicle alignment.  <br>
+                                <strong>Deployment & Support: </strong>Full delivery, software commissioning, and 24/7 technical maintenance to guarantee 100% reliability for your public transport operations. <br>
+                                
+                            </p>
+                        </div>
+
+                        <!-- <div class="our-work__panel-divider-all-products" aria-hidden="true"></div> -->
+
+                        <!-- <div class="our-work__panel-item-all-products">
+                            <h3 class="our-work__panel-title-all-products">The opportunities</h3>
+                            <p class="our-work__panel-text-all-products">
+                                Lorem ipsum dolor sit amet consectetur. Ipsum nulla lacinia orci enim ultricies est. Sit
+                                turpis dignissim suspendisse sit.
+                            </p>
+                        </div> -->
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <section class="ipower-suite-all-products js-revealwrap-all-products"
+        aria-label="iPower EV Charger Benefits and CCMS">
+        <div class="ipower-suite__container-all-products">
+
+            <!-- Header -->
+            <div class="ipower-suite__head-all-products js-reveal-all-products">
+                <div class="ipower-suite__kicker-all-products">WHY iPOWER</div>
+                <h2 class="ipower-suite__title-all-products">Pantograph DC Charger – Product Features</h2>
+                <p class="ipower-suite__subtitle-all-products">
+                    Rapid, reliable electric bus charging with iPower Pantograph DC solutions built for safe operations,
+                    remote monitoring, and scalable fleet deployments.
+                </p>
+            </div>
+
+            <!-- TOP: Features (full-width) -->
+            <div class="ipower-suite__top-all-products js-reveal-all-products" data-stagger="0">
+                <div class="ipower-suite__card-all-products">
+                    <div class="ipower-suite__card-top-all-products">
+                        <span class="ipower-suite__chip-all-products">Product Features</span>
+                    </div>
+
+                    <ul class="ipower-suite__list-all-products">
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">High-current fast charging (typical charge
+                                time 5–10 minutes)</div>
+                        </li>
+
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">One-button charging (unattended charging
+                                process)</div>
+                        </li>
+
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">Carrier / Wi-Fi communications for safer
+                                charging data transmission</div>
+                        </li>
+
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">Hidden-type pantograph (safer, more
+                                reliable, easy maintenance)</div>
+                        </li>
+
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">
+                                Built-in protections: input overvoltage/undervoltage, output overcurrent, short-circuit,
+                                output overvoltage, overheat, anti-reverse connection, insulation test, and emergency
+                                stop
+                            </div>
+                        </li>
+
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">
+                                Wireless module + wired interface to report charging data and enable backend monitoring
+                            </div>
+                        </li>
+
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">
+                                Optional card-swipe start for access control and billing; logs 1000+ abnormal events and
+                                charging records
+                            </div>
+                        </li>
+
+                        <li class="ipower-suite__li-all-products">
+                            <span class="ipower-suite__tick-all-products" aria-hidden="true"></span>
+                            <div class="ipower-suite__li-title-all-products">
+                                Growing global adoption driven by EV demand, lower battery costs, GHG reduction targets,
+                                and supportive government policies
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="ipower-suite__ctaRow-all-products">
+                        <a class="ipower-suite__cta-all-products" href="#contact">
+                            Request a quote <span class="ipower-suite__arrow-all-products" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+  {% include "components/contact_block.html" with form_only=True %}
+    {% include 'footer.html' %}
+
+    <script src="{% static 'js/main.js'%}"></script>
+
+    <script src="{% static 'js/dc-charging-station.js'%}"></script>
+
+    <script>
+        (function () {
+            const items = document.querySelectorAll(".dc-reveal-all-products");
+            if (!items.length) return;
+
+            // If user prefers reduced motion, just show everything
+            const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (prefersReduced) {
+                items.forEach(el => el.classList.add("is-inview-all-products"));
+                return;
+            }
+
+            const io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        // Re-trigger on every scroll (up/down): remove when out, add when in
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-inview-all-products");
+                        } else {
+                            entry.target.classList.remove("is-inview-all-products");
+                        }
+                    });
+                },
+                { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+            );
+
+            items.forEach(el => io.observe(el));
+        })();
+    </script>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKQV8LKX" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+</body>
+
+</html>

@@ -1,0 +1,1009 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --black-color: hsl(0, 0%, 100%);
+  --black-color-light: hsl(0, 0%, 100%);
+  --black-color-lighten: hsl(0, 0%, 100%);
+  --white-color: #000000;
+  --body-color: hsl(0, 0%, 100%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+}
+
+ul {
+  list-style: none;
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--black-color);
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+}
+
+/*=============== NAV ===============*/
+.nav {
+  height: var(--header-height);
+}
+
+.nav__logo, 
+.nav__burger, 
+.nav__close {
+  color: var(--white-color);
+}
+
+.nav__data {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+  
+}
+
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .35rem;
+  font-weight: var(--font-semi-bold);
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+
+.nav__logo i {
+  font-weight: initial;
+  font-size: 1.25rem;
+}
+
+.nav__toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.nav__burger, 
+.nav__close {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  inset: 0;
+  margin: auto;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: opacity .1s, transform .4s;
+}
+
+.nav__close {
+  opacity: 0;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1118px) {
+  .nav__menu {
+    position: absolute;
+    left: 0;
+    top: 2.5rem;
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: top .4s, opacity .3s;
+  }
+  .nav__menu::-webkit-scrollbar {
+    width: 0;
+  }
+  .nav__list {
+    background-color: var(--black-color);
+    padding-top: 1rem;
+  }
+}
+
+.nav__link {
+  color: var(--white-color);
+  background-color: var(--black-color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color .3s;
+}
+
+.nav__link:hover {
+  background-color: var(--black-color-light);
+}
+
+
+/* Show menu */
+.show-menu {
+  opacity: 1;
+  top: 3.5rem;
+  pointer-events: initial;
+}
+
+/* Show icon */
+.show-icon .nav__burger {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+.show-icon .nav__close {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/*=============== DROPDOWN ===============*/
+.dropdown__item {
+  cursor: pointer;
+  max-width: 1000px;
+  background-color: white;
+  align-items: center;
+  
+}
+
+.dropdown__arrow {
+  font-size: 1.25rem;
+  font-weight: initial;
+  transition: transform .4s;
+}
+
+.dropdown__link, 
+.dropdown__sublink {
+  padding:12px;
+  color: var(--white-color);
+  background-color: var(--black-color-light);
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s;
+}
+
+.dropdown__link i, 
+.dropdown__sublink i {
+  font-size: 1.25rem;
+  font-weight: initial;
+}
+
+.dropdown__link:hover, 
+.dropdown__sublink:hover {
+  background-color: var(--black-color);
+}
+
+.dropdown__menu, 
+.dropdown__submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease-out;
+}
+
+/* Show dropdown menu & submenu */
+.dropdown__item:hover .dropdown__menu, 
+.dropdown__subitem:hover > .dropdown__submenu {
+  max-height: 1000px;
+  transition: max-height .4s ease-in;
+}
+
+/* Rotate dropdown icon */
+.dropdown__item:hover .dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+/*=============== DROPDOWN SUBMENU ===============*/
+.dropdown__add {
+  margin-left: auto;
+}
+
+.dropdown__sublink {
+  background-color: var(--black-color-lighten);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+
+  .nav__link {
+    padding-inline: 1rem;
+  }
+
+}
+
+/* For large devices */
+@media screen and (min-width: 1118px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__toggle {
+    display: none;
+  }
+  .nav__list {
+    height: 100%;
+    display: flex;
+    column-gap: 3rem;
+  }
+  .nav__link {
+    height: 100%;
+    padding: 0;
+    justify-content: initial;
+    column-gap: .25rem;
+  }
+  .nav__link:hover {
+    background-color: transparent;
+  }
+
+  .dropdown__item, 
+  .dropdown__subitem {
+    position: relative;
+  }
+
+  .dropdown__menu, 
+  .dropdown__submenu {
+    max-height: initial;
+    overflow: initial;
+    position: absolute;
+    left: 0;
+    top: 6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, top .3s;
+  }
+
+  .dropdown__link, 
+  .dropdown__sublink {
+    padding-inline: 1rem 3.5rem;
+  }
+
+  .dropdown__subitem .dropdown__link {
+    padding-inline: 1rem;
+  }
+
+  .dropdown__submenu {
+    position: absolute;
+    left: 100%;
+    top: .5rem;
+  }
+
+  /* Show dropdown menu */
+  .dropdown__item:hover .dropdown__menu {
+    opacity: 1;
+    top: 5.5rem;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+
+  /* Show dropdown submenu */
+  .dropdown__subitem:hover > .dropdown__submenu {
+    opacity: 1;
+    top: 0;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+}
+.nav__logo img {
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Button Styling */
+.book-demo-btn {
+    display: inline-flex;
+    align-items: center;
+    margin: 20px;
+    padding: 10px 10px;
+    background-color: #18191ae2; /* Dark Blue background */
+    color: white;
+
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 15px; /* Round the corners */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Button Hover Effect */
+.book-demo-btn:hover {
+    background-color: #002244; /* Slightly darker blue on hover */
+}
+
+/* Arrow Styling */
+.book-demo-btn i {
+    margin-left: 10px; /* Space between text and arrow */
+    font-size: 20px; 
+
+}
+
+/* Optional: If you want to add custom icon from Bootstrap */
+.bi-arrow-right-circle {
+    font-size: 18px;
+}
+/* Set max-width and center the nav container */
+.nav.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Mega Menu Wrapper */
+.dropdown__menu.solutions-menu {
+   /* display: none; */
+    position: absolute;
+    top: 100%;
+    /* left: 50%; */
+    /* right: 50%; */
+    transform: translateX(-10%);
+    width: 70vw; /* Force full width */
+    max-width: 1000px; /* Remove cap */
+    padding: 2rem 3vw; /* Add horizontal breathing room */
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    z-index: 1000;
+    border-radius: 0px; /* remove radius for clean edge */
+    display: flex;
+    justify-content: space-between;
+    gap: .5rem;
+}
+
+
+.solutions-dropdown {
+    position: relative;
+    z-index: 2000;
+}
+
+/* Show menu on toggle */
+.dropdown__item.active .solutions-menu {
+    display: flex !important;
+}
+
+/* Each column */
+.solution-column {
+    flex: 1;
+    min-width: 180px;
+}
+
+/* Column headings */
+.solution-column h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+/* Links */
+.solution-column .dropdown__link {
+    display: block;
+    padding: 6px 0;
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.solution-feature-box {
+    flex: 1.2;
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.solution-feature-box a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 1rem;
+    display: inline-block;
+}
+/*=============== DROPDOWN ===============*/
+.dropdown__item {
+  position: relative;
+  /* Remove max-width here if it's restricting the container */
+  /* max-width: 1000px; */ 
+}
+
+.dropdown__menu {
+  /* This is the key change for the width */
+  min-width: 300px; /* Adjust this value to your desired width */
+  max-width: 500px; /* Optional: Set a max-width to prevent it from becoming too wide */
+  
+  /* Keep your original dropdown menu positioning and styling */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%); /* This centers the dropdown relative to the parent */
+  
+  /* Basic styling for the dropdown menu */
+  background-color: var(--black-color);
+  box-shadow: 0 8px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+  
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease-out;
+}
+
+/* Ensure these styles are kept for the links inside the dropdown */
+.dropdown__link, 
+.dropdown__sublink {
+  padding: 12px;
+  color: var(--white-color);
+  background-color: var(--black-color-light);
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s;
+}
+
+/* On hover, make the menu visible and centered */
+.dropdown__item:hover .dropdown__menu {
+  max-height: 1000px; /* Use a large number to show all content */
+  transition: max-height .4s ease-in;
+}
+
+/*
+For large devices (desktop)
+This section is important for the desktop view, as it overrides the mobile styles.
+*/
+@media screen and (min-width: 1118px) {
+  .dropdown__menu {
+    /* Set the desired width for desktop */
+    min-width: 300px;
+    max-width: 500px; /* Keeps the max-width for consistency */
+
+    /* Position the dropdown below the parent link */
+    top: 6rem;
+    left: 50%; /* Center it again */
+    transform: translateX(-50%); /* Centering transform */
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, top .3s;
+  }
+  
+  /* Show dropdown menu on hover */
+  .dropdown__item:hover .dropdown__menu {
+    opacity: 1;
+    top: 5.5rem; /* Adjust this value to position it below the nav link */
+    pointer-events: initial;
+    transition: top .3s;
+  }
+}
+/* =========================
+   MOBILE DROPDOWN FIX
+   Opens dropdown when li has class "active"
+   ========================= */
+
+/* Make dropdown work in mobile (no hover) */
+@media screen and (max-width: 1118px) {
+
+  /* Keep dropdown menu inside the flow so it shows under Products */
+  .dropdown__menu {
+    position: static !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+    background: #ffffff;
+  }
+
+  /* Show dropdown when toggled */
+  .dropdown__item.active > .dropdown__menu {
+    max-height: 1200px; /* big enough to show all links */
+  }
+
+  /* Rotate arrow when open */
+  .dropdown__item.active .dropdown__arrow {
+    transform: rotate(180deg);
+  }
+
+  /* Improve dropdown link look on white background */
+  .dropdown__link {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 12px 18px !important;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .dropdown__link:hover {
+    background: rgba(0,0,0,0.04) !important;
+  }
+
+  /* Make sure the dropdown container isn't forcing white weirdly */
+  .dropdown__item {
+    background: transparent !important;
+  }
+}
+/* Make Products row align properly */
+.dropdown__trigger{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+}
+
+.dropdown__label{
+  color: var(--white-color);
+  text-decoration:none;
+  flex:1;
+}
+
+/* Arrow button */
+.dropdown__toggle{
+  border:0;
+  background:transparent;
+  padding: 1.25rem 1.5rem;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+}
+
+/* CLICK OPEN (works everywhere) */
+.dropdown__item.active > .dropdown__menu{
+  max-height: 1200px;
+}
+
+/* Rotate arrow when active */
+.dropdown__item.active .dropdown__arrow{
+  transform: rotate(180deg);
+}
+
+/* Mobile dropdown should be inside flow */
+@media screen and (max-width: 1118px){
+  .dropdown__menu{
+    position: static !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    background: #fff !important;
+  }
+
+  .dropdown__link{
+    color:#000 !important;
+    background:#fff !important;
+  }
+}
+/* =========================
+   MOBILE DROPDOWN ALIGN FIX
+   ========================= */
+@media screen and (max-width: 1118px) {
+
+  /* Make the Products row and arrow align properly */
+  .dropdown__trigger {
+    width: 100%;
+  }
+
+  /* Force dropdown to stay inside the mobile menu */
+  .dropdown__item {
+    position: static !important;
+    background: transparent !important;
+  }
+
+  .dropdown__menu {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border-radius: 12px;
+    box-shadow: none !important; /* remove floating shadow */
+    background: #ffffff !important;
+
+    overflow: hidden;
+  }
+
+  /* Make dropdown items readable and not cut */
+  .dropdown__menu li {
+    width: 100%;
+  }
+
+  .dropdown__link {
+    width: 100%;
+    display: block;
+    padding: 12px 16px !important;
+    color: #000 !important;
+    background: #fff !important;
+    white-space: normal;       /* allow wrapping */
+    word-break: break-word;    /* prevent overflow */
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .dropdown__link:hover {
+    background: rgba(0,0,0,0.04) !important;
+  }
+}
+
+/* =========================
+   DESKTOP NAV SPACING FIX
+   ========================= */
+@media screen and (min-width: 1118px) {
+
+  /* Reduce big gaps between nav items */
+  .nav__list {
+    column-gap: 3.6rem !important; /* change value if you want tighter */
+    align-items: center;
+  }
+
+  /* Ensure Products wrapper doesn't create extra width */
+  .dropdown__trigger {
+    width: auto !important;
+    gap: .35rem;
+  }
+
+  /* Make Products link behave like other nav links */
+  .dropdown__label {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Arrow button should not add large padding on desktop */
+  .dropdown__toggle {
+    padding: 0 !important;
+    margin-left: .25rem;
+  }
+}
+/* Mobile accordion dropdown (open when .active, close when not) */
+@media screen and (max-width: 1118px) {
+
+  .dropdown__menu{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+  }
+
+  .dropdown__item.active > .dropdown__menu{
+    max-height: 1200px; /* enough to show all items */
+  }
+
+  .dropdown__arrow{
+    transition: transform .25s ease;
+  }
+
+  .dropdown__item.active .dropdown__arrow{
+    transform: rotate(180deg);
+  }
+}
+@media screen and (max-width: 1118px) {
+
+  /* Make the Products row stay above the dropdown list */
+  .dropdown__trigger {
+    position: relative;
+    z-index: 5;
+  }
+
+  /* Ensure arrow button is always clickable */
+  .dropdown__toggle {
+    position: relative;
+    z-index: 6;
+    pointer-events: auto;
+  }
+
+  /* Keep dropdown list below the trigger (so it doesn't cover arrow) */
+  .dropdown__menu {
+    position: relative !important;
+    z-index: 1;
+    margin-top: 6px;   /* pushes list down */
+  }
+}
+
+/* =========================
+   DESKTOP DROPDOWN GAP FIX
+   Make dropdown sit right under "Products"
+   ========================= */
+@media screen and (min-width: 1118px) {
+
+  /* Make parent anchor point */
+  .dropdown__item {
+    position: relative;
+  }
+
+  /* Place dropdown directly under Products */
+  .dropdown__menu {
+    top: calc(100% + 10px) !important;  /* small gap under nav */
+    left: 0 !important;
+    transform: none !important;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, top .2s ease;
+
+    /* optional: consistent dropdown look */
+    background: #fff !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    border-radius: 10px;
+    min-width: 280px;
+  }
+
+  /* Show dropdown on hover OR when active */
+  .dropdown__item:hover > .dropdown__menu,
+  .dropdown__item.active > .dropdown__menu {
+    opacity: 1;
+    pointer-events: auto;
+    top: calc(100% + 6px) !important;
+  }
+}
+/* =========================
+   DESKTOP DROPDOWN GAP FIX
+   Make dropdown sit right under "Products"
+   ========================= */
+@media screen and (min-width: 1118px) {
+
+  /* Make parent anchor point */
+  .dropdown__item {
+    position: relative;
+  }
+
+  /* Place dropdown directly under Products */
+  .dropdown__menu {
+    top: calc(100% + 25px) !important;  /* small gap under nav */
+    left: 0 !important;
+    transform: none !important;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, top .2s ease;
+
+    /* optional: consistent dropdown look */
+    background: #fff !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    border-radius: 10px;
+    min-width: 280px;
+  }
+
+  /* Show dropdown on hover OR when active */
+  .dropdown__item:hover > .dropdown__menu,
+  .dropdown__item.active > .dropdown__menu {
+    opacity: 1;
+    pointer-events: auto;
+    top: calc(100% + 16px) !important;
+  }
+}
+/* =========================
+   DESKTOP: EASY HOVER + CLICK DROPDOWN
+   Prevent menu closing when moving mouse to submenu
+   ========================= */
+@media screen and (min-width: 1118px) {
+
+  .dropdown__item{
+    position: relative;
+  }
+
+  /* Dropdown box */
+  .dropdown__menu{
+    position: absolute;
+    left: 0;
+    top: calc(100% + 10px);         /* a little space */
+    transform: none !important;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, top .2s ease;
+
+    background: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    border-radius: 10px;
+    min-width: 280px;
+    z-index: 9999;
+  }
+
+  /* IMPORTANT: "hover bridge" (invisible area) so hover doesn't break */
+  .dropdown__menu::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -12px;          /* must match gap */
+    height: 12px;        /* bridge height */
+    background: transparent;
+  }
+
+  /* Keep menu open if hovering Products OR hovering menu itself */
+  .dropdown__item:hover > .dropdown__menu,
+  .dropdown__menu:hover{
+    opacity: 1;
+    pointer-events: auto;
+    top: calc(100% + 6px);
+  }
+
+  /* Optional: nicer clickable rows */
+  .dropdown__link{
+    color: #000 !important;
+    background: #fff !important;
+    padding: 10px 14px !important;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .dropdown__link:hover{
+    background: rgba(0,0,0,0.06) !important;
+  }
+}
+/* =========================
+   FINAL DESKTOP DROPDOWN FIX (NO BLINK)
+   Put this at the VERY END of header.css
+   ========================= */
+@media screen and (min-width: 1118px) {
+
+  /* anchor */
+  .dropdown__item{
+    position: relative !important;
+  }
+
+  /* dropdown hidden by default */
+  .dropdown__item > .dropdown__menu{
+    position: absolute !important;
+    left: 0 !important;
+    top: 100% !important;              /* NO GAP = no blink */
+    transform: none !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+
+    background: #fff !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,.18) !important;
+    border-radius: 10px !important;
+    min-width: 280px !important;
+    padding: 8px 0 !important;
+    /* z-index: 99999 !important; */
+  }
+
+  /* show when hovering li OR hovering the menu itself */
+  .dropdown__item:hover > .dropdown__menu,
+  .dropdown__item > .dropdown__menu:hover{
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* make submenu links clickable + full width */
+  .dropdown__item > .dropdown__menu .dropdown__link{
+    display: block !important;
+    width: 100% !important;
+    padding: 10px 14px !important;
+    background: #fff !important;
+    color: #000 !important;
+    white-space: nowrap;
+  }
+
+  .dropdown__item > .dropdown__menu .dropdown__link:hover{
+    background: rgba(0,0,0,0.06) !important;
+  }
+}
+/* =========================
+   DESKTOP DROPDOWN - STOP BLINKING (OVERRIDE max-height)
+   Put at END of file
+   ========================= */
+@media screen and (min-width: 1118px) {
+
+  /* Desktop dropdown must NOT use max-height animation */
+  .dropdown__menu,
+  .dropdown__submenu{
+    max-height: none !important;
+    overflow: visible !important;
+    transition: none !important;
+  }
+
+  .dropdown__item{
+    position: relative !important;
+  }
+
+  /* Hidden state */
+  .dropdown__item > .dropdown__menu{
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 0 !important;
+    transform: none !important;
+
+    display: block !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+
+    background: #fff !important;
+    border-radius: 10px !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18) !important;
+    padding: 8px 0 !important;
+    min-width: 280px !important;
+    /* z-index: 99999 !important; */
+  }
+
+  /* Show on hover of li OR hover of menu (critical) */
+  .dropdown__item:hover > .dropdown__menu,
+  .dropdown__item > .dropdown__menu:hover{
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Make each link clickable and full width */
+  .dropdown__item > .dropdown__menu .dropdown__link{
+    display: block !important;
+    width: 100% !important;
+    padding: 10px 14px !important;
+    background: #fff !important;
+    color: #000 !important;
+    white-space: nowrap;
+  }
+
+  .dropdown__item > .dropdown__menu .dropdown__link:hover{
+    background: rgba(0,0,0,0.06) !important;
+  }
+}
+/* .header { z-index: 9999 !important; } */

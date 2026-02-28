@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV Charger</title>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TKQV8LKX');</script>
+  <!-- End Google Tag Manager -->
+  <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static 'css/ev-home.css' %}">
+        <link rel="stylesheet" href="{% static 'css/consult-block.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="{% static 'images/logo1.png' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+
+</head>
+
+<body>
+  {% include 'header.html' %}
+    {% include 'request_demo_modal.html' %}
+ {% load static %}
+
+<section class="home-ev-charger">
+  <div class="home-ev-charger__slider" data-home-ev-slider aria-roledescription="carousel" aria-label="Hero slider">
+
+    <!-- SLIDE 1 -->
+    <article
+      class="home-ev-charger__slide is-active"
+      data-slide
+      style="
+        --hev-bg: url('{% static 'images/evv-slide1.png' %}');
+        --hev-dots: url('https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/672b252cc515494ea8a38d4f_Slider%20One%20Dot.svg');
+      "
+    >
+      <div class="home-ev-charger__container">
+        <div class="home-ev-charger__content">
+
+          <!-- KICKER (with underline) -->
+          <p class="home-ev-charger__kicker home-ev-charger__reveal" data-reveal data-delay="0">
+            DISCOVER FAST AND RELIABLE SOLUTIONS
+          </p>
+
+          <!-- TITLE (line-by-line reveal) -->
+          <h1 class="home-ev-charger__title">
+            <span class="home-ev-charger__line home-ev-charger__reveal" data-reveal data-delay="120">
+              Fast and
+            </span>
+
+            <span class="home-ev-charger__line home-ev-charger__reveal" data-reveal data-delay="220">
+              convenient <span class="home-ev-charger__accent">EV</span>
+            </span>
+
+            <span class="home-ev-charger__line home-ev-charger__reveal" data-reveal data-delay="320">
+              <span class="home-ev-charger__accent">charging</span> solutions
+            </span>
+          </h1>
+
+          <a href="#discover" class="home-ev-charger__btn home-ev-charger__reveal" data-reveal data-delay="430">
+            DISCOVER MORE
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 2 -->
+    <article
+      class="home-ev-charger__slide"
+      data-slide
+      style="
+        --hev-bg: url('{% static 'images/home/home.avif' %}');
+        --hev-dots: url('https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/672b252cc515494ea8a38d4f_Slider%20One%20Dot.svg');
+      "
+    >
+      <div class="home-ev-charger__container">
+        <div class="home-ev-charger__content">
+
+          <p class="home-ev-charger__kicker home-ev-charger__reveal" data-reveal data-delay="0">
+            DISCOVER FAST AND RELIABLE SOLUTIONS
+          </p>
+
+          <h1 class="home-ev-charger__title">
+            <span class="home-ev-charger__line home-ev-charger__reveal" data-reveal data-delay="120">
+              Fast and
+            </span>
+
+            <span class="home-ev-charger__line home-ev-charger__reveal" data-reveal data-delay="220">
+              convenient <span class="home-ev-charger__accent">EV</span>
+            </span>
+
+            <span class="home-ev-charger__line home-ev-charger__reveal" data-reveal data-delay="320">
+              <span class="home-ev-charger__accent">charging</span> solutions
+            </span>
+          </h1>
+
+          <a href="#discover" class="home-ev-charger__btn home-ev-charger__reveal" data-reveal data-delay="430">
+            DISCOVER MORE
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- bottom center dots -->
+    <div class="home-ev-charger__dots" role="tablist" aria-label="Slider pagination">
+      <button class="home-ev-charger__dot is-active" type="button" data-dot="0" aria-label="Go to slide 1"></button>
+      <button class="home-ev-charger__dot" type="button" data-dot="1" aria-label="Go to slide 2"></button>
+    </div>
+
+  </div>
+</section>
+
+<section class="home-one-marquee">
+  <div class="w-layout-hflex marquee" data-marquee>
+    <div class="marquee__track" data-marquee-track>
+      <!-- ORIGINAL TRAIN -->
+      <div class="w-layout-hflex marquee-train" data-marquee-train>
+        <div class="home-two-marquee-text">Smart charging solutions</div>
+        <img
+          src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670df7d7c9c3766a1f3479a2_Star%202.svg"
+          loading="lazy"
+          width="84"
+          height="84"
+          alt="Star Icon"
+          class="marquee-image"
+        />
+        <div class="home-two-marquee-text">Power your vehicle</div>
+        <img
+          src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670df7d7c9c3766a1f3479a2_Star%202.svg"
+          loading="lazy"
+          width="84"
+          height="84"
+          alt="Star Icon"
+          class="marquee-image"
+        />
+        <div class="home-two-marquee-text">Vehicle efficiently</div>
+        <img
+          src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670df7d7c9c3766a1f3479a2_Star%202.svg"
+          loading="lazy"
+          width="84"
+          height="84"
+          alt="Star Icon"
+          class="marquee-image"
+        />
+      </div>
+
+      <!-- CLONE (for seamless loop) -->
+      <div class="w-layout-hflex marquee-train" aria-hidden="true" data-marquee-clone></div>
+    </div>
+  </div>
+</section>
+
+<section id="home-two-about" class="home-one-about" data-about-reveal>
+  <div class="w-layout-blockcontainer container w-container">
+    <div class="w-layout-hflex home-one-about-main-wrapper">
+
+      <!-- LEFT IMAGE -->
+      <div class="home-one-about-image-wrapper">
+        <div class="image-effect-wrapper-one home-one-about-image-wrapper">
+
+          <!-- green -> image reveal happens here -->
+          <div class="charging-image-wrapper">
+            <img
+              src="{% static 'images/below.png' %}"
+              loading="lazy"
+              width="520"
+              height="626"
+              alt="Charging Image"
+              class="charging-image"
+            />
+          </div>
+
+          <!-- optional subtle overlay (kept but not necessary) -->
+          <div class="hero-image-overlay" aria-hidden="true"></div>
+        </div>
+
+        <!-- tag -->
+        <div class="image-tag">
+          <div class="image-tag-about">
+            <div class="image-tag-heading-five">Global station</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="w-layout-vflex home-one-about-text-wrapper">
+        <div class="short-header margin-bottom-ten" data-reveal data-delay="0">Basic solution</div>
+
+        <h2 class="about-heading about-margin" data-reveal data-delay="120">
+          Reliable Fast Charging Solutions for Eco-Friendly Travel
+        </h2>
+
+        <div class="color-body-white margin-bottom-thirty" data-reveal data-delay="220">
+         We are delighted to announce that our AC chargers have been approved by the NSW Electric Vehicle Council. This approval reinforces our commitment to providing high-quality EV charging solutions for various applications. With our chargers, we aim to support the growing demand for sustainable transportation infrastructure in New South Wales.  </div>
+
+        <div class="w-layout-hflex about-details-wrapper" data-reveal data-delay="320">
+          <div class="about-detail-image-wrapper">
+            <img
+              src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670dec66c6894145132de586_Vector%2012.svg"
+              loading="lazy"
+              width="74"
+              height="74"
+              alt="Fast Charging"
+              class="icon-image"
+            />
+          </div>
+          <div class="fast-charging-content-wrapper">
+            <div class="heading-five heading-five-new-font">Fast charging</div>
+            <div class="color-body-white">Delivers high efficiency and reduced charging time for all EV models. </div>
+          </div>
+        </div>
+
+        <div class="w-layout-hflex about-details-wrapper about-details-wrapper-two" data-reveal data-delay="420">
+          <div class="about-detail-image-wrapper">
+            <img
+              src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670dec62fb23f4ec8db0f8ba_Group%2018.svg"
+              loading="lazy"
+              width="75"
+              height="72"
+              alt="Environmental friendliness"
+              class="icon-image"
+            />
+          </div>
+          <div class="fast-charging-content-wrapper">
+            <div class="heading-five heading-five-new-font">Environmental friendliness</div>
+            <div class="color-body-white">Supports solar and clean energy integration for sustainable charging. </div>
+          </div>
+        </div>
+        <!-- <div class="w-layout-hflex about-details-wrapper" data-reveal data-delay="320">
+          <div class="about-detail-image-wrapper">
+            <img
+              src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670dec66c6894145132de586_Vector%2012.svg"
+              loading="lazy"
+              width="74"
+              height="74"
+              alt="Fast Charging"
+              class="icon-image"
+            />
+          </div>
+          <div class="fast-charging-content-wrapper">
+            <div class="heading-five heading-five-new-font">Fast charging</div>
+            <div class="color-body-white">Delivers high efficiency and reduced charging time for all EV models. </div>
+          </div>
+        </div>
+
+        <div class="w-layout-hflex about-details-wrapper about-details-wrapper-two" data-reveal data-delay="420">
+          <div class="about-detail-image-wrapper">
+            <img
+              src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670dec62fb23f4ec8db0f8ba_Group%2018.svg"
+              loading="lazy"
+              width="75"
+              height="72"
+              alt="Environmental friendliness"
+              class="icon-image"
+            />
+          </div>
+          <div class="fast-charging-content-wrapper">
+            <div class="heading-five heading-five-new-font">Environmental friendliness</div>
+            <div class="color-body-white">Supports solar and clean energy integration for sustainable charging. </div>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="home-one-services-card">
+  <div class="home-one-card-wrapper">
+
+    <!-- Card 1 -->
+    <a href="" class="service-card w-inline-block" data-service-card>
+      <div class="home-one-service-card-text">
+        <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e029f51fbf65664373f42_Vector%2017.svg" loading="lazy" alt="Work Charging" class="icon-image" />
+        <div class="home-one-card-heading-three">Work charging</div>
+      </div>
+
+      <div class="service-liner-overlay" aria-hidden="true"></div>
+      <div class="green-overlay" aria-hidden="true"></div>
+
+      <div class="image-move-on-mouse-move-and-scroll">
+        <img
+          src="{% static 'images/w1.webp' %}"
+          loading="lazy"
+          alt="Work charging"
+          class="home-one-card-cover-image"
+          draggable="false"
+        />
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="" class="service-card w-inline-block" data-service-card>
+      <div class="home-one-service-card-text">
+        <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e029bec3723c66bbc2dfe_Vector%2020.svg" loading="lazy" alt="Fleet Charging" class="icon-image" />
+        <div class="home-one-card-heading-three">Fleet charging</div>
+      </div>
+
+      <div class="service-liner-overlay" aria-hidden="true"></div>
+      <div class="green-overlay" aria-hidden="true"></div>
+
+      <div class="image-move-on-mouse-move-and-scroll">
+        <img
+          src="{% static 'images/w2.webp' %}"
+          loading="lazy"
+          alt="Fleet charging"
+          class="home-one-card-cover-image"
+          draggable="false"
+        />
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="" class="service-card w-inline-block" data-service-card>
+      <div class="home-one-service-card-text">
+        <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e029714a43a3e1cfda38b_Vector%2021.svg" loading="lazy" alt="Public Charging" class="icon-image" />
+        <div class="home-one-card-heading-three">Public charging</div>
+      </div>
+
+      <div class="service-liner-overlay" aria-hidden="true"></div>
+      <div class="green-overlay" aria-hidden="true"></div>
+
+      <div class="image-move-on-mouse-move-and-scroll">
+        <img
+          src="{% static 'images/w3.webp' %}"
+          loading="lazy"
+          alt="Public charging"
+          class="home-one-card-cover-image"
+          draggable="false"
+        />
+      </div>
+    </a>
+
+  </div>
+</section>
+
+
+<section class="home-one-service" data-service-reveal>
+  <div class="w-layout-blockcontainer container w-container">
+    <div class="home-one-service-wrapper">
+
+      <!-- TOP TEXT -->
+      <div class="w-layout-hflex home-one-service-text-wrapper">
+        <div class="service-heading-wrapper">
+          <div class="short-header margin-bottom-ten" data-reveal data-delay="0">Basic solution</div>
+          <h2 class="no-margin-bottom service-heading" data-reveal data-delay="120">
+            Explore Our Range of EV Chargers
+          </h2>
+        </div>
+
+        <p class="no-margin-top-bottom service-description text-color-light-grey" data-reveal data-delay="220">
+          Discover our comprehensive portfolio including AC Chargers, DC Fast Charging Stations, and Portable Emergency Units designed to Australian standards.  </p>
+      </div>
+
+      <!-- LIST -->
+      <div class="w-layout-vflex home-one-services" data-service-list>
+
+        <!-- ITEM 1 -->
+        <a href="/dc-charging-station" class="w-inline-block service-item-link" data-service-item data-delay="0">
+          <div class="w-layout-hflex home-one-service-items">
+            <div class="service-images overflow-hidden">
+              <div class="service-image-frame">
+                <img
+                  src="{% static 'images/home/dc.avif' %}"
+                  loading="lazy"
+                  width="215"
+                  height="139"
+                  alt="DC Charging Station"
+                  class="service-items-image"
+                />
+                <div class="service-image-hover-green" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="w-layout-hflex home-service-name-wrapper">
+              <h3 class="home-one-servrvice-text">DC Charging Station</h3>
+            </div>
+
+            <div class="icon-circle" aria-hidden="true">
+              <img
+                src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e156578fe29f6d680c292_Vector%2022.svg"
+                loading="lazy"
+                alt=""
+                class="icon-in"
+              />
+              <img
+                src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e15682d4753a980973d6f_Vector%2022%20(1).svg"
+                loading="lazy"
+                alt=""
+                class="icon-out"
+              />
+            </div>
+          </div>
+
+          <div class="service-border">
+            <div class="border-green"></div>
+          </div>
+        </a>
+
+        <!-- ITEM 2 -->
+        <a href="/emr-charging-station" class="w-inline-block service-item-link" data-service-item data-delay="120">
+          <div class="w-layout-hflex home-one-service-items">
+            <div class="service-images overflow-hidden">
+              <div class="service-image-frame">
+                <img
+                  src="{% static 'images/home/mobile.avif' %}"
+                  loading="lazy"
+                  width="215"
+                  height="139"
+                  alt="Emergency Mobile EV Charger"
+                  class="service-items-image"
+                />
+                <div class="service-image-hover-green" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="w-layout-hflex home-service-name-wrapper">
+              <h3 class="home-one-servrvice-text">Emergency Mobile EV Charger</h3>
+            </div>
+
+            <div class="icon-circle" aria-hidden="true">
+              <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e156578fe29f6d680c292_Vector%2022.svg" loading="lazy" alt="" class="icon-in" />
+              <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e15682d4753a980973d6f_Vector%2022%20(1).svg" loading="lazy" alt="" class="icon-out" />
+            </div>
+          </div>
+
+          <div class="service-border">
+            <div class="border-green"></div>
+          </div>
+        </a>
+
+        <!-- ITEM 3 -->
+        <a href="/ac-charging-station" class="w-inline-block service-item-link" data-service-item data-delay="240">
+          <div class="w-layout-hflex home-one-service-items">
+            <div class="service-images overflow-hidden">
+              <div class="service-image-frame">
+                <img
+                  src="{% static 'images/home/ac.avif' %}"
+                  loading="lazy"
+                  width="215"
+                  height="139"
+                  alt="AC Charging Station"
+                  class="service-items-image"
+                />
+                <div class="service-image-hover-green" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="w-layout-hflex home-service-name-wrapper">
+              <h3 class="home-one-servrvice-text">AC Charging Station</h3>
+            </div>
+
+            <div class="icon-circle" aria-hidden="true">
+              <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e156578fe29f6d680c292_Vector%2022.svg" loading="lazy" alt="" class="icon-in" />
+              <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e15682d4753a980973d6f_Vector%2022%20(1).svg" loading="lazy" alt="" class="icon-out" />
+            </div>
+          </div>
+
+          <div class="service-border">
+            <div class="border-green"></div>
+          </div>
+        </a>
+
+        <!-- ITEM 4 -->
+        <a href="/portable-charging-station" class="w-inline-block service-item-link" data-service-item data-delay="360">
+          <div class="w-layout-hflex home-one-service-items">
+            <div class="service-images overflow-hidden">
+              <div class="service-image-frame">
+                <img
+                  src="{% static 'images/home/portable.avif' %}"
+                  loading="lazy"
+                  width="215"
+                  height="139"
+                  alt="Portable DC Chargers"
+                  class="service-items-image"
+                />
+                <div class="service-image-hover-green" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="w-layout-hflex home-service-name-wrapper">
+              <h3 class="home-one-servrvice-text">Portable DC Chargers</h3>
+            </div>
+
+            <div class="icon-circle" aria-hidden="true">
+              <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e156578fe29f6d680c292_Vector%2022.svg" loading="lazy" alt="" class="icon-in" />
+              <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e15682d4753a980973d6f_Vector%2022%20(1).svg" loading="lazy" alt="" class="icon-out" />
+            </div>
+          </div>
+
+          <div class="service-border">
+            <div class="border-green"></div>
+          </div>
+        </a>
+
+        <!-- ITEM 5 -->
+        <a href="/pantograph-system" class="w-inline-block service-item-link" data-service-item data-delay="480">
+          <div class="w-layout-hflex home-one-service-items">
+            <div class="service-images overflow-hidden">
+              <div class="service-image-frame">
+                <img
+                  src="{% static 'images/home/pan.avif' %}"
+                  loading="lazy"
+                  width="215"
+                  height="139"
+                  alt="Pantograph System"
+                  class="service-items-image"
+                />
+                <div class="service-image-hover-green" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="w-layout-hflex home-service-name-wrapper">
+              <h3 class="home-one-servrvice-text">Pantograph System</h3>
+            </div>
+
+            <div class="icon-circle" aria-hidden="true">
+              <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e156578fe29f6d680c292_Vector%2022.svg" loading="lazy" alt="" class="icon-in" />
+              <img src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e15682d4753a980973d6f_Vector%2022%20(1).svg" loading="lazy" alt="" class="icon-out" />
+            </div>
+          </div>
+
+          <div class="service-border">
+            <div class="border-green"></div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  class="home-one-protest-section"
+  style="background-image: url('https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e0dba9440b60a01103861_Mask%20group%20(3)%20(4)-p-500.webp');"
+  >
+  <div class="w-layout-blockcontainer container w-container">
+    <div class="w-layout-hflex home-one-wrapper-protest">
+
+      <div class="w-layout-vflex home-one-protest-text-wrapper">
+        <div class="short-header colo-white margin-bottom-ten">Main Value Proposition</div>
+
+        <h2 class="heading-two color-white no-margin-top margin-bottom-thirty">
+          POWERING YOUR ELECTRIC FUTURE 
+        </h2>
+
+        <div class="color-dark-white border-bottom-white home-one-power-text">
+          iEngineering Group provides state-of-the-art iPower EV charging infrastructure, ranging from compact residential units to ultra-fast 400kW DC stations. We offer end-to-end turnkey solutions, ensuring your transition to electric mobility is seamless, reliable, and future-proof.   </div>
+
+        <div class="w-layout-vflex protest-list">
+          <div class="w-layout-hflex protest-list-items">
+            <img width="23" height="19" alt="Green Icon"
+              src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/6710e084a3ebac0ff0089bab_Vector%2023.svg"
+              loading="lazy" class="icon-image" />
+            <div class="w-layout-vflex protest-list-contents">
+              <div class="heading-six color-white">What we do</div>
+              <div class="protest-list-about color-dark-white">
+               iEngineering provides full turnkey EV charging solutions, managing everything from initial site design and iPower series installation (7kW–400kW) to final commissioning. Our experts simplify your transition by securing available government grants and managing all technical paperwork on your behalf. Every installation is smart, OCPP-compliant, and future-proofed with 24/7 technical support to ensure maximum reliability. </div>
+            </div>
+          </div>
+
+          <div class="w-layout-hflex protest-list-items">
+            <img width="23" height="19" alt="Green Icon"
+              src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/6710e084a3ebac0ff0089bab_Vector%2023.svg"
+              loading="lazy" class="icon-image" />
+            <div class="w-layout-vflex protest-list-contents">
+              <div class="heading-six color-white">The opportunities</div>
+              <div class="protest-list-about color-dark-white">
+              Scalable EV infrastructure increases property value and supports corporate sustainability goals. Accessing smart-charging technology now future-proofs your site for the rapidly growing electric vehicle market.  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-one-protest-image-wrapper">
+
+        <!-- TALL IMAGE -->
+        <div class="image-effect-wrapper-one home-one-protest-image-wrapper-one">
+          <div class="trigger-image-one">
+            <img
+              src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/673f2d6850d253c7e1d848a3_Mask%20group%20(4).jpg"
+              loading="lazy"
+              width="330" height="665"
+              alt="Protest Trigger Image One"
+              class="protest-trigger-image-one image-effect"
+            />
+          </div>
+          <div class="image-overlay-one"></div>
+        </div>
+
+        <!-- SMALL IMAGE + BADGE -->
+        <div class="w-layout-vflex image-effect-wrapper-two">
+          <div class="trigger-image-two">
+            <img
+              src="{% static 'images/home/home-power.avif' %}"
+              loading="lazy"
+              width="300" height="438"
+              alt="Protest Trigger Image Two"
+              class="protest-trigger-image-two image-effect"
+            />
+            <div class="image-overlay-one overlay-iimage-two"></div>
+          </div>
+
+          <div class="bottom-tag-wrapper">
+            <div class="image-tag-content">17k+</div>
+            <div class="heading-five">Active users</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== EV BLOGS SECTION ===================== -->
+<section class="ev-blogs-section-ev-blogs" id="ev-blogs-ev-blogs">
+  <div class="ev-blogs-container-ev-blogs">
+
+    <div class="ev-blogs-head-ev-blogs" data-reveal-ev-blogs>
+      <div class="ev-blogs-kicker-ev-blogs">LATEST NEWS</div>
+      <h2 class="ev-blogs-title-ev-blogs">Browse our latest news<br />and articles</h2>
+    </div>
+
+    <div class="ev-blogs-grid-ev-blogs">
+      <!-- Card 1 -->
+      <a class="ev-blogs-card-ev-blogs" href="/blog/powering-up-the-future-of-ev-charging" aria-label="Powering up the future of EV charging"
+        data-reveal-ev-blogs>
+        <div class="ev-blogs-media-ev-blogs">
+          <img class="ev-blogs-img-ev-blogs"
+            src="https://images.unsplash.com/photo-1615906655593-ad0386982a0f?auto=format&fit=crop&w=1400&q=80"
+            alt="EV charging" loading="lazy" />
+          <span class="ev-blogs-overlay-ev-blogs" aria-hidden="true"></span>
+          <span class="ev-blogs-date-ev-blogs"><strong>07</strong><span>Nov</span></span>
+        </div>
+
+        <div class="ev-blogs-body-ev-blogs">
+          <h3 class="ev-blogs-card-title-ev-blogs">Powering up the future of EV charging</h3>
+          <span class="ev-blogs-more-ev-blogs">VIEW MORE</span>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a class="ev-blogs-card-ev-blogs" href="/blog/the-evolution-of-ev-technologies" aria-label="The evolution of EV technologies"
+        data-reveal-ev-blogs>
+        <div class="ev-blogs-media-ev-blogs">
+          <img class="ev-blogs-img-ev-blogs"
+            src="https://images.unsplash.com/photo-1555487432-362a5c7a82af?auto=format&fit=crop&w=1400&q=80"
+            alt="EV wall charger" loading="lazy" />
+          <span class="ev-blogs-overlay-ev-blogs" aria-hidden="true"></span>
+          <span class="ev-blogs-date-ev-blogs"><strong>09</strong><span>Nov</span></span>
+        </div>
+
+        <div class="ev-blogs-body-ev-blogs">
+          <h3 class="ev-blogs-card-title-ev-blogs">The evolution of EV technologies</h3>
+          <span class="ev-blogs-more-ev-blogs">VIEW MORE</span>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a class="ev-blogs-card-ev-blogs" href="/blog/electric-vehicle-charging-technology" aria-label="Electric vehicle charging technology"
+        data-reveal-ev-blogs>
+        <div class="ev-blogs-media-ev-blogs">
+          <img class="ev-blogs-img-ev-blogs"
+            src="https://images.unsplash.com/photo-1619767886558-efdc259cde1c?auto=format&fit=crop&w=1400&q=80"
+            alt="Electric vehicle" loading="lazy" />
+          <span class="ev-blogs-overlay-ev-blogs" aria-hidden="true"></span>
+          <span class="ev-blogs-date-ev-blogs"><strong>04</strong><span>Nov</span></span>
+        </div>
+
+        <div class="ev-blogs-body-ev-blogs">
+          <h3 class="ev-blogs-card-title-ev-blogs">Electric vehicle charging technology</h3>
+          <span class="ev-blogs-more-ev-blogs">VIEW MORE</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+  {% include "components/contact_block.html" with form_only=True %}
+  {% include 'footer.html' %}
+  <!-- Link to Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+   <script defer src="{% static 'js/demo_form.js' %}"></script>
+  <script defer src="{% static 'js/main.js' %}"></script>
+  <script defer src="{% static 'js/ev.js' %}"></script>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKQV8LKX" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+</body>
+
+</html>

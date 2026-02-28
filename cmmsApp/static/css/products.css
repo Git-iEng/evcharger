@@ -1,0 +1,736 @@
+:root {
+  --primary-color: #becb0a;
+  --secondary-color: #161515;
+}
+
+.hero-all-products {
+  /* Change your hero image here */
+  --hero-bg-all-products: url("https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=2400&q=80");
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(520px, 80vh, 820px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 40px;
+  margin-top: 40px;
+
+  background-image: var(--hero-bg-all-products);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Dark shadow/vignette like your screenshot */
+.hero-overlay-all-products {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(70% 90% at 75% 50%,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.046) 60%,
+      rgba(0, 0, 0, 0.88) 100%),
+    linear-gradient(90deg,
+      rgba(0, 0, 0, 0.062) 0%,
+      rgba(0, 0, 0, 0.72) 60%,
+      rgba(0, 0, 0, 0) 100%);
+}
+
+.hero-inner-all-products {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: flex-end; /* text on right */
+}
+
+.hero-text-wrap-all-products {
+  max-width: 720px;
+  text-align: left;
+
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    transform 800ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    opacity 650ms ease;
+  will-change: transform, opacity;
+}
+
+/* Added by JS */
+.hero-all-products.is-ready-all-products .hero-text-wrap-all-products {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-kicker-all-products {
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 650;
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+.hero-title-all-products {
+  color: #fff;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  margin: 0 0 18px;
+  font-size: clamp(42px, 5vw, 86px);
+}
+
+.hero-subtitle-all-products {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(14px, 1.2vw, 18px);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 64ch;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .hero-all-products {
+    min-height: clamp(520px, 65vh, 720px);
+  }
+
+  .hero-inner-all-products {
+    justify-content: center; /* center on tablet */
+    padding: 0 18px;
+  }
+
+  .hero-text-wrap-all-products {
+    max-width: 760px;
+    text-align: center;
+  }
+
+  .hero-overlay-all-products {
+    background:
+      radial-gradient(80% 100% at 50% 45%,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.72) 65%,
+        rgba(0, 0, 0, 0.9) 100%);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-all-products {
+    min-height: 540px;
+    background-position: 35% center;
+  }
+
+  .hero-title-all-products {
+    line-height: 1.02;
+  }
+
+  .hero-kicker-all-products {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero-inner-all-products {
+    padding: 0 14px;
+  }
+
+  .hero-subtitle-all-products {
+    max-width: 40ch;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-text-wrap-all-products {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+
+/* ===== Basic Solution Heading (Responsive + Reveal) ===== */
+
+.basic-solution-heading {
+  background: #fff;
+  padding: clamp(48px, 6vw, 90px) 0;
+}
+
+.basic-solution-heading__container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  text-align: center;
+}
+
+.basic-solution-heading__kicker {
+  margin: 0 0 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.basic-solution-heading__title {
+  margin: 0;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: #1a1919;
+
+  /* Responsive size */
+  font-size: clamp(34px, 4.1vw, 66px);
+}
+
+/* ---------- Reveal animation (replays on scroll up/down) ---------- */
+.basic-solution-heading [data-bsh-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    transform 900ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    opacity 650ms ease;
+  transition-delay: var(--bsh-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.basic-solution-heading.is-inview-bsh [data-bsh-reveal] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 991px) {
+  .basic-solution-heading__container {
+    padding: 0 18px;
+  }
+
+  .basic-solution-heading__title {
+    line-height: 1.02;
+  }
+}
+
+@media (max-width: 767px) {
+  .basic-solution-heading {
+    padding: 46px 0;
+  }
+
+  .basic-solution-heading__kicker {
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+
+  .basic-solution-heading__title {
+    font-size: clamp(30px, 9vw, 52px);
+  }
+}
+
+@media (max-width: 479px) {
+  .basic-solution-heading__container {
+    padding: 0 14px;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .basic-solution-heading [data-bsh-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+:root{
+  --primary-color:#becb0a;
+  --secondary-color:#161515;
+  --heading-white-section:#1a1919;
+  --body-white-section:#5e5e5e;
+  --line-color: rgba(22,21,21,.18);
+}
+
+*{ box-sizing:border-box; }
+.features-grid-all-products{
+  width:100%;
+  background:#fff;
+  padding: 56px 0;
+}
+
+.features-wrap-all-products{
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* rows */
+.features-row-3-all-products,
+.features-row-2-all-products{
+  display:grid;
+  gap:0;
+}
+
+/* 3 cards top row */
+.features-row-3-all-products{
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line-color);
+  border-bottom: 1px solid var(--line-color);
+}
+
+/* 2 cards bottom row */
+.features-row-2-all-products{
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 1px solid var(--line-color);
+}
+
+/* card */
+.feature-card-all-products{
+  position:relative;
+  display:block;
+  padding: 42px 42px 36px;
+  min-height: 260px;
+  text-decoration:none;
+  background:#fff;
+  overflow:hidden;
+
+  /* borders (no double thickness) */
+  border-right: 1px solid var(--line-color);
+}
+
+.features-row-3-all-products .feature-card-all-products:nth-child(3n){
+  border-right:none;
+}
+.features-row-2-all-products .feature-card-all-products:nth-child(2n){
+  border-right:none;
+}
+
+/* top row needs vertical lines only; bottom row also */
+.features-row-2-all-products .feature-card-all-products{
+  border-top: none;
+}
+
+/* hover fill (top -> bottom) */
+.feature-card-all-products::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: var(--primary-color);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 520ms cubic-bezier(.2,.8,.2,1);
+  z-index:0;
+}
+
+/* content above overlay */
+.feature-card-all-products > *{
+  position:relative;
+  z-index:1;
+}
+
+/* typography */
+.feature-title-all-products{
+  margin:0 0 14px;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--heading-white-section);
+}
+
+.feature-text-all-products{
+  margin:0 0 26px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--body-white-section);
+  max-width: 52ch;
+}
+
+.feature-link-all-products{
+  display:inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--secondary-color);
+  position:relative;
+  padding-bottom: 6px;
+}
+
+.feature-link-all-products{
+  display:inline-block;
+  position:relative;
+  padding-bottom: 6px;
+}
+
+.feature-link-all-products::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;              /* makes it span full text width */
+  bottom:0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin:left;
+  transition: transform 360ms ease;
+}
+
+
+/* hover / focus */
+.feature-card-all-products:hover::before,
+.feature-card-all-products:focus-visible::before,
+.feature-card-all-products.is-hover-all-products::before{
+  transform: scaleY(1);
+}
+
+.feature-card-all-products:hover .feature-title-all-products,
+.feature-card-all-products:focus-visible .feature-title-all-products,
+.feature-card-all-products.is-hover-all-products .feature-title-all-products{
+  color: var(--secondary-color);
+}
+
+.feature-card-all-products:hover .feature-text-all-products,
+.feature-card-all-products:focus-visible .feature-text-all-products,
+.feature-card-all-products.is-hover-all-products .feature-text-all-products{
+  color: rgba(22,21,21,.78);
+}
+
+.feature-card-all-products:hover .feature-link-all-products::after,
+.feature-card-all-products:focus-visible .feature-link-all-products::after,
+.feature-card-all-products.is-hover-all-products .feature-link-all-products::after{
+  transform: scaleX(1);
+}
+
+/* accessibility */
+.feature-card-all-products:focus-visible{
+  outline: 2px solid rgba(190,203,10,.65);
+  outline-offset: -2px;
+}
+
+/* responsive */
+@media (max-width: 991px){
+  .features-wrap-all-products{
+    width: min(1180px, calc(100% - 32px));
+  }
+
+  .features-row-3-all-products{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .features-row-3-all-products .feature-card-all-products:nth-child(3n){
+    border-right: 1px solid var(--line-color);
+  }
+  .features-row-3-all-products .feature-card-all-products:nth-child(2n){
+    border-right: none;
+  }
+}
+
+@media (max-width: 767px){
+  .features-grid-all-products{
+    padding: 40px 0;
+  }
+
+  .features-row-3-all-products,
+  .features-row-2-all-products{
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card-all-products{
+    padding: 28px 22px 22px;
+    min-height: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--line-color);
+  }
+
+  .features-row-2-all-products{
+    border-bottom: none;
+  }
+
+  .feature-title-all-products{
+    font-size: 20px;
+  }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .feature-card-all-products::before,
+  .feature-link-all-products::after{
+    transition:none !important;
+  }
+}
+:root{
+  --brand-green: #becb0a;
+  --text-dark: #1a1919;
+  --text-body: #5e5e5e;
+  --border: rgba(0,0,0,.14);
+}
+
+/* ===== Our Work Section ===== */
+.ourwork-all-products{
+  background:#fff;
+  padding: clamp(40px, 6vw, 90px) 0;
+}
+
+.ourwork__container-all-products{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.ourwork__grid-all-products{
+  display:grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(24px, 4vw, 54px);
+  align-items: start;
+}
+
+/* Left content */
+.ourwork__kicker-all-products{
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  opacity: .85;
+  margin-bottom: 12px;
+}
+
+.ourwork__title-all-products{
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.08;
+  margin: 0 0 14px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.ourwork__lead-all-products{
+  margin: 0 0 18px;
+  color: var(--text-body);
+  line-height: 1.6;
+  max-width: 56ch;
+}
+
+.ourwork__divider-all-products{
+  height: 1px;
+  width: 100%;
+  background: var(--border);
+  margin: 18px 0 22px;
+}
+
+.ourwork__item-all-products{
+  margin: 0 0 18px;
+}
+
+.ourwork__item-head-all-products{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.ourwork__check-all-products{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--brand-green);
+}
+
+.ourwork__item-title-all-products{
+  font-size: 18px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.ourwork__item-text-all-products{
+  margin: 0 0 0 40px;
+  color: var(--text-body);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* Right media */
+.ourwork__media-all-products{
+  display:flex;
+  justify-content:flex-end;
+}
+
+.ourwork__photo-all-products{
+  position: relative;
+  width: min(480px, 100%);
+  aspect-ratio: 4 / 5.2; /* keeps height consistent like your screenshot */
+  overflow: hidden;
+  background: var(--brand-green); /* initial “green card” */
+}
+
+/* Real image */
+.ourwork__img-all-products{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+  transform: scale(1.02);
+}
+
+/* GREEN → IMAGE REVEAL MASK (top → down) */
+.ourwork__photo-all-products::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: var(--brand-green);
+  transform: scaleY(1);
+  transform-origin: top;
+  z-index: 2;
+  transition: transform 900ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* optional subtle shadow overlay (like screenshot soft shading) */
+.ourwork__photo-all-products::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,0));
+  z-index: 1;
+  pointer-events:none;
+}
+
+/* Badge (appears LAST) */
+.ourwork__badge-all-products{
+  position:absolute;
+  right: -8px;            /* makes it stick out like your screenshot */
+  bottom: 78px;
+  background: var(--brand-green);
+  color: #111;
+  padding: 18px 22px;
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+.ourwork__badge-num-all-products{
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.ourwork__badge-label-all-products{
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+/* ===== Scroll reveal (content) ===== */
+.ourwork-all-products [data-reveal]{
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 520ms ease, transform 520ms ease;
+  will-change: transform, opacity;
+}
+
+/* When in view (replays because JS removes class on exit) */
+.ourwork-all-products.is-inview-all-products [data-reveal]{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image reveal trigger */
+.ourwork-all-products.is-inview-all-products .ourwork__photo-all-products::before{
+  transform: scaleY(0); /* reveal from top to bottom */
+}
+
+/* Badge appears AFTER image reveal */
+.ourwork-all-products.is-inview-all-products .ourwork__badge-all-products{
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 900ms; /* badge comes last */
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 991px){
+  .ourwork__grid-all-products{
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .ourwork__media-all-products{
+    justify-content:flex-start;
+  }
+  .ourwork__photo-all-products{
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 16 / 12; /* nicer on tablets */
+  }
+  .ourwork__badge-all-products{
+    right: 12px;
+    bottom: 18px;
+  }
+}
+
+@media (max-width: 520px){
+  .ourwork__photo-all-products{
+    aspect-ratio: 16 / 13;
+  }
+  .ourwork__badge-num-all-products{
+    font-size: 36px;
+  }
+  .ourwork__badge-label-all-products{
+    font-size: 16px;
+  }
+  .ourwork__item-text-all-products{
+    margin-left: 0;
+  }
+}
+/* ===== FIX: center content vertically + equal top/bottom spacing for image + badge fully visible ===== */
+
+/* Make both columns same height and vertically centered */
+.ourwork__grid-all-products{
+  align-items: center; /* was start */
+}
+
+/* Ensure the left block sits in the vertical middle nicely */
+.ourwork__content-all-products{
+  align-self: center;
+}
+
+/* Right side: keep the image “card” centered with equal space top/bottom */
+.ourwork__media-all-products{
+  align-items: center;
+}
+
+/* Prevent text truncation in badge */
+.ourwork__badge-label-all-products{
+  white-space: nowrap;         /* keeps “Active users” readable */
+}
+
+/* Slightly scale badge for small widths */
+@media (max-width: 520px){
+  .ourwork__badge-all-products{
+    right: 12px;
+    bottom: 12px;
+    padding: 14px 16px;
+    gap: 10px;
+  }
+  .ourwork__badge-num-all-products{ font-size: 32px; }
+  .ourwork__badge-label-all-products{ font-size: 14px; }
+}
+
+/* Tablet: keep layout balanced and centered */
+@media (max-width: 991px){
+  .ourwork__grid-all-products{
+    align-items: start; /* stack mode looks better top-aligned */
+  }
+  .ourwork__photo-all-products{
+    margin-inline: auto;
+    margin-block: 14px;
+    overflow: hidden; /* in stacked view, keep everything neat */
+  }
+  .ourwork__badge-all-products{
+    right: 12px;
+    bottom: 12px;
+  }
+}
