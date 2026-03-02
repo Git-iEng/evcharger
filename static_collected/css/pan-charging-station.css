@@ -1,0 +1,966 @@
+/* ===================== DC CHARGER HERO (RESPONSIVE) ===================== */
+
+html, body {
+  margin: 0;               /* remove default 8px margin that causes scroll with full-bleed rows */
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;      /* belt-and-suspenders: stop any stray overflow */
+}
+.pan-charger-hero-dc{
+  position: relative;
+  min-height: clamp(360px, 90vh, 640px);
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: #0b0b0b;
+  margin-top: 40px;
+  padding-top: 40px;
+}
+
+/* Set your background image here */
+.pan-charger-hero-bg-dc{
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/banner/pan.avif");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+}
+
+/* Dark overlay for contrast */
+.pan-charger-hero-overlay-dc{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.35) 45%,
+    rgba(0,0,0,.55) 100%
+  );
+}
+
+/* Container to keep content centered and readable */
+.pan-charger-hero-inner-dc{
+  position: relative;
+  z-index: 2;
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: clamp(36px, 6vw, 72px) 0;
+  padding-top: 75px;
+}
+
+.pan-charger-hero-content-dc{
+  max-width: 980px;
+}
+
+/* Kicker */
+.pan-charger-hero-kicker-dc{
+  font-size: 12px;
+  letter-spacing: .22em;
+  font-weight: 700;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 10px;
+}
+
+/* Title */
+.pan-charger-hero-title-dc{
+  margin: 0;
+  font-weight: 900;
+  line-height: 1.03;
+  color: #fff;
+  font-size: clamp(28px, 4.6vw, 64px);
+  text-wrap: balance;
+}
+
+/* Subtitle */
+.pan-charger-hero-subtitle-dc{
+  margin: 14px 0 0;
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: rgba(255,255,255,.82);
+  line-height: 1.55;
+}
+
+/* ===== Reveal animation (replays on scroll up/down) ===== */
+[data-reveal-dc]{
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .6s ease, transform .6s ease;
+  will-change: opacity, transform;
+}
+
+[data-reveal-dc].is-inview-dc{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile tweaks */
+@media (max-width: 640px){
+  .pan-charger-hero-inner-dc{
+    width: min(1180px, calc(100% - 26px));
+  }
+  .pan-charger-hero-title-dc{
+    font-size: clamp(26px, 7vw, 44px);
+  }
+}
+/* ===================== DC CHARGER CONTENT (MATCHES #becb0a THEME) ===================== */
+/* Use with a wrapper like:
+<section class="pan-charger-copy-all-products">
+  <div class="pan-charger-copy__container-all-products">
+    ...your text...
+  </div>
+</section>
+*/
+
+:root{
+  --dc-accent-all-products:#becb0a;     /* your brand lime */
+  --dc-ink-all-products:#111214;        /* main text */
+  --dc-muted-all-products:#5d6167;      /* secondary text */
+  --dc-line-all-products:rgba(17,18,20,.12);
+  --dc-bg-all-products:#ffffff;
+  --dc-soft-all-products:#f6f7f7;
+}
+
+/* Section shell */
+.pan-charger-copy-all-products{
+  background: var(--dc-bg-all-products);
+  padding: clamp(36px, 2vw, 72px) 0;
+}
+
+.pan-charger-copy__container-all-products{
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+/* Top label + title */
+.pan-charger-kicker-all-products{
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: .22em;
+  font-weight: 800;
+  color: var(--dc-ink-all-products);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  position: relative;
+  padding-left: 14px;
+}
+.pan-charger-kicker-all-products::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background: var(--dc-accent-all-products);
+  transform: translateY(-50%);
+}
+
+.pan-charger-title-all-products{
+  margin: 0 0 10px;
+  font-size: clamp(28px, 3.8vw, 54px);
+  font-weight: 900;
+  line-height: 1.06;
+  color: var(--dc-ink-all-products);
+  text-wrap: balance;
+}
+
+.pan-charger-lead-all-products{
+  margin: 0;
+  font-size: clamp(15px, 1.45vw, 18px);
+  line-height: 1.7;
+  color: var(--dc-muted-all-products);
+  max-width: 92ch;
+}
+
+/* Layout: left copy + right highlights */
+.pan-charger-grid-all-products{
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: clamp(18px, 3vw, 34px);
+  align-items: start;
+  margin-top: clamp(22px, 3.2vw, 34px);
+}
+
+/* Main rich text (your paragraphs) */
+.pan-charger-richtext-all-products{
+  color: var(--dc-ink-all-products);
+  font-size: 16px;
+  line-height: 1.85;
+}
+.pan-charger-richtext-all-products p{
+  margin: 0 0 14px;
+  color: var(--dc-muted-all-products);
+}
+.pan-charger-richtext-all-products p strong{
+  color: var(--dc-ink-all-products);
+}
+.pan-charger-richtext-all-products .dc-divider-all-products{
+  height: 1px;
+  background: var(--dc-line-all-products);
+  margin: 18px 0;
+}
+
+/* Callouts / highlights (right column) */
+.pan-charger-side-all-products{
+  position: sticky;
+  top: 18px;
+}
+
+.pan-charger-card-all-products{
+  background: var(--dc-soft-all-products);
+  border: 1px solid var(--dc-line-all-products);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 18px 48px rgba(2, 8, 23, .06);
+}
+
+.pan-charger-card-all-products + .pan-charger-card-all-products{
+  margin-top: 14px;
+}
+
+/* Accent header inside cards */
+.pan-charger-card__title-all-products{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin: 0 0 10px;
+  color: var(--dc-ink-all-products);
+  font-weight: 900;
+  font-size: 16px;
+}
+.pan-charger-card__title-all-products::before{
+  content:"";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--dc-accent-all-products);
+  box-shadow: 0 0 0 4px rgba(190,203,10,.22);
+}
+
+.pan-charger-card__text-all-products{
+  margin: 0;
+  color: var(--dc-muted-all-products);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* Power chips list */
+.pan-charger-chips-all-products{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.pan-charger-chip-all-products{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(17,18,20,.12);
+  background: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--dc-ink-all-products);
+}
+.pan-charger-chip-all-products::before{
+  content:"";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--dc-accent-all-products);
+}
+
+/* “Key points” list */
+.pan-charger-points-all-products{
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.pan-charger-points-all-products li{
+  position: relative;
+  padding-left: 24px;
+  color: var(--dc-muted-all-products);
+  line-height: 1.65;
+  font-size: 14px;
+}
+.pan-charger-points-all-products li::before{
+  content:"✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 900;
+  color: var(--dc-accent-all-products);
+}
+
+/* Inline “definition” highlight */
+.dc-inline-highlight-all-products{
+  color: var(--dc-ink-all-products);
+  font-weight: 900;
+  background: linear-gradient(180deg, transparent 55%, rgba(190,203,10,.35) 55%);
+  padding: 0 2px;
+}
+
+/* Optional: subtle reveal animation hook (if you already use IO elsewhere) */
+.dc-reveal-all-products{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .55s ease, transform .55s ease;
+  will-change: opacity, transform;
+}
+.dc-reveal-all-products.is-inview-all-products{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 980px){
+  .pan-charger-grid-all-products{
+    grid-template-columns: 1fr;
+  }
+  .pan-charger-side-all-products{
+    position: relative;
+    top: auto;
+  }
+}
+
+@media (max-width: 640px){
+  .pan-charger-copy__container-all-products{
+    width: min(1180px, calc(100% - 26px));
+  }
+  .pan-charger-card-all-products{
+    padding: 16px;
+    border-radius: 16px;
+  }
+  .pan-charger-chip-all-products{
+    font-size: 12.5px;
+    padding: 9px 11px;
+  }
+}
+/* ===== OUR WORK SECTION (Responsive) ===== */
+.our-work-all-products{
+  background:#fff;
+  padding: clamp(28px, 2vw, 80px) 0;
+}
+
+.our-work__container-all-products{
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.our-work__grid-all-products{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(18px, 3.2vw, 54px);
+  align-items: center;
+}
+
+/* LEFT IMAGE */
+.our-work__imgwrap-all-products{
+  width:100%;
+  aspect-ratio: 1 / 1;
+  overflow:hidden;
+  background:#f2f2f2;
+}
+.our-work__img-all-products{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform: scale(1.02);
+}
+
+/* RIGHT CONTENT */
+.our-work__kicker-all-products{
+  font-size: 12px;
+  letter-spacing: .18em;
+  font-weight: 800;
+  color:#111;
+  margin-bottom: 10px;
+}
+.our-work__title-all-products{
+  font-size: clamp(28px, 3.6vw, 46px);
+  line-height: 1.06;
+  margin: 0 0 14px;
+  font-weight: 800;
+  color:#111;
+}
+.our-work__lead-all-products{
+  margin: 0 0 22px;
+  color:#6b6b6b;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.7;
+  max-width: 62ch;
+}
+
+/* GREEN PANEL */
+.our-work__panel-all-products{
+  background:#becb0a;
+  padding: clamp(18px, 2.6vw, 34px);
+}
+.our-work__panel-title-all-products{
+  margin: 0 0 10px;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 800;
+  color:#101010;
+}
+.our-work__panel-text-all-products{
+  margin: 0;
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.75;
+  color: rgba(16,16,16,.72);
+  max-width: 64ch;
+}
+.our-work__panel-divider-all-products{
+  height:1px;
+  background: rgba(16,16,16,.18);
+  margin: clamp(14px, 2vw, 22px) 0;
+}
+
+/* ===== Reveal on scroll (re-triggers on up/down via JS) ===== */
+.our-reveal-all-products{
+  opacity:0;
+  transform: translateY(26px);
+  transition: opacity .55s ease, transform .55s ease;
+  will-change: opacity, transform;
+}
+.our-reveal-all-products.is-inview-all-products{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px){
+  .our-work__grid-all-products{
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .our-work__imgwrap-all-products{
+    aspect-ratio: 16 / 11;
+  }
+}
+
+@media (max-width: 520px){
+  .our-work__container-all-products{
+    width: calc(100% - 26px);
+  }
+  .our-work__panel-all-products{
+    padding: 18px;
+  }
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .our-reveal-all-products{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+  }
+}
+/* ===== GREEN FIRST, THEN IMAGE REVEAL (bottom -> top) ===== */
+/* Put this BELOW your existing OUR WORK CSS */
+
+/* wrapper */
+.our-work__media-all-products{
+  position: relative;
+  overflow: hidden;
+}
+
+/* GREEN layer sits ABOVE the image initially */
+.our-work__media-all-products::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#becb0a;
+  opacity:.9;
+  transform: translateY(0%);         /* GREEN visible first */
+  transition: transform .9s ease;    /* wipe UP to remove green */
+  pointer-events:none;
+  z-index: 3;
+}
+
+/* IMAGE starts hidden under green (moved down a bit) */
+.our-work__imgwrap-all-products{
+  position: relative;
+  z-index: 1;
+}
+
+.our-work__img-all-products{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  transform: translateY(18%);        /* hidden-ish */
+  filter: saturate(.95) contrast(.98);
+  opacity: .15;                      /* faint under green */
+  transition: transform .9s ease, opacity .9s ease, filter .9s ease;
+}
+
+/* When in view: green wipes UP and image comes in from bottom */
+.our-work__media-all-products.is-inview-all-products::after{
+  transform: translateY(-100%);      /* remove green (bottom->top) */
+}
+
+.our-work__media-all-products.is-inview-all-products .our-work__img-all-products{
+  transform: translateY(0%);
+  opacity: 1;
+  filter: none;
+}
+
+/* Optional: replay nicely if you remove/add class on scroll */
+.our-work__media-all-products.is-outview-all-products::after{
+  transform: translateY(0%);
+}
+.our-work__media-all-products.is-outview-all-products .our-work__img-all-products{
+  transform: translateY(18%);
+  opacity: .15;
+  filter: saturate(.95) contrast(.98);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .our-work__media-all-products::after,
+  .our-work__img-all-products{
+    transition: none !important;
+  }
+  .our-work__media-all-products::after{
+    transform: translateY(-100%) !important; /* no green wipe */
+    opacity: 0 !important;
+  }
+  .our-work__img-all-products{
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}
+
+/* ================================
+   iPower Suite Section (All Products)
+   Accent: #becb0a
+================================ */
+
+.ipower-suite-all-products{
+  --accent-all-products: #becb0a;
+  --bg-all-products: #ffffff;
+  --text-all-products: #0f172a;
+  --muted-all-products: rgba(15, 23, 42, .70);
+  --line-all-products: rgba(15, 23, 42, .14);
+  --shadow-all-products: 0 22px 70px rgba(2, 8, 23, .14);
+
+  background: var(--bg-all-products);
+  padding: clamp(44px, 2vw, 78px) 0;
+  overflow: clip;
+}
+
+.ipower-suite__container-all-products{
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.ipower-suite__head-all-products{
+  text-align: center;
+  margin-bottom: clamp(22px, 3vw, 34px);
+}
+
+.ipower-suite__kicker-all-products{
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,.75);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.ipower-suite__title-all-products{
+  font-size: clamp(26px, 4vw, 46px);
+  line-height: 1.06;
+  margin: 0 0 10px;
+  font-weight: 900;
+  color: var(--text-all-products);
+}
+
+.ipower-suite__subtitle-all-products{
+  margin: 0 auto;
+  max-width: 70ch;
+  color: var(--muted-all-products);
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.6;
+}
+
+/* layout */
+.ipower-suite__grid-all-products{
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(16px, 2.4vw, 26px);
+  align-items: start;
+}
+
+/* benefits card */
+.ipower-suite__card-all-products{
+  border: 1px solid var(--line-all-products);
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(2, 8, 23, .06);
+  padding: clamp(18px, 2.3vw, 26px);
+  background: #fff;
+}
+
+.ipower-suite__card-top-all-products{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.ipower-suite__chip-all-products{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(190,203,10,.16);
+  border: 1px solid rgba(190,203,10,.35);
+  color: #111827;
+  font-weight: 900;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+
+.ipower-suite__list-all-products{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.ipower-suite__li-all-products{
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, .10);
+  transition: transform .25s ease, border-color .25s ease, background-color .25s ease;
+}
+
+.ipower-suite__li-all-products:hover{
+  transform: translateY(-2px);
+  border-color: rgba(190,203,10,.55);
+  background: rgba(190,203,10,.08);
+}
+
+.ipower-suite__tick-all-products{
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(190,203,10,.18);
+  border: 1px solid rgba(190,203,10,.55);
+  position: relative;
+  margin-top: 2px;
+}
+
+.ipower-suite__tick-all-products::after{
+  content:"";
+  position:absolute;
+  left: 5px;
+  top: 3px;
+  width: 6px;
+  height: 10px;
+  border-right: 2px solid #111827;
+  border-bottom: 2px solid #111827;
+  transform: rotate(40deg);
+}
+
+.ipower-suite__li-title-all-products{
+  font-weight: 900;
+  color: var(--text-all-products);
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.ipower-suite__ctaRow-all-products{
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-all-products);
+}
+
+.ipower-suite__cta-all-products{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 900;
+  color: #111827;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(15,23,42,.14);
+  background: linear-gradient(180deg, rgba(190,203,10,.26), rgba(190,203,10,.12));
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+
+.ipower-suite__cta-all-products:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(2, 8, 23, .10);
+  background: rgba(190,203,10,.30);
+}
+
+.ipower-suite__arrow-all-products{
+  font-size: 18px;
+}
+
+/* right stack */
+.ipower-suite__stack-all-products{
+  display: grid;
+  gap: clamp(14px, 2vw, 18px);
+}
+
+.ipower-suite__mediaCard-all-products{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: #0b0f14;
+  color: #e5e7eb;
+  box-shadow: var(--shadow-all-products);
+  padding: clamp(16px, 2.2vw, 22px);
+  position: relative;
+  overflow: hidden;
+}
+
+.ipower-suite__mediaCard-all-products::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  background:
+    radial-gradient(900px 400px at 30% 0%, rgba(190,203,10,.14), transparent 60%),
+    radial-gradient(700px 420px at 100% 0%, rgba(190,203,10,.10), transparent 60%);
+  pointer-events:none;
+  z-index: 0;
+}
+
+.ipower-suite__mediaTop-all-products{
+  position: relative;
+  z-index: 1;
+  display:flex;
+  justify-content: space-between;
+  align-items:flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.ipower-suite__mediaKicker-all-products{
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: rgba(255,255,255,.75);
+  margin-bottom: 6px;
+}
+
+.ipower-suite__mediaTitle-all-products{
+  margin: 0;
+  font-weight: 950;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.15;
+}
+
+.ipower-suite__pill-all-products{
+  flex: 0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  color: #111827;
+  background: rgba(190,203,10,.92);
+}
+
+.ipower-suite__mediaText-all-products{
+  position: relative;
+  z-index: 1;
+  margin: 0 0 14px;
+  color: rgba(255,255,255,.78);
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+/* image grid (2 images) */
+.ipower-suite__images-all-products{
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ipower-suite__imgWrap-all-products,
+.ipower-suite__imgWrapWide-all-products{
+  position: relative;
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  text-decoration: none;
+  transform: translateZ(0);
+}
+
+.ipower-suite__img-all-products{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+
+.ipower-suite__imgWide-all-products{
+  width: 100%;
+  height: clamp(220px, 26vw, 320px);
+  object-fit: cover;
+  display: block;
+  transition: transform .55s ease;
+}
+
+.ipower-suite__imgOverlay-all-products{
+  position:absolute;
+  inset:0;
+  background: rgba(190,203,10,.0);
+  transition: background .35s ease;
+  pointer-events:none;
+}
+
+.ipower-suite__imgWrap-all-products:hover .ipower-suite__img-all-products,
+.ipower-suite__imgWrapWide-all-products:hover .ipower-suite__imgWide-all-products{
+  transform: scale(1.06);
+}
+
+.ipower-suite__imgWrap-all-products:hover .ipower-suite__imgOverlay-all-products,
+.ipower-suite__imgWrapWide-all-products:hover .ipower-suite__imgOverlay-all-products{
+  background: rgba(190,203,10,.18);
+}
+
+/* Wide image card */
+.ipower-suite__imgWrapWide-all-products{
+  margin-top: 8px;
+}
+
+/* ================================
+   Reveal on every scroll up/down
+================================ */
+.js-revealwrap-all-products .js-reveal-all-products{
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .65s ease, transform .65s ease;
+  will-change: opacity, transform;
+}
+
+.js-revealwrap-all-products.is-inview-all-products .js-reveal-all-products{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger */
+.js-reveal-all-products[data-stagger]{
+  transition-delay: calc(var(--stagger-step, 70ms) * attr(data-stagger number));
+}
+
+/* fallback for browsers not supporting attr() in calc: we also set delays in JS */
+
+/* ================================
+   Responsive
+================================ */
+@media (max-width: 980px){
+  .ipower-suite__grid-all-products{
+    grid-template-columns: 1fr;
+  }
+  .ipower-suite__container-all-products{
+    width: min(1180px, calc(100% - 28px));
+  }
+}
+
+@media (max-width: 640px){
+  .ipower-suite__images-all-products{
+    grid-template-columns: 1fr;
+  }
+  .ipower-suite__img-all-products{
+    height: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .js-revealwrap-all-products .js-reveal-all-products{
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .ipower-suite__img-all-products,
+  .ipower-suite__imgWide-all-products{
+    transition: none !important;
+  }
+}
+/* ===== NEW LAYOUT (Benefits on top, 2 cards below) ===== */
+
+.ipower-suite__top-all-products{
+  margin-bottom: clamp(14px, 2.2vw, 20px);
+}
+
+/* Benefits card: make list 2 columns on desktop to reduce height */
+.ipower-suite__card-all-products .ipower-suite__list-all-products{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Bottom grid: 2 cards side-by-side */
+.ipower-suite__bottomGrid-all-products{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 2.2vw, 20px);
+  align-items: stretch;
+}
+
+/* Make both cards same height nicer */
+.ipower-suite__mediaCard-all-products{
+  height: 100%;
+}
+
+/* Images inside CCMS card: keep them balanced */
+.ipower-suite__images-all-products{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* App image fills nicely */
+.ipower-suite__imgWide-all-products{
+  height: clamp(220px, 22vw, 320px);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px){
+  .ipower-suite__bottomGrid-all-products{
+    grid-template-columns: 1fr; /* stack cards */
+  }
+
+  .ipower-suite__card-all-products .ipower-suite__list-all-products{
+    grid-template-columns: 1fr; /* benefits list single column */
+  }
+}
+
+@media (max-width: 640px){
+  .ipower-suite__images-all-products{
+    grid-template-columns: 1fr; /* stack the 2 CCMS images */
+  }
+
+  .ipower-suite__img-all-products{
+    height: 200px;
+  }
+}
+

@@ -1,0 +1,2637 @@
+
+html, body {
+  margin: 0;               /* remove default 8px margin that causes scroll with full-bleed rows */
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;      /* belt-and-suspenders: stop any stray overflow */
+}
+.home-ev-charger {
+  /* Navbar height */
+  --hev-nav-h: 72px;
+
+  /* Colors */
+  --hev-accent: #b6c800;
+  --hev-text: #ffffff;
+
+  /* Left overlay darkness */
+  --hev-overlay-1: rgba(0, 0, 0, 0.90);
+  --hev-overlay-2: rgba(0, 0, 0, 0.62);
+  --hev-overlay-3: rgba(0, 0, 0, 0.00);
+
+  /* Layout */
+  --hev-max: 1280px;
+
+  /* Font: inherit your site font (same as your navbar) */
+  font-family: inherit;
+}
+
+.home-ev-charger__slider {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+
+  /* FULL height minus nav 72px */
+  min-height: calc(100vh - var(--hev-nav-h));
+}
+
+/* If your navbar is FIXED and covering content, uncomment this:
+.home-ev-charger { padding-top: var(--hev-nav-h); }
+*/
+
+.home-ev-charger__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms ease;
+  overflow: hidden;   /* ensure dots don’t leak */
+
+  background-image:
+    linear-gradient(
+      90deg,
+      var(--hev-overlay-1) 0%,
+      var(--hev-overlay-2) 44%,
+      rgba(0,0,0,0.15) 62%,
+      var(--hev-overlay-3) 74%
+    ),
+
+    var(--hev-bg);
+
+  background-position: 0 0, 60% 50%;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 100% 100%, cover;
+}
+
+.home-ev-charger__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* container/content */
+.home-ev-charger__container {
+  height: 100%;
+  max-width: var(--hev-max);
+  margin: 0 auto;
+  padding: clamp(18px, 4vw, 60px);
+  display: flex;
+  align-items: center;
+   position: relative;
+  z-index: 2;
+}
+
+.home-ev-charger__content {
+  max-width: 70ch;
+}
+
+/* Kicker + green underline (this was missing) */
+.home-ev-charger__kicker {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 18px;
+  padding-bottom: 10px;
+
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--hev-text);
+  opacity: 0.95;
+}
+
+.home-ev-charger__kicker::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 56px;      /* matches screenshot underline length */
+  height: 2px;
+  background: var(--hev-accent);
+}
+
+/* Title line-by-line */
+.home-ev-charger__title {
+  margin: 0 0 26px;
+  font-weight: 800;
+  line-height: 0.98;
+  color: var(--hev-text);
+  font-size: clamp(44px, 5.6vw, 78px);
+}
+
+.home-ev-charger__line {
+  display: block; /* line-by-line */
+}
+
+.home-ev-charger__accent {
+  color: var(--hev-accent);
+}
+
+/* Button like screenshot */
+.home-ev-charger__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 26px;
+  background: var(--hev-accent);
+  color: #111;
+  font-weight: 900;
+  text-decoration: none;
+
+  border-radius: 0;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Dots bottom-center */
+.home-ev-charger__dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+
+.home-ev-charger__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.85);
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.home-ev-charger__dot.is-active {
+  background: rgba(255,255,255,0.98);
+  opacity: 1;
+}
+
+/* Reveal animation (bottom -> up) */
+.home-ev-charger__reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms ease, transform 650ms ease;
+  will-change: transform, opacity;
+}
+
+.home-ev-charger__reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .home-ev-charger__slide {
+    background-position: 0 0, 50% 0, 70% 50%;
+  }
+
+  .home-ev-charger__title {
+    font-size: clamp(34px, 8vw, 54px);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .home-ev-charger__slide,
+  .home-ev-charger__reveal {
+    transition: none !important;
+  }
+}
+
+.home-ev-charger__slide::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  background-image: var(--hev-dots);
+  background-repeat: repeat;
+  background-position: 33% 0;
+  background-size: auto;
+  opacity: 0.45;
+
+  /* Dots visible on left, fade out after mid */
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 55%, transparent 75%);
+  mask-image: linear-gradient(to right, #000 0%, #000 55%, transparent 75%);
+}
+:root {
+  --body-white-section: #5e5e5e;
+  --heading-white-section: #1a1919;
+  --primary-color: #becb0a;
+  --secondary-color: #161515;
+  --heading-dark-section: #fafafa;
+  --body-dark-section: #d3d5d5;
+  --light-white: #d3d5d580;
+  --light-grey-20: var(--secondary-color);
+}
+
+/* Webflow-ish helpers (your snippet) */
+.w-layout-blockcontainer { max-width: 940px; margin-left: auto; margin-right: auto; display: block; }
+.w-layout-vflex { flex-direction: column; align-items: flex-start; display: flex; }
+.w-layout-hflex { flex-direction: row; align-items: center; display: flex; }
+
+/* ========= Marquee section ========= */
+.home-one-marquee {
+  background: #fff;
+  overflow: hidden;
+  width: 100%;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* outer viewport */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: clamp(26px, 3.2vw, 44px) 0;
+}
+
+/* moving track */
+.marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+
+  /* JS will set these: */
+  --marquee-shift: 1200px;
+  --marquee-duration: 14s;
+
+animation: marquee-rtl var(--marquee-duration) linear infinite;
+
+}
+
+/* Pause on hover (desktop) */
+@media (hover: hover) {
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+}
+
+/* one train */
+.marquee-train {
+  display: flex;
+  align-items: center;
+  gap: clamp(22px, 3vw, 46px);
+  flex-shrink: 0;
+  padding-right: clamp(22px, 3vw, 46px);
+}
+
+/* Big faint text like screenshot */
+.home-two-marquee-text {
+ font-family: inherit;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+
+  font-size: clamp(54px, 7.2vw, 150px);
+  line-height: 1;
+
+  color: rgba(26, 25, 25, 0.28); /* darker */
+  white-space: nowrap;
+
+}
+
+/* star icon */
+.marquee-image {
+  width: clamp(34px, 4.4vw, 84px);
+  height: auto;
+  opacity: 0.55;
+  flex: 0 0 auto;
+}
+
+/* LEFT -> RIGHT animation */
+@keyframes marquee-rtl {
+  from { transform: translateX(0px); }
+  to   { transform: translateX(calc(-1 * var(--marquee-shift))); }
+}
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none !important; transform: none !important; }
+}
+
+/* Webflow snippet media queries */
+@media screen and (max-width: 991px) {
+  .w-layout-blockcontainer { max-width: 728px; }
+}
+@media screen and (max-width: 767px) {
+  .w-layout-blockcontainer { max-width: none; }
+}
+:root{
+  --primary-color:#becb0a;
+  --secondary-color:#161515;
+  --heading-dark-section:#fafafa;
+  --body-dark-section:#d3d5d5;
+}
+
+/* layout */
+.home-one-about{
+  background:#fff;
+  padding: clamp(42px, 6vw, 90px) 0;
+}
+
+.home-one-about-main-wrapper{
+  display:flex;
+  gap: clamp(22px, 4vw, 56px);
+  align-items:flex-start;
+}
+
+.home-one-about-image-wrapper{
+  position:relative;
+  flex: 0 0 520px; /* matches screenshot scale */
+  max-width: 520px;
+}
+
+.home-one-about-text-wrapper{
+   display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 6px;
+  max-width: 520px;  
+}
+
+/* ---------- IMAGE EFFECT (green -> reveal image top-to-bottom) ---------- */
+.image-effect-wrapper-one{
+  position:relative;
+  width:100%;
+}
+
+.charging-image-wrapper{
+  position:relative;
+  width:100%;
+  aspect-ratio: 520 / 626;
+  overflow:hidden;
+  background: var(--primary-color); /* GREEN FIRST */
+}
+
+/* the image is clipped initially (hidden) */
+.charging-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  /* start hidden from bottom (only green shows) */
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1100ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* optional subtle shadow overlay */
+.hero-image-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.02));
+  opacity:0;
+  transition: opacity 600ms ease;
+}
+
+/* when in view: reveal image from TOP -> DOWN */
+.home-one-about.is-inview .charging-image{
+  clip-path: inset(0 0 0 0);
+}
+
+/* show subtle overlay after image appears */
+.home-one-about.is-inview .hero-image-overlay{
+  opacity:1;
+  transition-delay: 500ms;
+}
+
+/* ---------- TAG (Global station) ---------- */
+.image-tag{
+  position:absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-10px);
+  opacity:0;
+  transition: opacity 600ms ease, transform 600ms ease;
+  transition-delay: 650ms; /* comes after image reveal starts */
+  z-index: 5;
+}
+
+.image-tag-about{
+  background: var(--primary-color);
+  padding: 14px 18px;
+  min-width: 110px;
+  text-align:center;
+}
+
+.image-tag-heading-five{
+  font-weight: 700;
+  color: #0f0f0f;
+  letter-spacing: .02em;
+}
+
+/* after image begins, show tag */
+.home-one-about.is-inview .image-tag{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* ---------- RIGHT CONTENT TYPOGRAPHY ---------- */
+.short-header{
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.about-heading{
+  font-size: clamp(26px, 2.6vw, 40px);
+  line-height: 1.08;
+  font-weight: 800;
+  color: #111;
+  margin: 0;
+}
+.color-body-white.margin-bottom-thirty{
+  margin: 0;
+  max-width: 52ch;
+  color: #7a7a7a;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.color-body-white{
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+.about-details-wrapper{
+    display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding-top: 14px;
+}
+
+/* keep second row spacing consistent */
+.about-details-wrapper.about-details-wrapper-two{
+  margin-top: 6px;
+}
+
+.icon-image{
+  width: 54px;
+  height: auto;
+  filter: none;
+}
+
+/* ---------- CONTENT REVEAL (line-by-line feel) ---------- */
+[data-reveal]{
+  opacity:0;
+  transform: translateY(18px);
+  transition: opacity 650ms ease, transform 650ms ease;
+  will-change: transform, opacity;
+}
+
+[data-reveal].is-visible{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 991px){
+  .home-one-about-image-wrapper{
+    flex-basis: 420px;
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 767px){
+  .home-one-about-main-wrapper{
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .home-one-about-image-wrapper{
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .image-tag{
+    right: 0;
+  }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .charging-image{ transition: none !important; clip-path: inset(0 0 0 0); }
+  [data-reveal]{ transition: none !important; opacity:1; transform:none; }
+  .image-tag{ transition:none !important; opacity:1; transform:none; }
+}
+/* Icon wrapper */
+.about-detail-image-wrapper{
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* icons same size + green stroke feel */
+.icon-image{
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+/* Feature content */
+.fast-charging-content-wrapper{
+  flex: 1 1 auto;
+  max-width: 44ch;
+}
+
+/* Feature title */
+.heading-five.heading-five-new-font{
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #111;
+}
+
+/* Feature paragraph */
+.fast-charging-content-wrapper .color-body-white{
+  margin: 0;
+  /* padding-top: 20px; */
+  color: #7a7a7a;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* =========================
+   GLOBAL STATION TAG (match 2nd image)
+   ========================= */
+.image-tag{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 6;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 600ms ease, transform 600ms ease;
+  transition-delay: 650ms;
+}
+
+.image-tag-about{
+  background: var(--primary-color);
+  padding: 14px 22px;
+  min-width: 130px;
+  text-align: left;             /* like screenshot */
+}
+
+.image-tag-heading-five{
+  font-weight: 700;
+  color: #0f0f0f;
+  letter-spacing: 0.02em;
+}
+
+/* show tag when section in view (replays because JS resets is-inview) */
+.home-one-about.is-inview .image-tag{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE (match Webflow spacing)
+   ========================= */
+@media (max-width: 991px){
+  .home-one-about-text-wrapper{
+    max-width: 100%;
+  }
+  .about-detail-image-wrapper{
+    flex-basis: 58px;
+    width: 58px;
+    height: 58px;
+  }
+  .icon-image{
+    width: 58px;
+    height: 58px;
+  }
+}
+
+@media (max-width: 767px){
+  .home-one-about-text-wrapper{
+    padding-top: 0;
+    gap: 12px;
+  }
+
+  .about-heading{
+    font-size: clamp(24px, 6vw, 34px);
+    line-height: 1.12;
+  }
+
+  .color-body-white.margin-bottom-thirty{
+    font-size: 13.5px;
+  }
+
+  .about-details-wrapper{
+    gap: 16px;
+    padding-top: 10px;
+  }
+
+  .about-detail-image-wrapper{
+    flex-basis: 54px;
+    width: 54px;
+    height: 54px;
+  }
+
+  .icon-image{
+    width: 54px;
+    height: 54px;
+  }
+
+  .heading-five.heading-five-new-font{
+    font-size: 15px;
+  }
+
+  .fast-charging-content-wrapper .color-body-white{
+    font-size: 13px;
+  }
+
+  /* tag still pinned top-right of image */
+  .image-tag-about{
+    padding: 12px 18px;
+    min-width: 118px;
+  }
+}
+
+@media (max-width: 420px){
+  .about-detail-image-wrapper{
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+  }
+  .icon-image{
+    width: 48px;
+    height: 48px;
+  }
+}
+/* =========================================
+   REMOVE EXTRA BOTTOM SPACE (match content)
+   ========================================= */
+
+/* Make grid row fit content height (not stretch) */
+#home-two-about.home-one-about .home-one-about-main-wrapper{
+  align-items: start !important; /* stop stretching the row taller */
+}
+
+/* Force both columns to fit their content height */
+#home-two-about.home-one-about .home-one-about-image-wrapper,
+#home-two-about.home-one-about .home-one-about-text-wrapper{
+  height: auto !important;
+  align-self: start !important;
+}
+
+/* Make the image box NOT fill full column height (this was creating space) */
+#home-two-about.home-one-about .image-effect-wrapper-one,
+#home-two-about.home-one-about .charging-image-wrapper{
+  height: auto !important;
+}
+
+/* Use aspect ratio again so the image has a natural height and no extra space */
+#home-two-about.home-one-about .charging-image-wrapper{
+  aspect-ratio: 520 / 626;
+  min-height: 0 !important;        /* remove forced min-height */
+}
+
+/* Ensure the image fills that ratio box cleanly */
+#home-two-about.home-one-about .charging-image{
+  height: 100%;
+}
+
+/* Optional: reduce section bottom padding if you still want it tighter */
+#home-two-about.home-one-about{
+  padding-bottom: clamp(36px, 5vw, 70px) !important;
+}
+
+:root{
+  --primary-color: #becb0a;
+  --secondary-color: #161515;
+}
+
+/* section */
+.home-one-services-card{
+  background: #fff;
+  padding: clamp(26px, 4vw, 60px) 0;
+}
+
+/* 3-column layout */
+.home-one-card-wrapper{
+  width: min(1240px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0px; /* like screenshot (no gap) */
+}
+
+/* card */
+.service-card{
+  position: relative;
+  display: block;
+  overflow: hidden;
+  min-height: clamp(280px, 33vw, 420px);
+  border-right: 1px solid rgba(0,0,0,0.08);
+  text-decoration: none;
+  outline: none;
+
+  /* for smooth hover */
+  transform: translateZ(0);
+}
+
+.service-card:last-child{
+  border-right: none;
+}
+
+/* image wrapper */
+.image-move-on-mouse-move-and-scroll{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* image */
+.home-one-card-cover-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* parallax + hover zoom */
+  transform: translate3d(var(--mx, 0px), calc(var(--my, 0px) + var(--sy, 0px)), 0) scale(1.06);
+  transition: transform 450ms ease;
+  will-change: transform;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* bottom dark gradient overlay (always visible) */
+.service-liner-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.00) 35%,
+    rgba(0,0,0,0.55) 78%,
+    rgba(0,0,0,0.72) 100%
+  );
+  pointer-events: none;
+}
+
+/* green hover overlay (like your 2nd image) */
+.green-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  background: rgba(190, 203, 10, 0.22); /* light transparent green */
+  mix-blend-mode: multiply;
+
+  opacity: 0;
+  transition: opacity 350ms ease;
+  pointer-events: none;
+}
+
+/* hover/focus = show green overlay + slightly more zoom */
+.service-card:hover .green-overlay,
+.service-card:focus-visible .green-overlay{
+  opacity: 1;
+}
+
+.service-card:hover .home-one-card-cover-image,
+.service-card:focus-visible .home-one-card-cover-image{
+  transform: translate3d(var(--mx, 0px), calc(var(--my, 0px) + var(--sy, 0px)), 0) scale(1.10);
+}
+
+/* text block (icon + title) */
+.home-one-service-card-text{
+  position: absolute;
+  left: 26px;
+  bottom: 24px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/* icons */
+.icon-image{
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+
+/* title */
+.home-one-card-heading-three{
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(20px, 2.1vw, 34px);
+  line-height: 1.05;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* responsive */
+@media (max-width: 991px){
+  .home-one-card-wrapper{
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .service-card{
+    border-right: none;
+    min-height: 320px;
+  }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .home-one-card-cover-image,
+  .green-overlay{
+    transition: none !important;
+  }
+  .home-one-card-cover-image{
+    transform: scale(1.02) !important;
+  }
+}
+:root{
+  --primary-color:#becb0a;
+  --secondary-color:#161515;
+  --line-grey:#d8d8d8;
+  --text-grey:#7a7a7a;
+}
+
+/* section spacing */
+.home-one-service{
+  padding: clamp(30px, 5vw, 70px) 0;
+  background: #fff;
+}
+
+/* top heading row (left title + right paragraph) */
+.home-one-service-text-wrapper{
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(18px, 3vw, 50px);
+  align-items: end;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line-grey);
+}
+
+.service-heading-wrapper .short-header{
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  font-size: 11px;
+  color: #111;
+}
+
+.service-heading{
+  margin: 0;
+  font-weight: 850;
+  font-size: clamp(28px, 3.3vw, 44px);
+  line-height: 1.05;
+  color: #111;
+}
+
+.service-description{
+  margin: 0;
+  color: var(--text-grey);
+  font-size: 13.5px;
+  line-height: 1.7;
+  max-width: 52ch;
+  justify-self: end;
+}
+
+/* list */
+.home-one-services{
+  display: flex;
+  flex-direction: column;
+}
+
+/* link wrapper */
+.service-item-link{
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* row layout */
+.home-one-service-items{
+  display: grid;
+  grid-template-columns: 215px 1fr 58px;
+  align-items: center;
+  gap: 22px;
+  padding: 18px 0;
+}
+
+/* image box: green first, then image reveals */
+.service-images{
+  width: 215px;
+}
+
+.service-image-frame{
+  position: relative;
+  width: 215px;
+  height: 139px;
+  overflow: hidden;
+  background: var(--primary-color);   /* green first */
+}
+
+/* image reveal (top->bottom) */
+.service-items-image{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  transition:
+    clip-path 950ms cubic-bezier(.2,.8,.2,1),
+    opacity 700ms ease;
+}
+
+/* hover green shade on image */
+.service-image-hover-green{
+  position: absolute;
+  inset: 0;
+  background: rgba(190,203,10,0.24);
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: opacity 280ms ease;
+  pointer-events: none;
+}
+
+/* center title */
+.home-one-servrvice-text{
+  margin: 0;
+  text-align: center;
+  font-weight: 750;
+  font-size: clamp(18px, 2vw, 26px);
+  color: #111;
+}
+
+/* arrow circle */
+.icon-circle{
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid var(--line-grey);
+  display: grid;
+  place-items: center;
+  justify-self: end;
+  position: relative;
+  transition: border-color 250ms ease, background-color 250ms ease;
+}
+
+.icon-circle img{
+  position: absolute;
+  width: 18px;
+  height: auto;
+}
+
+/* default: grey arrow */
+.icon-out{ opacity: 0; }
+.icon-in{ opacity: 1; }
+
+.service-border{
+  height: 1px;
+  background: var(--line-grey);
+  position: relative;
+}
+
+.border-green{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
+  width: 0%;
+  background: var(--primary-color);
+  transition: width 420ms ease;
+}
+
+/* HOVER (desktop) */
+@media (hover:hover){
+  .service-item-link:hover .service-image-hover-green{ opacity: 1; }
+  .service-item-link:hover .icon-circle{
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+  .service-item-link:hover .icon-in{ opacity: 0; }
+  .service-item-link:hover .icon-out{ opacity: 1; }
+  .service-item-link:hover .border-green{ width: 100%; }
+}
+
+/* SCROLL REVEAL (replay) */
+[data-reveal],
+[data-service-item]{
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 650ms ease, transform 650ms ease;
+}
+
+.home-one-service.is-inview [data-reveal].is-visible,
+.home-one-service.is-inview [data-service-item].is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Responsive */
+@media (max-width: 991px){
+  .home-one-service-text-wrapper{
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .service-description{
+    justify-self: start;
+    max-width: 70ch;
+  }
+}
+
+@media (max-width: 767px){
+  .home-one-service-items{
+    grid-template-columns: 120px 1fr 46px;
+    gap: 16px;
+    padding: 16px 0;
+  }
+
+  .service-images,
+  .service-image-frame{
+    width: 120px;
+    height: 78px;
+  }
+
+  .home-one-servrvice-text{
+    text-align: left;
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   SERVICE LIST: FULL-WIDTH ROWS + CENTER TEXT + ALIGNED ARROW
+   (matches your 2nd reference image)
+   ========================================================= */
+
+/* Make every row span full width */
+.home-one-service .service-item-link{
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+/* Full-width divider line (grey) */
+.home-one-service .service-item-link::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--line-grey);
+}
+
+/* Remove old internal divider if it exists (prevents short line) */
+.home-one-service .service-border{
+  display: none !important;
+}
+
+/* Keep content on top of divider */
+.home-one-service .home-one-service-items{
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Use a consistent 3-col grid for ALL sizes */
+.home-one-service .home-one-service-items{
+  display: grid !important;
+  grid-template-columns: 215px 1fr 64px; /* image | centered text | arrow */
+  align-items: center;
+  gap: 24px;
+  padding: 18px 0;
+}
+
+/* Center title exactly like reference */
+.home-one-service .home-service-name-wrapper{
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100%;
+}
+
+.home-one-service .home-one-servrvice-text{
+  margin: 0;
+  text-align: center !important;
+  font-weight: 750;
+  font-size: clamp(18px, 2.1vw, 26px); /* slightly larger */
+  line-height: 1.15;
+}
+
+/* Arrow perfectly aligned in the same column */
+.home-one-service .icon-circle{
+  justify-self: end !important;
+  align-self: center !important;
+  width: 46px;
+  height: 46px;
+}
+
+/* Ensure image box stays same size */
+.home-one-service .service-images{
+  width: 215px;
+}
+.home-one-service .service-image-frame{
+  width: 215px;
+  height: 139px;
+}
+
+/* =======================
+   MOBILE (match your 2nd image)
+   ======================= */
+@media (max-width: 767px){
+
+  .home-one-service .home-one-service-items{
+    grid-template-columns: 92px 1fr 52px; /* image | centered text | arrow */
+    gap: 18px;
+    padding: 18px 0;
+  }
+
+  .home-one-service .service-images,
+  .home-one-service .service-image-frame{
+    width: 92px;
+    height: 62px;
+  }
+
+  .home-one-service .home-one-servrvice-text{
+    font-size: 18px;      /* bigger on mobile too */
+    line-height: 1.2;
+  }
+
+  .home-one-service .icon-circle{
+    width: 40px;
+    height: 40px;
+  }
+}
+/* ==============================
+   HOVER IMAGE REVEAL (GREEN -> IMAGE)
+   replays every hover
+   ============================== */
+
+/* default state: only green background visible */
+.home-one-service .service-image-frame{
+  background: var(--primary-color);
+}
+
+/* hide image by clipping it completely (bottom hidden) */
+.home-one-service .service-items-image{
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+
+  transition:
+    clip-path 700ms cubic-bezier(.2,.85,.2,1),
+    opacity 260ms ease;
+
+  will-change: clip-path, opacity;
+}
+
+/* on hover: reveal image top -> bottom */
+@media (hover:hover){
+  .home-one-service .service-item-link:hover .service-items-image{
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    transition-delay: 0ms;
+  }
+
+  /* optional: add a tiny “pop” so it feels premium */
+  .home-one-service .service-item-link:hover .service-items-image{
+    transform: scale(1.02);
+  }
+
+  /* smooth reset for replay */
+  .home-one-service .service-item-link .service-items-image{
+    transform: scale(1);
+    transition:
+      clip-path 700ms cubic-bezier(.2,.85,.2,1),
+      opacity 260ms ease,
+      transform 450ms ease;
+  }
+}
+
+/* image reveal when row becomes visible */
+.service-item-link.is-visible .service-items-image{
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+/* ================================
+   LAST SECTION (Protest / New Tech)
+   FULL CSS — scoped + responsive
+   Requires JS to toggle:
+   - .protest-effect-one.is-revealed
+   - .protest-effect-two.is-revealed
+   - .protest-effect-two.is-badge-visible
+   ================================ */
+
+:root{
+  --primary-color:#becb0a;
+  --protest-max:1180px;
+}
+
+/* SECTION: full width background */
+.home-one-protest-section{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  padding: clamp(64px, 6.5vw, 110px) 0;
+  /* Add your background image on the section itself (inline style or here):
+     background-image: url(...);
+     background-size: cover;
+     background-position: center;
+  */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+/* Black shadow overlay on background (full width) */
+.home-one-protest-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(70% 110% at 22% 40%,
+      rgba(0,0,0,.78) 0%,
+      rgba(0,0,0,.62) 40%,
+      rgba(0,0,0,.42) 72%,
+      rgba(0,0,0,.28) 100%),
+    linear-gradient(180deg,
+      rgba(0,0,0,.62) 0%,
+      rgba(0,0,0,.30) 35%,
+      rgba(0,0,0,.62) 100%);
+}
+
+/* keep content above overlay */
+.home-one-protest-section .w-layout-blockcontainer.container.w-container{
+  position:relative;
+  z-index:1;
+  max-width: var(--protest-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 2-column layout */
+.home-one-wrapper-protest{
+  width:100%;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: clamp(28px, 4.5vw, 64px);
+}
+
+/* LEFT TEXT */
+.home-one-protest-text-wrapper{
+  width: min(520px, 100%);
+  gap: 10px;
+}
+
+.home-one-protest-text-wrapper .short-header{
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+  font-size:12px;
+  opacity:.95;
+}
+
+.home-one-protest-text-wrapper .heading-two{
+  font-weight:800;
+  line-height:1.05;
+  font-size: clamp(34px, 3.4vw, 48px);
+}
+
+.home-one-power-text{
+  margin-top: 10px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,.16);
+  line-height:1.7;
+  font-size: 14px;
+  max-width: 52ch;
+}
+
+.protest-list{
+  margin-top: 22px;
+  gap: 22px;
+}
+
+.protest-list-items{
+  gap: 14px;
+  align-items:flex-start;
+}
+
+.protest-list-items .icon-image{
+  flex: 0 0 auto;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+}
+
+.protest-list-contents{
+  gap: 6px;
+}
+
+.protest-list-contents .heading-six{
+  font-weight:800;
+  font-size: 16px;
+}
+
+.protest-list-about{
+  font-size: 13.5px;
+  line-height:1.6;
+  opacity:.9;
+  max-width: 44ch;
+}
+
+/* RIGHT IMAGES WRAP (two images side-by-side) */
+.home-one-protest-image-wrapper{
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-end;
+  gap: 22px;
+  width: min(560px, 100%);
+}
+
+/* GREEN FRAMES (start state) */
+.protest-effect-one,
+.protest-effect-two{
+  position:relative;
+  background: var(--primary-color);
+  overflow:hidden;
+  box-shadow: 0 22px 60px rgba(0,0,0,.35);
+}
+
+/* exact sizes to match design */
+.protest-effect-one{ width:330px; height:665px; }
+.protest-effect-two{ width:300px; height:438px; }
+
+/* Inner wrappers should fill */
+.protest-trigger-one,
+.protest-trigger-two{
+  position:relative;
+  width:100%;
+  height:100%;
+}
+
+/* Optional soft dark overlay over images */
+.protest-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.20) 100%);
+}
+.protest-overlay--two{
+  background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.26) 100%);
+}
+
+/* Image reveal (green -> image top to bottom) */
+.protest-reveal-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  /* hidden initially */
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+
+  transition:
+    clip-path 900ms cubic-bezier(.2,.85,.2,1),
+    opacity 240ms ease;
+  will-change: clip-path, opacity;
+}
+
+/* revealed state */
+.protest-effect-one.is-revealed .protest-reveal-img,
+.protest-effect-two.is-revealed .protest-reveal-img{
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+/* Badge (only show AFTER image fully revealed) */
+.protest-badge{
+  position:absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 22px;
+
+  background: var(--primary-color);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 14px;
+
+  padding: 16px 18px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.25);
+
+  /* hidden initially */
+  opacity:0;
+  transform: translateY(10px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.protest-effect-two.is-badge-visible .protest-badge{
+  opacity:1;
+  transform: translateY(0);
+}
+
+.protest-badge__num{
+  font-weight:900;
+  font-size: 38px;
+  line-height: 1;
+  color:#111;
+}
+
+.protest-badge__label{
+  font-weight:800;
+  color:#111;
+  line-height:1.1;
+  font-size: 16px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+/* tighten on smaller desktop */
+@media (max-width: 1199px){
+  .home-one-protest-image-wrapper{
+    width: min(520px, 100%);
+  }
+  .protest-effect-one{ width:310px; height:630px; }
+  .protest-effect-two{ width:280px; height:420px; }
+}
+
+/* tablet: stack with images below, keep widths nice */
+@media (max-width: 991px){
+  .home-one-wrapper-protest{
+    flex-direction: column;
+    align-items:flex-start;
+  }
+
+  .home-one-protest-text-wrapper{
+    width: 100%;
+    max-width: 720px;
+  }
+
+  .home-one-protest-image-wrapper{
+    width: 100%;
+    justify-content:flex-start;
+  }
+}
+
+/* mobile: images become one column */
+@media (max-width: 767px){
+  .home-one-protest-section .w-layout-blockcontainer.container.w-container{
+    padding: 0 18px;
+  }
+
+  .home-one-protest-image-wrapper{
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .protest-effect-one,
+  .protest-effect-two{
+    width: min(100%, 420px);
+  }
+
+  .protest-effect-one{ height: 520px; }
+  .protest-effect-two{ height: 420px; }
+
+  .protest-badge{
+    left: 14px;
+    right: 14px;
+    bottom: 16px;
+    padding: 14px 14px;
+  }
+
+  .protest-badge__num{ font-size: 34px; }
+  .protest-badge__label{ font-size: 15px; }
+}
+
+/* very small phones */
+@media (max-width: 420px){
+  .protest-effect-one{ height: 480px; }
+  .protest-effect-two{ height: 380px; }
+}
+/* ================================
+   LAST SECTION (Protest / New Tech)
+   FULL CSS — scoped + responsive
+   Requires JS to toggle:
+   - .protest-effect-one.is-revealed
+   - .protest-effect-two.is-revealed
+   - .protest-effect-two.is-badge-visible
+   ================================ */
+
+:root{
+  --primary-color:#becb0a;
+  --protest-max:1180px;
+}
+
+/* SECTION: full width background */
+.home-one-protest-section{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  padding: clamp(64px, 6.5vw, 110px) 0;
+  /* Add your background image on the section itself (inline style or here):
+     background-image: url(...);
+     background-size: cover;
+     background-position: center;
+  */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+/* Black shadow overlay on background (full width) */
+.home-one-protest-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(70% 110% at 22% 40%,
+      rgba(0,0,0,.78) 0%,
+      rgba(0,0,0,.62) 40%,
+      rgba(0,0,0,.42) 72%,
+      rgba(0,0,0,.28) 100%),
+    linear-gradient(180deg,
+      rgba(0,0,0,.62) 0%,
+      rgba(0,0,0,.30) 35%,
+      rgba(0,0,0,.62) 100%);
+}
+
+/* keep content above overlay */
+.home-one-protest-section .w-layout-blockcontainer.container.w-container{
+  position:relative;
+  z-index:1;
+  max-width: var(--protest-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 2-column layout */
+.home-one-wrapper-protest{
+  width:100%;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: clamp(28px, 4.5vw, 64px);
+}
+
+/* LEFT TEXT */
+.home-one-protest-text-wrapper{
+  width: min(520px, 100%);
+  gap: 10px;
+}
+
+.home-one-protest-text-wrapper .short-header{
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+  font-size:12px;
+  opacity:.95;
+}
+
+.home-one-protest-text-wrapper .heading-two{
+  font-weight:800;
+  line-height:1.05;
+  font-size: clamp(34px, 3.4vw, 48px);
+}
+
+.home-one-power-text{
+  margin-top: 10px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,.16);
+  line-height:1.7;
+  font-size: 14px;
+  max-width: 52ch;
+}
+
+.protest-list{
+  margin-top: 22px;
+  gap: 22px;
+}
+
+.protest-list-items{
+  gap: 14px;
+  align-items:flex-start;
+}
+
+.protest-list-items .icon-image{
+  flex: 0 0 auto;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+}
+
+.protest-list-contents{
+  gap: 6px;
+}
+
+.protest-list-contents .heading-six{
+  font-weight:800;
+  font-size: 16px;
+}
+
+.protest-list-about{
+  font-size: 13.5px;
+  line-height:1.6;
+  opacity:.9;
+  max-width: 44ch;
+}
+
+/* RIGHT IMAGES WRAP (two images side-by-side) */
+.home-one-protest-image-wrapper{
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-end;
+  gap: 22px;
+  width: min(560px, 100%);
+}
+
+/* GREEN FRAMES (start state) */
+.protest-effect-one,
+.protest-effect-two{
+  position:relative;
+  background: var(--primary-color);
+  overflow:hidden;
+  box-shadow: 0 22px 60px rgba(0,0,0,.35);
+}
+
+/* exact sizes to match design */
+.protest-effect-one{ width:330px; height:665px; }
+.protest-effect-two{ width:300px; height:438px; }
+
+/* Inner wrappers should fill */
+.protest-trigger-one,
+.protest-trigger-two{
+  position:relative;
+  width:100%;
+  height:100%;
+}
+
+/* Optional soft dark overlay over images */
+.protest-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.20) 100%);
+}
+.protest-overlay--two{
+  background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.26) 100%);
+}
+
+/* Image reveal (green -> image top to bottom) */
+.protest-reveal-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  /* hidden initially */
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+
+  transition:
+    clip-path 900ms cubic-bezier(.2,.85,.2,1),
+    opacity 240ms ease;
+  will-change: clip-path, opacity;
+}
+
+/* revealed state */
+.protest-effect-one.is-revealed .protest-reveal-img,
+.protest-effect-two.is-revealed .protest-reveal-img{
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+/* Badge (only show AFTER image fully revealed) */
+.protest-badge{
+  position:absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 22px;
+
+  background: var(--primary-color);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 14px;
+
+  padding: 16px 18px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.25);
+
+  /* hidden initially */
+  opacity:0;
+  transform: translateY(10px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.protest-effect-two.is-badge-visible .protest-badge{
+  opacity:1;
+  transform: translateY(0);
+}
+
+.protest-badge__num{
+  font-weight:900;
+  font-size: 38px;
+  line-height: 1;
+  color:#111;
+}
+
+.protest-badge__label{
+  font-weight:800;
+  color:#111;
+  line-height:1.1;
+  font-size: 16px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+/* tighten on smaller desktop */
+@media (max-width: 1199px){
+  .home-one-protest-image-wrapper{
+    width: min(520px, 100%);
+  }
+  .protest-effect-one{ width:310px; height:630px; }
+  .protest-effect-two{ width:280px; height:420px; }
+}
+
+/* tablet: stack with images below, keep widths nice */
+@media (max-width: 991px){
+  .home-one-wrapper-protest{
+    flex-direction: column;
+    align-items:flex-start;
+  }
+
+  .home-one-protest-text-wrapper{
+    width: 100%;
+    max-width: 720px;
+  }
+
+  .home-one-protest-image-wrapper{
+    width: 100%;
+    justify-content:flex-start;
+  }
+}
+
+/* mobile: images become one column */
+@media (max-width: 767px){
+  .home-one-protest-section .w-layout-blockcontainer.container.w-container{
+    padding: 0 18px;
+  }
+
+  .home-one-protest-image-wrapper{
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .protest-effect-one,
+  .protest-effect-two{
+    width: min(100%, 420px);
+  }
+
+  .protest-effect-one{ height: 520px; }
+  .protest-effect-two{ height: 420px; }
+
+  .protest-badge{
+    left: 14px;
+    right: 14px;
+    bottom: 16px;
+    padding: 14px 14px;
+  }
+
+  .protest-badge__num{ font-size: 34px; }
+  .protest-badge__label{ font-size: 15px; }
+}
+
+/* very small phones */
+@media (max-width: 420px){
+  .protest-effect-one{ height: 480px; }
+  .protest-effect-two{ height: 380px; }
+}
+/* ================================
+   HOME ONE - PROTEST SECTION ONLY
+   ================================ */
+
+/* OPTIONAL: set your background image via CSS var (recommended)
+   Add this on the <section> tag:
+   style="--protest-bg: url('{% static 'images/protest-bg.webp' %}');"
+*/
+
+.home-one-protest-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(56px, 6vw, 96px) 0;
+  min-height: clamp(640px, 70vh, 820px);
+  background: #0b0b0b; /* fallback */
+  color: #fff;
+}
+
+/* full width background image */
+.home-one-protest-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--protest-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.04);
+  z-index: 0;
+}
+
+/* dark overlay like your screenshot */
+.home-one-protest-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(80% 120% at 60% 40%, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.72) 60%, rgba(0,0,0,0.86) 100%),
+    linear-gradient(90deg, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.48) 40%, rgba(0,0,0,0.62) 100%);
+}
+
+/* keep inner content above overlays */
+.home-one-protest-section .container {
+  max-width: 1180px;
+  position: relative;
+  z-index: 2;
+}
+
+/* layout */
+.home-one-protest-section .home-one-wrapper-protest {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+/* left column */
+.home-one-protest-section .home-one-protest-text-wrapper {
+  flex: 0 0 min(460px, 42%);
+  max-width: 460px;
+}
+
+.home-one-protest-section .short-header.colo-white,
+.home-one-protest-section .short-header.color-white,
+.home-one-protest-section .colo-white,
+.home-one-protest-section .color-white {
+  color: #fff;
+  opacity: 0.85;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.home-one-protest-section .heading-two {
+  color: #fff;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.home-one-protest-section .color-dark-white {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.home-one-protest-section .border-bottom-white {
+  border-bottom: 1px solid rgba(255,255,255,0.16);
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+}
+
+.home-one-protest-section .protest-list {
+  gap: 22px;
+}
+
+.home-one-protest-section .protest-list-items {
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.home-one-protest-section .heading-six {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.home-one-protest-section .protest-list-about {
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 44ch;
+}
+
+/* right images */
+.home-one-protest-section .home-one-protest-image-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(14px, 2vw, 22px);
+  flex: 0 0 auto;
+}
+
+/* shared image wrapper settings */
+.home-one-protest-section .image-effect-wrapper-one,
+.home-one-protest-section .image-effect-wrapper-two {
+  position: relative;
+}
+
+/* Tall image box */
+.home-one-protest-section .home-one-protest-image-wrapper-one {
+  width: min(330px, 32vw);
+  aspect-ratio: 330 / 665;
+  overflow: hidden;
+  background: var(--primary-color, #becb0a); /* green first */
+}
+
+/* Small image box */
+.home-one-protest-section .image-effect-wrapper-two {
+  width: min(300px, 30vw);
+  aspect-ratio: 300 / 438;
+  overflow: hidden;
+  background: var(--primary-color, #becb0a); /* green first */
+}
+
+/* images inside */
+.home-one-protest-section .protest-trigger-image-one,
+.home-one-protest-section .protest-trigger-image-two {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+  /* start hidden (green only) */
+  opacity: 1;
+  transform: translateY(-6%);
+  clip-path: inset(0 0 100% 0);
+  -webkit-clip-path: inset(0 0 100% 0);
+  will-change: clip-path, transform;
+  transition:
+    clip-path 1100ms cubic-bezier(.2,.8,.2,1),
+    -webkit-clip-path 1100ms cubic-bezier(.2,.8,.2,1),
+    transform 1100ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* subtle dark overlay on top of images (like screenshot depth) */
+.home-one-protest-section .image-overlay-one {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.35) 100%);
+  opacity: 0.9;
+}
+
+/* keep this one a bit darker */
+.home-one-protest-section .overlay-iimage-two {
+  opacity: 0.65;
+}
+
+/* 17k badge - hidden until reveal finishes */
+.home-one-protest-section .bottom-tag-wrapper {
+  position: absolute;
+  left: -24px;
+  bottom: 26px;
+  z-index: 5;
+
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+
+  background: var(--primary-color, #becb0a);
+  padding: 14px 18px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 420ms ease, transform 420ms ease;
+  transition-delay: 0ms;
+}
+
+.home-one-protest-section .bottom-tag-wrapper .image-tag-content {
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 700;
+  color: #0b0b0b;
+}
+
+.home-one-protest-section .bottom-tag-wrapper .heading-five {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.1;
+  font-weight: 500;
+  color: #0b0b0b;
+}
+
+/* ================================
+   SCROLL REVEAL TRIGGER
+   Add/remove .is-inview via JS
+   ================================ */
+
+.home-one-protest-section.is-inview .protest-trigger-image-one,
+.home-one-protest-section.is-inview .protest-trigger-image-two {
+  clip-path: inset(0 0 0 0);
+  -webkit-clip-path: inset(0 0 0 0);
+  transform: translateY(0);
+}
+
+/* badge appears AFTER image reveal (delay) */
+.home-one-protest-section.is-inview .bottom-tag-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1000ms;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 991px) {
+  .home-one-protest-section .home-one-wrapper-protest {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-one-protest-section .home-one-protest-text-wrapper {
+    max-width: 640px;
+    flex: 1 1 auto;
+  }
+
+  .home-one-protest-section .home-one-protest-image-wrapper {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .home-one-protest-section .home-one-protest-image-wrapper-one {
+    width: min(330px, 44vw);
+  }
+
+  .home-one-protest-section .image-effect-wrapper-two {
+    width: min(300px, 40vw);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-one-protest-section .home-one-protest-image-wrapper {
+    gap: 12px;
+  }
+
+  .home-one-protest-section .home-one-protest-image-wrapper-one {
+    width: 52vw;
+  }
+
+  .home-one-protest-section .image-effect-wrapper-two {
+    width: 44vw;
+  }
+
+  .home-one-protest-section .bottom-tag-wrapper {
+    left: -10px;
+    bottom: 16px;
+    padding: 10px 12px;
+  }
+
+  .home-one-protest-section .bottom-tag-wrapper .image-tag-content {
+    font-size: 32px;
+  }
+
+  .home-one-protest-section .bottom-tag-wrapper .heading-five {
+    font-size: 14px;
+  }
+}
+
+/* Motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .home-one-protest-section .protest-trigger-image-one,
+  .home-one-protest-section .protest-trigger-image-two,
+  .home-one-protest-section .bottom-tag-wrapper {
+    transition: none !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    opacity: 1 !important;
+  }
+}
+/* ================================
+   FIX: TEXT VISIBILITY + Z-INDEX
+   (HOME ONE PROTEST SECTION ONLY)
+   ================================ */
+
+/* Ensure section creates a clean stacking context */
+.home-one-protest-section{
+  position: relative;
+  isolation: isolate;           /* IMPORTANT: keeps z-index layers inside */
+  color: #fff;                  /* force white base */
+}
+
+/* Background image layer */
+.home-one-protest-section::before{
+  z-index: 0 !important;
+}
+
+/* Dark overlay layer (should NOT cover content) */
+.home-one-protest-section::after{
+  z-index: 1 !important;
+}
+
+/* Make ALL inner content sit ABOVE overlays */
+.home-one-protest-section .container,
+.home-one-protest-section .home-one-wrapper-protest,
+.home-one-protest-section .home-one-protest-text-wrapper,
+.home-one-protest-section .home-one-protest-image-wrapper{
+  position: relative;
+  z-index: 3 !important;
+}
+
+/* Force all left-side text to be visible white */
+.home-one-protest-section .short-header,
+.home-one-protest-section .heading-two,
+.home-one-protest-section .heading-six,
+.home-one-protest-section .home-one-power-text,
+.home-one-protest-section .protest-list-about,
+.home-one-protest-section .color-dark-white,
+.home-one-protest-section .color-white,
+.home-one-protest-section .colo-white{
+  color: #fff !important;
+}
+
+/* Keep description slightly softer (but still visible) */
+.home-one-protest-section .home-one-power-text,
+.home-one-protest-section .protest-list-about{
+  color: rgba(255,255,255,0.78) !important;
+}
+
+/* border line visible */
+.home-one-protest-section .border-bottom-white{
+  border-bottom: 1px solid rgba(255,255,255,0.22) !important;
+}
+
+/* Ensure icons don't dim behind overlay */
+.home-one-protest-section img{
+  position: relative;
+  z-index: 4;
+}
+
+/* Badge should be above everything */
+.home-one-protest-section .bottom-tag-wrapper{
+  z-index: 6 !important;
+}
+/* =========================================================
+   HOME ONE – PROTEST / NEW TECHNOLOGY (LAST SECTION ONLY)
+   Add background image by setting: --protest-bg: url(...)
+   ========================================================= */
+
+.home-one-protest-section{
+  --p: var(--primary-color, #becb0a);
+  --protest-bg: var(--protest-bg, none); /* you can override this */
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0;
+  background: #0b0b0b;
+}
+
+/* Full width background image */
+.home-one-protest-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: var(--protest-bg);
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.03);
+  opacity: .60;
+  z-index: 0;
+}
+
+/* Dark shadow/vignette overlay like your reference */
+.home-one-protest-section::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(90% 80% at 50% 35%,
+      rgba(0,0,0,.30) 0%,
+      rgba(0,0,0,.78) 65%,
+      rgba(0,0,0,.92) 100%),
+    linear-gradient(90deg,
+      rgba(0,0,0,.92) 0%,
+      rgba(0,0,0,.62) 45%,
+      rgba(0,0,0,.82) 100%);
+  z-index: 1;
+}
+
+/* keep inner content above background */
+.home-one-protest-section .container{
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+}
+
+/* MAIN LAYOUT */
+.home-one-protest-section .home-one-wrapper-protest{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 64px;
+}
+
+/* LEFT TEXT */
+.home-one-protest-section .home-one-protest-text-wrapper{
+  flex: 0 0 42%;
+  max-width: 480px;
+  color: #fff;
+  z-index: 6; /* ensure above everything */
+}
+
+.home-one-protest-section .short-header{
+  color: rgba(255,255,255,.85);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.home-one-protest-section .heading-two{
+  color: #fff;
+  font-size: 56px;
+  line-height: 1.05;
+  margin: 0 0 18px;
+}
+
+.home-one-protest-section .home-one-power-text{
+  color: rgba(255,255,255,.72);
+  font-size: 15px;
+  line-height: 1.7;
+  padding-bottom: 18px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+}
+
+/* LIST */
+.home-one-protest-section .protest-list{
+  gap: 22px;
+}
+
+.home-one-protest-section .protest-list-items{
+  gap: 14px;
+  align-items:flex-start;
+}
+
+.home-one-protest-section .protest-list-items .icon-image{
+  width: 22px;
+  height: auto;
+  margin-top: 4px;
+}
+
+.home-one-protest-section .protest-list-contents .heading-six{
+  color:#fff;
+  font-size: 16px;
+  font-weight: 650;
+  margin-bottom: 6px;
+}
+
+.home-one-protest-section .protest-list-about{
+  color: rgba(255,255,255,.65);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* RIGHT IMAGES WRAPPER */
+.home-one-protest-section .home-one-protest-image-wrapper{
+  flex: 1;
+  display:flex;
+  align-items:flex-start;
+  gap: 28px;
+  z-index: 5;
+}
+
+/* image blocks */
+.home-one-protest-section .home-one-protest-image-wrapper-one{
+  width: 330px;
+  height: 665px;
+  position: relative;
+}
+
+.home-one-protest-section .image-effect-wrapper-two{
+  width: 300px;
+  position: relative;
+}
+
+/* image containers */
+.home-one-protest-section .trigger-image-one,
+.home-one-protest-section .trigger-image-two{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 26px 80px rgba(0,0,0,.45);
+}
+
+.home-one-protest-section .image-effect-wrapper-two .trigger-image-two{
+  height: 438px;
+}
+
+.home-one-protest-section .protest-trigger-image-one,
+.home-one-protest-section .protest-trigger-image-two{
+  width: 100%;
+  height: 100%;
+  display:block;
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+/* GREEN -> IMAGE REVEAL OVERLAY (TOP TO BOTTOM) */
+.home-one-protest-section .image-overlay-one{
+  position:absolute;
+  inset:0;
+  background: rgba(190,203,10,.92);
+  transform-origin: top;
+  transform: scaleY(1); /* full green at start */
+  transition: transform 1100ms cubic-bezier(.2,.9,.2,1);
+  z-index: 3;
+}
+
+/* on view: overlay shrinks top -> bottom reveal */
+.home-one-protest-section.is-inview .image-overlay-one{
+  transform: scaleY(0);
+}
+
+.home-one-protest-section.is-inview .home-one-protest-image-wrapper-one .image-overlay-one{
+  transition-delay: 120ms;
+}
+
+.home-one-protest-section.is-inview .image-effect-wrapper-two .image-overlay-one{
+  transition-delay: 320ms;
+}
+
+/* BADGE (shows after 2nd image reveal) */
+.home-one-protest-section .bottom-tag-wrapper{
+  position:absolute;
+  left: 0;
+  bottom: 0;
+  background: var(--p);
+  color: #1212122a;
+  padding: 18px 22px;
+  min-width: 220px;
+  display:flex;
+  align-items:flex-end;
+  gap: 14px;
+  z-index: 4;
+
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.home-one-protest-section .bottom-tag-wrapper .image-tag-content{
+  font-size: 44px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.home-one-protest-section .bottom-tag-wrapper .heading-five{
+  font-size: 16px;
+  font-weight: 520;
+  line-height: 1.1;
+}
+
+/* appear after reveal finishes */
+.home-one-protest-section.is-inview .bottom-tag-wrapper{
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 520ms ease, transform 700ms cubic-bezier(.2,.9,.2,1);
+  transition-delay: 820ms;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 991px){
+  .home-one-protest-section{ padding: 90px 0; }
+
+  .home-one-protest-section .home-one-wrapper-protest{ gap: 40px; }
+
+  .home-one-protest-section .heading-two{ font-size: 44px; }
+
+  .home-one-protest-section .home-one-protest-image-wrapper-one{
+    width: 280px;
+    height: 560px;
+  }
+
+  .home-one-protest-section .image-effect-wrapper-two{ width: 260px; }
+  .home-one-protest-section .image-effect-wrapper-two .trigger-image-two{ height: 390px; }
+}
+
+@media (max-width: 767px){
+  .home-one-protest-section{ padding: 70px 0; }
+
+  .home-one-protest-section .home-one-wrapper-protest{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .home-one-protest-section .home-one-protest-text-wrapper{
+    max-width: none;
+  }
+
+  .home-one-protest-section .heading-two{ font-size: 38px; }
+
+  .home-one-protest-section .home-one-protest-image-wrapper{
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .home-one-protest-section .home-one-protest-image-wrapper-one{
+    width: min(330px, 92vw);
+    height: 520px;
+  }
+
+  .home-one-protest-section .image-effect-wrapper-two{
+    width: min(300px, 92vw);
+  }
+
+  .home-one-protest-section .image-effect-wrapper-two .trigger-image-two{
+    height: 420px;
+  }
+
+  .home-one-protest-section .bottom-tag-wrapper{
+    width: 75%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 479px){
+  .home-one-protest-section .heading-two{ font-size: 32px; }
+
+  .home-one-protest-section .home-one-protest-image-wrapper-one{ height: 460px; }
+  .home-one-protest-section .image-effect-wrapper-two .trigger-image-two{ height: 380px; }
+
+  .home-one-protest-section .bottom-tag-wrapper .image-tag-content{
+    font-size: 36px;
+  }
+}
+/* ===================== EV BLOGS (ALL CLASSES END WITH -ev-blogs) ===================== */
+.ev-blogs-section-ev-blogs{
+  background: #d8d8d8;
+  padding: clamp(44px, 6vw, 80px) 0;
+  overflow: clip;
+}
+
+.ev-blogs-container-ev-blogs{
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.ev-blogs-head-ev-blogs{
+  text-align: center;
+  margin-bottom: clamp(22px, 4vw, 40px);
+}
+
+.ev-blogs-kicker-ev-blogs{
+  font-size: 12px;
+  letter-spacing: .22em;
+  font-weight: 800;
+  color: rgba(0,0,0,.75);
+}
+
+.ev-blogs-title-ev-blogs{
+  margin: 12px 0 0;
+  font-size: clamp(28px, 3.8vw, 46px);
+  line-height: 1.08;
+  font-weight: 900;
+  color: #111;
+}
+
+.ev-blogs-grid-ev-blogs{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 2.2vw, 22px);
+}
+
+.ev-blogs-card-ev-blogs{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border-radius: 0;
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  transform: translateY(0);
+  transition: transform .28s ease, box-shadow .28s ease;
+  outline: none;
+}
+
+.ev-blogs-card-ev-blogs:focus-visible{
+  box-shadow: 0 0 0 3px rgba(190,203,10,.35), 0 10px 24px rgba(0,0,0,.10);
+}
+
+.ev-blogs-media-ev-blogs{
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #f3f3f3;
+}
+
+.ev-blogs-img-ev-blogs{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform .55s ease;
+  will-change: transform;
+}
+
+/* Light green transparent overlay on hover */
+.ev-blogs-overlay-ev-blogs{
+  position: absolute;
+  inset: 0;
+  background: rgba(190,203,10,.22);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+
+/* Date badge */
+.ev-blogs-date-ev-blogs{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #becb0a;
+  color: #0b0f0a;
+  padding: 10px 12px;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1;
+  display: grid;
+  gap: 6px;
+  min-width: 56px;
+}
+
+.ev-blogs-date-ev-blogs strong{
+  font-size: 16px;
+}
+
+.ev-blogs-date-ev-blogs span{
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Content */
+.ev-blogs-body-ev-blogs{
+  padding: 18px 18px 16px;
+}
+
+.ev-blogs-card-title-ev-blogs{
+  margin: 0 0 10px;
+  font-size: clamp(16px, 1.55vw, 20px);
+  line-height: 1.25;
+  font-weight: 900;
+  color: #111;
+}
+
+.ev-blogs-more-ev-blogs{
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  color: #becb0a;
+}
+
+/* Hover effects */
+.ev-blogs-card-ev-blogs:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.14);
+}
+.ev-blogs-card-ev-blogs:hover .ev-blogs-overlay-ev-blogs{ opacity: 1; }
+.ev-blogs-card-ev-blogs:hover .ev-blogs-img-ev-blogs{ transform: scale(1.08); }
+
+/* ===== Reveal (replays on scroll up/down) ===== */
+[data-reveal-ev-blogs]{
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .55s ease, transform .55s ease;
+  will-change: opacity, transform;
+}
+
+[data-reveal-ev-blogs].is-inview-ev-blogs{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .ev-blogs-grid-ev-blogs{ grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px){
+  .ev-blogs-container-ev-blogs{ width: min(1180px, calc(100% - 28px)); }
+  .ev-blogs-grid-ev-blogs{ grid-template-columns: 1fr; }
+  .ev-blogs-body-ev-blogs{ padding: 16px; }
+}
+/* Dots only on left side (hard stop / smooth fade) */
+
