@@ -36,4 +36,5 @@ urlpatterns = [
     path('emr-charging-station/contact/', views.contact, name='contact'),
     path('portable-charging-station/contact/', views.contact, name='contact'),
     path('pantograph-system/contact/', views.contact, name='contact'),
+    path('project/', views.project, name='project'),
 ]

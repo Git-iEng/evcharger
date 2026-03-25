@@ -1,3 +1,103 @@
+
+.ev-text-strip {
+  width: 100%;
+  overflow: hidden;
+  background: #b6f426;
+  padding: 5px 0;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.ev-text-strip__wrap {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ev-text-strip__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 48px;
+  white-space: nowrap;
+  animation: evTextStripMove 40s linear infinite;
+}
+
+.ev-text-strip__track span {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  animation: textBlinkColor 1.8s infinite linear;
+  opacity: 1;
+}
+
+/* optional: different timing for second line to make it more dynamic */
+.ev-text-strip:nth-of-type(2) .ev-text-strip__track span {
+  animation: textBlinkColor 1.4s infinite linear;
+}
+
+.ev-text-strip__icon {
+  font-size: clamp(26px, 4vw, 60px);
+  line-height: 1;
+  animation: iconBlinkColor 1.8s infinite linear;
+}
+
+@keyframes evTextStripMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* 4-color blinking text */
+@keyframes textBlinkColor {
+  0% {
+    color: #ff1e1e;
+    text-shadow: 0 0 6px rgba(255, 30, 30, 0.35);
+  }
+  25% {
+    color: #ff00ff;
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.35);
+  }
+  50% {
+    color: #005eff;
+    text-shadow: 0 0 8px rgba(0, 94, 255, 0.35);
+  }
+  75% {
+    color: #ff7a00;
+    text-shadow: 0 0 8px rgba(255, 122, 0, 0.35);
+  }
+  100% {
+    color: #ff1e1e;
+    text-shadow: 0 0 6px rgba(255, 30, 30, 0.35);
+  }
+}
+
+/* icon color animation */
+@keyframes iconBlinkColor {
+  0% {
+    color: #111111;
+  }
+  25% {
+    color: #ff00ff;
+  }
+  50% {
+    color: #005eff;
+  }
+  75% {
+    color: #ff7a00;
+  }
+  100% {
+    color: #111111;
+  }
+}
+
+:root {
+  --primary-color: #becb0a;
+  --secondary-color: #161515;
+}
 /* ===================== DC CHARGER HERO (RESPONSIVE) ===================== */
 
 html, body {
@@ -22,7 +122,7 @@ html, body {
 .emr-charger-hero-bg-dc{
   position: absolute;
   inset: 0;
-  background-image: url("../images/banner/mobile.avif");
+  background-image: url("../images/mobile-ev/services.avif");
   background-size: cover;
   background-position: center;
   transform: scale(1.02);

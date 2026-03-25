@@ -1007,3 +1007,45 @@ This section is important for the desktop view, as it overrides the mobile style
   }
 }
 /* .header { z-index: 9999 !important; } */
+
+
+@media screen and (min-width: 1118px) {
+  .dropdown__item {
+    position: relative;
+  }
+
+  .dropdown__item > .dropdown__menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 280px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 8px 0;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .dropdown__item.active > .dropdown__menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .dropdown__item > .dropdown__menu .dropdown__link {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    background: #fff;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  .dropdown__item > .dropdown__menu .dropdown__link:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+}

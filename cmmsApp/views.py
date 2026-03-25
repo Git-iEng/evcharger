@@ -114,9 +114,9 @@ def request_demo_view(request):
 
     # Build email
     ts = timezone.now().strftime("%Y-%m-%d %H:%M:%S %Z")
-    subject = "New CARL Demo Request"
+    subject = "New EV charger Request"
     text_body = (
-        "A new CARL demo request was submitted.\n\n"
+        "A new EV charger request was submitted.\n\n"
         f"Submitted: {ts}\n"
         f"IP: {request.META.get('REMOTE_ADDR','')}\n\n"
         f"Full name: {full_name}\n"
@@ -129,7 +129,7 @@ def request_demo_view(request):
         f"{message or '(none)'}\n"
     )
     html_body = f"""
-        <h2 style="margin:0 0 8px">New CARL Demo Request</h2>
+        <h2 style="margin:0 0 8px">New EV charger Request</h2>
         <p style="margin:0 0 12px;color:#334">Submitted {ts} from {request.META.get('REMOTE_ADDR','')}</p>
         <table cellpadding="6" cellspacing="0" style="border-collapse:collapse;background:#f9fbfc">
           <tr><td><b>Full name</b></td><td>{full_name}</td></tr>
@@ -164,6 +164,7 @@ def ac_charging_station(request):    return render(request, "ac-charging-station
 def contact(request):     return render(request, "contact.html")
 
 def products(request):       return render(request, "products.html")
+def project(request):       return render(request, "project.html")
 
 
 
@@ -194,10 +195,10 @@ def contact_section(request):
        
 
         # Email body
-        subject = "New website contact submission for CARL Software"
+        subject = "New website contact submission for EV Chargers"
         text_body = "\n".join(
             [
-                "New contact submission for CARL Software:",
+                "New contact submission for EV Chargers:",
                 f"Name: {cd['first_name']} {cd.get('last_name','')}".strip(),
                 f"Company: {cd.get('company','')}",
                 f"Email: {cd['email']}",

@@ -35,25 +35,111 @@
   {% include 'header.html' %}
 
   {% load static %}
-  <section class="hero-all-products" id="hero-all-products">
-    <div class="hero-overlay-all-products" aria-hidden="true"></div>
+  <section class="prod-hero" data-prod-hero>
+  <div class="prod-hero__slider" aria-roledescription="carousel" aria-label="Products hero slider">
 
-    <div class="hero-inner-all-products">
-      <div class="hero-text-wrap-all-products">
-        <div class="hero-kicker-all-products">PRODUCTS</div>
+    <!-- SLIDE 1 -->
+    <article class="prod-hero__slide is-active"
+      data-prod-slide
+      style="--prod-bg: url('/static/images/banner/slide1.png');">
+      <div class="prod-hero__container">
+        <div class="prod-hero__content">
+          <p class="prod-hero__kicker prod-hero__reveal" data-prod-reveal data-delay="0">PRODUCTS</p>
 
-        <h1 class="hero-title-all-products">
-          Complete EV Charging<br/>
-          Solutions &  Support<br/>
-         
-        </h1>
+          <h1 class="prod-hero__title">
+            <span class="prod-hero__line prod-hero__reveal" data-prod-reveal data-delay="120">Complete EV</span>
+            <span class="prod-hero__line prod-hero__reveal" data-prod-reveal data-delay="220">Charging Solutions</span>
+          </h1>
 
-        <p class="hero-subtitle-all-products">
-          Supply, installation, and maintenance of AC, DC, and mobile EV charging systems.
-        </p>
+          <p class="prod-hero__subtitle prod-hero__reveal" data-prod-reveal data-delay="420">
+            Supply, installation, and maintenance of AC, DC, and mobile EV charging systems.
+          </p>
+
+          {% comment %} <a class="prod-hero__btn prod-hero__reveal" data-prod-reveal data-delay="520" href="#discover">DISCOVER MORE</a> {% endcomment %}
+        </div>
       </div>
+    </article>
+
+    <!-- SLIDE 2 -->
+    <article class="prod-hero__slide"
+      data-prod-slide
+      style="--prod-bg: url('/static/images/banner/slide2.png');">
+      <div class="prod-hero__container">
+        <div class="prod-hero__content">
+          <p class="prod-hero__kicker prod-hero__reveal" data-prod-reveal data-delay="0">SOLUTIONS</p>
+
+          <h2 class="prod-hero__title">
+            <span class="prod-hero__line prod-hero__reveal" data-prod-reveal data-delay="120">AC and DC</span>
+            <span class="prod-hero__line prod-hero__reveal" data-prod-reveal data-delay="220">Chargers for</span>
+            <span class="prod-hero__line prod-hero__reveal" data-prod-reveal data-delay="320">Every Site</span>
+          </h2>
+
+          <p class="prod-hero__subtitle prod-hero__reveal" data-prod-reveal data-delay="420">
+            From 7kW wall units to ultra-fast 400kW stations.
+          </p>
+
+          <a class="prod-hero__btn prod-hero__reveal" data-prod-reveal data-delay="520" href="/contact">REQUEST DEMO</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 3 (NEW) -->
+    <article class="prod-hero__slide"
+      data-prod-slide
+      style="--prod-bg: url('/static/images/banner/slide3.png');">
+      <div class="prod-hero__container">
+        <div class="prod-hero__content">
+          <p class="prod-hero__kicker prod-hero__reveal" data-prod-reveal data-delay="0">SUPPORT</p>
+
+          <h2 class="prod-hero__title">
+            <span class="prod-hero__line prod-hero__reveal" data-prod-reveal data-delay="120">End-to-End</span>
+            <span class="prod-hero__line prod-hero__reveal" data-prod-reveal data-delay="220">Installation and</span>
+            <span class="prod-hero__line prod-hero__reveal" data-prod-reveal data-delay="320">Maintenance</span>
+          </h2>
+
+          <p class="prod-hero__subtitle prod-hero__reveal" data-prod-reveal data-delay="420">
+            Commissioning, OCPP setup, training, and ongoing service support.
+          </p>
+
+          <a class="prod-hero__btn prod-hero__reveal" data-prod-reveal data-delay="520" href="/request-demo">GET STARTED</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- DOTS -->
+    {% comment %} <div class="prod-hero__dots" role="tablist" aria-label="Slider pagination">
+      <button class="prod-hero__dot is-active" type="button" data-prod-dot="0" aria-label="Go to slide 1"></button>
+      <button class="prod-hero__dot" type="button" data-prod-dot="1" aria-label="Go to slide 2"></button>
+      <button class="prod-hero__dot" type="button" data-prod-dot="2" aria-label="Go to slide 3"></button>
+    </div> {% endcomment %}
+
+  </div>
+  <section class="ev-text-strip">
+  <div class="ev-text-strip__wrap">
+    <div class="ev-text-strip__track">
+      <span>The biggest grant in NSW history: 90% off Ultra-Fast DC Chargers for Service Stations.</span>
+       <span class="ev-text-strip__icon">✦</span>
+      <span>Deadline: Applications for this round close on 24 April 2026.</span>
+      <span class="ev-text-strip__icon">✦</span>
+      {% comment %}<span>EV CHARGING SOLUTIONS</span>
+      <span class="ev-text-strip__icon">✦</span>
+      <span>POWERING THE FUTURE</span>
+      <span class="ev-text-strip__icon">✦</span> {% endcomment %}
     </div>
-  </section>
+  </div>
+</section>
+<br>
+<section class="ev-text-strip">
+  <div class="ev-text-strip__wrap">
+    <div class="ev-text-strip__track">
+      <span>uto Dealerships and Service Stations: Claim your $21,000 Rebate for smart EV chargers today for free from NSW govt!</span>
+      <span class="ev-text-strip__icon">✦</span>
+      <span>Deadline: Applications close 30th April 2026</span>
+      <span class="ev-text-strip__icon">✦</span>
+    </div>
+  </div>
+</section>
+</section>
   <section class="basic-solution-heading" data-basic-solution-heading>
     <div class="basic-solution-heading__container">
       <p class="basic-solution-heading__kicker" data-bsh-reveal data-delay="0">BASIC SOLUTION</p>
@@ -64,6 +150,11 @@
       </h2>
     </div>
   </section>
+  </section>
+
+
+
+<section class="basic-solution-heading" data-basic-solution-heading>
   <section class="features-grid-all-products" aria-label="Feature cards">
     <div class="features-wrap-all-products">
       <!-- Row 1 (3 cards) -->
@@ -173,7 +264,7 @@
         <div class="ourwork__photo-all-products">
           <img
             class="ourwork__img-all-products"
-            src="https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/673f2d6850d253c7e1d848a3_Mask%20group%20(4).jpg"
+            src="{% static 'images/dc-sideimg.avif' %}"
             alt="Charging"
             loading="lazy"
           />

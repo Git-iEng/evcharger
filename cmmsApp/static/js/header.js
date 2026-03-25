@@ -84,3 +84,23 @@ document.querySelectorAll(".dropdown__toggle").forEach((btn) => {
     btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
   });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const dropdownItems = document.querySelectorAll(".dropdown__item");
+
+  dropdownItems.forEach((item) => {
+    let closeTimer;
+
+    item.addEventListener("mouseenter", () => {
+      clearTimeout(closeTimer);
+      item.classList.add("active");
+    });
+
+    item.addEventListener("mouseleave", () => {
+      closeTimer = setTimeout(() => {
+        item.classList.remove("active");
+      }, 1000); // 1 second delay before closing
+    });
+  });
+});

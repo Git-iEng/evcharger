@@ -78,3 +78,64 @@
 
   io.observe(section);
 })();
+
+
+
+(function () {
+  const hero = document.querySelector("[data-prod-hero]");
+  if (!hero) return;
+
+  const slides = hero.querySelectorAll("[data-prod-slide]");
+  const dots = hero.querySelectorAll("[data-prod-dot]");
+  const intervalMs = 5500;
+  let index = 0;
+  let timer = null;
+
+  function setReveal(slide){
+    const items = slide.querySelectorAll("[data-prod-reveal]");
+    items.forEach(el => el.classList.remove("is-visible"));
+
+    items.forEach(el => {
+      const delay = Number(el.getAttribute("data-delay") || "0");
+      el.style.transitionDelay = delay + "ms";
+      requestAnimationFrame(() => el.classList.add("is-visible"));
+    });
+  }
+
+  function show(i){
+    slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+    dots.forEach((d, idx) => d.classList.toggle("is-active", idx === i));
+    index = i;
+    setReveal(slides[i]);
+  }
+
+  function next(){
+    show((index + 1) % slides.length);
+  }
+
+  function start(){
+    stop();
+    timer = setInterval(next, intervalMs);
+  }
+
+  function stop(){
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  // dot click
+  dots.forEach(dot => {
+    dot.addEventListener("click", () => {
+      const i = Number(dot.getAttribute("data-prod-dot"));
+      show(i);
+      start();
+    });
+  });
+
+  // pause on hover
+  hero.addEventListener("mouseenter", stop);
+  hero.addEventListener("mouseleave", start);
+
+  show(0);
+  start();
+})();

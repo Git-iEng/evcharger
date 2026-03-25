@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>EV Charger</title>
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
@@ -39,7 +40,7 @@
       class="home-ev-charger__slide is-active"
       data-slide
       style="
-        --hev-bg: url('{% static 'images/evv-slide1.png' %}');
+        --hev-bg: url('{% static 'images/evv-slide1.avif' %}');
         --hev-dots: url('https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/672b252cc515494ea8a38d4f_Slider%20One%20Dot.svg');
       "
     >
@@ -66,7 +67,7 @@
             </span>
           </h1>
 
-          <a href="#discover" class="home-ev-charger__btn home-ev-charger__reveal" data-reveal data-delay="430">
+          <a href="/products" class="home-ev-charger__btn home-ev-charger__reveal" data-reveal data-delay="430">
             DISCOVER MORE
           </a>
         </div>
@@ -103,7 +104,7 @@
             </span>
           </h1>
 
-          <a href="#discover" class="home-ev-charger__btn home-ev-charger__reveal" data-reveal data-delay="430">
+          <a href="/products" class="home-ev-charger__btn home-ev-charger__reveal" data-reveal data-delay="430">
             DISCOVER MORE
           </a>
         </div>
@@ -119,7 +120,7 @@
   </div>
 </section>
 
-<section class="home-one-marquee">
+{% comment %} <section class="home-one-marquee">
   <div class="w-layout-hflex marquee" data-marquee>
     <div class="marquee__track" data-marquee-track>
       <!-- ORIGINAL TRAIN -->
@@ -157,6 +158,31 @@
       <div class="w-layout-hflex marquee-train" aria-hidden="true" data-marquee-clone></div>
     </div>
   </div>
+</section> {% endcomment %}
+<section class="ev-text-strip">
+  <div class="ev-text-strip__wrap">
+    <div class="ev-text-strip__track">
+      <span>The biggest grant in NSW history: 90% off Ultra-Fast DC Chargers for Service Stations.</span>
+       <span class="ev-text-strip__icon">✦</span>
+      <span>Deadline: Applications for this round close on 24 April 2026.</span>
+      <span class="ev-text-strip__icon">✦</span>
+      {% comment %}<span>EV CHARGING SOLUTIONS</span>
+      <span class="ev-text-strip__icon">✦</span>
+      <span>POWERING THE FUTURE</span>
+      <span class="ev-text-strip__icon">✦</span> {% endcomment %}
+    </div>
+  </div>
+</section>
+<br>
+<section class="ev-text-strip">
+  <div class="ev-text-strip__wrap">
+    <div class="ev-text-strip__track">
+      <span>Claim your $21,000 Rebate for smart EV chargers today for free from NSW govt!</span>
+      <span class="ev-text-strip__icon">✦</span>
+      <span>Deadline: Applications close 30th April 2026</span>
+      <span class="ev-text-strip__icon">✦</span>
+    </div>
+  </div>
 </section>
 
 <section id="home-two-about" class="home-one-about" data-about-reveal>
@@ -170,7 +196,7 @@
           <!-- green -> image reveal happens here -->
           <div class="charging-image-wrapper">
             <img
-              src="{% static 'images/below.png' %}"
+              src="{% static 'images/below.avif' %}"
               loading="lazy"
               width="520"
               height="626"
@@ -184,11 +210,11 @@
         </div>
 
         <!-- tag -->
-        <div class="image-tag">
+        {% comment %} <div class="image-tag">
           <div class="image-tag-about">
             <div class="image-tag-heading-five">Global station</div>
           </div>
-        </div>
+        </div> {% endcomment %}
       </div>
 
       <!-- RIGHT CONTENT -->
@@ -290,7 +316,7 @@
 
       <div class="image-move-on-mouse-move-and-scroll">
         <img
-          src="{% static 'images/w1.webp' %}"
+          src="{% static 'images/w1.avif' %}"
           loading="lazy"
           alt="Work charging"
           class="home-one-card-cover-image"
@@ -311,7 +337,7 @@
 
       <div class="image-move-on-mouse-move-and-scroll">
         <img
-          src="{% static 'images/w2.webp' %}"
+          src="{% static 'images/w2.avif' %}"
           loading="lazy"
           alt="Fleet charging"
           class="home-one-card-cover-image"
@@ -332,7 +358,7 @@
 
       <div class="image-move-on-mouse-move-and-scroll">
         <img
-          src="{% static 'images/w3.webp' %}"
+          src="{% static 'images/w3.avif' %}"
           loading="lazy"
           alt="Public charging"
           class="home-one-card-cover-image"
@@ -539,7 +565,80 @@
     </div>
   </div>
 </section>
+<section class="ev-projects-home" id="ev-projects-home">
+  <div class="ev-projects-home__container">
 
+    <div class="ev-projects-home__head">
+      <div class="short-header margin-bottom-ten">Our Projects</div>
+      <h2 class="ev-projects-home__title">Featured EV Charging Projects</h2>
+      <p class="ev-projects-home__desc">
+        Explore some of our EV charging projects. Visit the projects page to read the full scope, charger type, project details, and outcomes.
+      </p>
+    </div>
+
+    <div class="ev-projects-home__grid">
+
+      <!-- Project 1 -->
+      <article class="ev-project-card">
+        <div class="ev-project-card__image-wrap">
+          <img src="{% static 'images/2.png' %}" alt="AC EV charging project" class="ev-project-card__image">
+        </div>
+        <div class="ev-project-card__content">
+          {% comment %} <div class="ev-project-card__number">01</div> {% endcomment %}
+          <h3 class="ev-project-card__title">Quest Apartments EV Charger Installation</h3>
+          <p class="ev-project-card__text">
+            This project involved the supply and installation of two 22kW electric vehicle chargers at Quest Apartments in Dubbo, New South Wales. 
+          </p>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="ev-project-card">
+        <div class="ev-project-card__image-wrap">
+          <img src="{% static 'images/3.png' %}" alt="DC fast EV charging project" class="ev-project-card__image">
+        </div>
+        <div class="ev-project-card__content">
+          <h3 class="ev-project-card__title">Metta Developments EV Charger Installation</h3>
+          <p class="ev-project-card__text">
+            This project involved the supply and installation of eight (8) 7kW electric vehicle chargers at a premium residential development in Galston
+          </p>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="ev-project-card">
+        <div class="ev-project-card__image-wrap">
+          <img src="{% static 'images/banner/slide2.avif' %}" alt="Commercial EV charging site" class="ev-project-card__image">
+        </div>
+        <div class="ev-project-card__content">
+          <h3 class="ev-project-card__title">Geoff Pout EV Charger Installation</h3>
+          <p class="ev-project-card__text">
+            •	This project involved the supply of four 7 kW electric vehicle chargers to Mr. Geoff Pout Warrimoo NSW Australia.
+          </p>
+        </div>
+      </article>
+
+      <!-- Project 4 -->
+      <article class="ev-project-card">
+        <div class="ev-project-card__image-wrap">
+          <img src="{% static 'images/pro4.jpg' %}" alt="Integrated EV charging solution" class="ev-project-card__image">
+        </div>
+        <div class="ev-project-card__content">
+          <h3 class="ev-project-card__title">EV Charger Supply for Prakash Pala</h3>
+          <p class="ev-project-card__text">
+            This project involved the supply of four (4) 22kW electric vehicle chargers to Mr. Prakash Pala in Australia & Fiji
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="ev-projects-home__cta">
+      <a href="/project/" class="ev-projects-home__btn">Read More</a>
+    </div>
+
+  </div>
+</section>
 <section
   class="home-one-protest-section"
   style="background-image: url('https://cdn.prod.website-files.com/66f6377c7b0e28aac3e10d72/670e0dba9440b60a01103861_Mask%20group%20(3)%20(4)-p-500.webp');"
@@ -632,26 +731,26 @@
       <h2 class="ev-blogs-title-ev-blogs">Browse our latest news<br />and articles</h2>
     </div>
 
-    <div class="ev-blogs-grid-ev-blogs">
+    <div class="ev-blogs-grid-ev-blogs" >
       <!-- Card 1 -->
-      <a class="ev-blogs-card-ev-blogs" href="/blog/powering-up-the-future-of-ev-charging" aria-label="Powering up the future of EV charging"
+      <a class="ev-blogs-card-ev-blogs" href="https://ieng.tech/blog-ev-chargers-australia-ac-vs-dc-iengineering/" aria-label="Powering up the future of EV charging"
         data-reveal-ev-blogs>
         <div class="ev-blogs-media-ev-blogs">
           <img class="ev-blogs-img-ev-blogs"
-            src="https://images.unsplash.com/photo-1615906655593-ad0386982a0f?auto=format&fit=crop&w=1400&q=80"
+            src="{% static 'images/blog1.png' %}"
             alt="EV charging" loading="lazy" />
           <span class="ev-blogs-overlay-ev-blogs" aria-hidden="true"></span>
-          <span class="ev-blogs-date-ev-blogs"><strong>07</strong><span>Nov</span></span>
+          {% comment %} <span class="ev-blogs-date-ev-blogs"><strong>07</strong><span>Nov</span></span> {% endcomment %}
         </div>
 
         <div class="ev-blogs-body-ev-blogs">
-          <h3 class="ev-blogs-card-title-ev-blogs">Powering up the future of EV charging</h3>
+          <h3 class="ev-blogs-card-title-ev-blogs">Chargers for EVs in Australia: Different types of chargers: AC against DC with iEngineering leading nationally.</h3>
           <span class="ev-blogs-more-ev-blogs">VIEW MORE</span>
         </div>
       </a>
 
       <!-- Card 2 -->
-      <a class="ev-blogs-card-ev-blogs" href="/blog/the-evolution-of-ev-technologies" aria-label="The evolution of EV technologies"
+      {% comment %} <a class="ev-blogs-card-ev-blogs" href="/blog/the-evolution-of-ev-technologies" aria-label="The evolution of EV technologies"
         data-reveal-ev-blogs>
         <div class="ev-blogs-media-ev-blogs">
           <img class="ev-blogs-img-ev-blogs"
@@ -665,10 +764,10 @@
           <h3 class="ev-blogs-card-title-ev-blogs">The evolution of EV technologies</h3>
           <span class="ev-blogs-more-ev-blogs">VIEW MORE</span>
         </div>
-      </a>
+      </a> {% endcomment %}
 
       <!-- Card 3 -->
-      <a class="ev-blogs-card-ev-blogs" href="/blog/electric-vehicle-charging-technology" aria-label="Electric vehicle charging technology"
+      {% comment %} <a class="ev-blogs-card-ev-blogs" href="/blog/electric-vehicle-charging-technology" aria-label="Electric vehicle charging technology"
         data-reveal-ev-blogs>
         <div class="ev-blogs-media-ev-blogs">
           <img class="ev-blogs-img-ev-blogs"
@@ -682,7 +781,7 @@
           <h3 class="ev-blogs-card-title-ev-blogs">Electric vehicle charging technology</h3>
           <span class="ev-blogs-more-ev-blogs">VIEW MORE</span>
         </div>
-      </a>
+      </a> {% endcomment %}
     </div>
 
   </div>

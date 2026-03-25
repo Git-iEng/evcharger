@@ -35,27 +35,61 @@
     {% include 'header.html' %}
 
     {% load static %}
-<!-- ===================== DC CHARGER HERO ===================== -->
-<section class="ac-charger-hero-dc" id="ac-charger-hero-dc" aria-label="DC Charger Hero">
+<!-- ===================== AC CHARGER HERO (SAME AS PRODUCTS HERO) ===================== -->
+<section class="portable-charger-hero-dc" id="portable-charger-hero-dc" aria-label="Portable DC Charger Hero">
   <!-- Background image -->
-  <div class="ac-charger-hero-bg-dc" aria-hidden="true"></div>
+  <div class="portable-charger-hero-bg-dc" aria-hidden="true"></div>
 
   <!-- Dark overlay (so text readable) -->
-  <div class="ac-charger-hero-overlay-dc" aria-hidden="true"></div>
+  <div class="portable-charger-hero-overlay-dc" aria-hidden="true"></div>
 
   <!-- Center content -->
-  <div class="ac-charger-hero-inner-dc">
-    <div class="ac-charger-hero-content-dc" data-reveal-dc>
-      <div class="ac-charger-hero-kicker-dc">AC Charger</div>
+  <div class="portable-charger-hero-inner-dc">
+    <div class="portable-charger-hero-content-dc" data-reveal-dc>
+      <div class="portable-charger-hero-kicker-dc">AC charger</div>
 
-      <h1 class="ac-charger-hero-title-dc">
-        Reliable Everyday <br />
-        AC EV Charging
+      <h1 class="portable-charger-hero-title-dc">
+        AC charging<br />
+        solutions
       </h1>
 
-      <p class="ac-charger-hero-subtitle-dc">
-        Safe, efficient and versatile AC charging solutions designed for homes, workplaces and public destinations.
+      <p class="portable-charger-hero-subtitle-dc">
+        Fast AC charging for emergency top-ups and flexible everyday applications.
       </p>
+    </div>
+  </div>
+</section>
+
+<section class="ev-text-strip">
+  <div class="ev-text-strip__wrap">
+    <div class="ev-text-strip__track">
+      <span>The biggest grant in NSW history: 90% off Ultra-Fast DC Chargers for Service Stations.</span>
+       <span class="ev-text-strip__icon">✦</span>
+      <span>Deadline: Applications for this round close on 24 April 2026.</span>
+      <span class="ev-text-strip__icon">✦</span>
+      <span>The biggest grant in NSW history: 90% off Ultra-Fast DC Chargers for Service Stations.</span>
+       <span class="ev-text-strip__icon">✦</span>
+      <span>Deadline: Applications for this round close on 24 April 2026.</span>
+      <span class="ev-text-strip__icon">✦</span>
+      {% comment %}<span>EV CHARGING SOLUTIONS</span>
+      <span class="ev-text-strip__icon">✦</span>
+      <span>POWERING THE FUTURE</span>
+      <span class="ev-text-strip__icon">✦</span> {% endcomment %}
+    </div>
+  </div>
+</section>
+<br>
+<section class="ev-text-strip">
+  <div class="ev-text-strip__wrap">
+    <div class="ev-text-strip__track">
+      <span>Claim your $21,000 Rebate for smart EV chargers today for free from NSW govt!</span>
+      <span class="ev-text-strip__icon">✦</span>
+      <span>Deadline: Applications close 30th April 2026</span>
+      <span class="ev-text-strip__icon">✦</span>
+      <span>Claim your $21,000 Rebate for smart EV chargers today for free from NSW govt!</span>
+      <span class="ev-text-strip__icon">✦</span>
+      <span>Deadline: Applications close 30th April 2026</span>
+      <span class="ev-text-strip__icon">✦</span>
     </div>
   </div>
 </section>
@@ -227,20 +261,20 @@
       <figure class="imgcard-ev-charger-ac-station reveal-ev-charger-ac-station">
         <img
           class="img-ev-charger-ac-station"
-          src="{% static 'images/ac-charger/series.avif' %}"
+          src="{% static 'images/ac-chargers/series1.avif' %}"
           alt="AC charger product image 1"
           loading="lazy"
         />
       </figure>
 
-      <!-- <figure class="imgcard-ev-charger-ac-station reveal-ev-charger-ac-station">
+      <figure class="imgcard-ev-charger-ac-station reveal-ev-charger-ac-station">
         <img
           class="img-ev-charger-ac-station"
-          src="{% static 'images/ac-charger/spec-image-2.jpg' %}"
+          src="{% static 'images/ac-chargers/series2.avif' %}"
           alt="AC charger product image 2"
           loading="lazy"
         />
-      </figure> -->
+      </figure>
     </div>
 
     <!-- Responsive table -->
@@ -471,7 +505,7 @@
       <figure class="dlb-media-ev-charger-ac-station reveal-ev-charger-ac-station">
         <img
           class="img-ev-charger-ac-station"
-          src="{% static 'images/ac-charger/dlb.avif' %}"
+          src="{% static 'images/ac-chargers/dynamic.avif' %}"
           alt="Consumer tech image"
           loading="lazy"
         />
@@ -497,20 +531,20 @@
       <figure class="imgcard-ev-charger-ac-station reveal-ev-charger-ac-station">
         <img
           class="img-ev-charger-ac-station"
-          src="{% static 'images/ac-charger/smart1.avif' %}"
+          src="{% static 'images/ac-chargers/smartcharger.avif' %}"
           alt="Smart charger image 1"
           loading="lazy"
         />
       </figure>
 
-      <figure class="imgcard-ev-charger-ac-station reveal-ev-charger-ac-station">
+      {% comment %} <figure class="imgcard-ev-charger-ac-station reveal-ev-charger-ac-station">
         <img
           class="img-ev-charger-ac-station"
           src="{% static 'images/ac-charger/smart2.avif' %}"
           alt="Smart charger image 2"
           loading="lazy"
         />
-      </figure>
+      </figure> {% endcomment %}
     </div>
 
     <!-- Responsive table -->
@@ -790,7 +824,7 @@
       <figure class="imgcard-ev-charger-ac-station reveal-ev-charger-ac-station">
         <img
           class="img-ev-charger-ac-station"
-          src="{% static 'images/ac-charger/iengs2.avif' %}"
+          src="{% static 'images/ac-chargers/iegns2.avif' %}"
           alt="iEGNS2 charger image 1"
           loading="lazy"
         />
@@ -1091,7 +1125,7 @@
       <figure class="imgcard-ev-charger-ac-station reveal-ev-charger-ac-station">
         <img
           class="img-ev-charger-ac-station"
-          src="{% static 'images/ac-charger/iengs3.avif' %}"
+          src="{% static 'images/ac-chargers/iegns3.avif' %}"
           alt="iEGNS3 charger image 1"
           loading="lazy"
         />

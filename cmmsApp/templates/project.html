@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project</title>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TKQV8LKX');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/ev-home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/project.css' %}">
+  <link rel="stylesheet" href="{% static 'css/consult-block.css' %}">
+  <link rel="stylesheet" href="{% static 'css/project-details.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="{% static 'images/logo1.png' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+</head>
+
+<body>
+  {% include 'header.html' %}
+  {% include 'request_demo_modal.html' %}
+
+  <!-- Project Hero -->
+  <section class="ev-project-details-hero">
+    <div class="ev-project-details-hero__container">
+      <div class="ev-project-details-hero__content">
+        <br>
+        <br>
+        <div class="short-header margin-bottom-ten">Our Projects</div>
+        <h1 class="ev-project-details-hero__title">Featured EV Charging Projects</h1>
+        <p class="ev-project-details-hero__desc">
+          Explore our completed EV charging projects across New South Wales, Australia and Fiji,
+          including charger supply, installation and delivery for commercial, residential and mixed-use developments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Details -->
+  <section class="ev-project-details">
+    <div class="ev-project-details__container">
+
+      <!-- Project 1 -->
+      <div class="ev-project-detail-card">
+        <div class="ev-project-detail-card__image">
+          <img src="{% static 'images/2.png' %}" alt="Quest Apartments EV charger installation">
+        </div>
+        <div class="ev-project-detail-card__content">
+            <div class="ev-project-detail-card__label">PROJECT 01</div>
+          <h2 class="ev-project-detail-card__title">Quest Apartments EV Charger Installation</h2>
+          <div class="ev-project-detail-card__meta">
+            <span><i class="fa-solid fa-location-dot"></i> Quest Apartments, Dubbo, NSW</span>
+          </div>
+          <p class="ev-project-detail-card__text">
+            This project involved the supply and installation of two 22kW electric vehicle chargers at Quest Apartments in Dubbo, New South Wales.
+            The installation formed part of the NSW Government’s EV Destination Charging Grants – Round 2, supporting EV adoption and helping expand charging infrastructure in regional areas.
+          </p>
+          <ul class="ev-project-detail-card__list">
+            <li>Supply and installation of 2 x 22kW EV chargers</li>
+            <li>Project delivered at Quest Apartments, Dubbo</li>
+            <li>Supported regional EV charging infrastructure growth</li>
+            <li>Aligned with NSW Government EV Destination Charging Grants – Round 2</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="ev-project-detail-card ev-project-detail-card--reverse">
+        <div class="ev-project-detail-card__image">
+          <img src="{% static 'images/3.png' %}" alt="Metta Developments EV charger installation">
+        </div>
+        
+        <div class="ev-project-detail-card__content">
+          <div class="ev-project-detail-card__label">PROJECT 02</div>
+          <h2 class="ev-project-detail-card__title">Metta Developments EV Charger Installation</h2>
+          <div class="ev-project-detail-card__meta">
+            <span><i class="fa-solid fa-location-dot"></i> Galston, Hornsby Region, NSW</span>
+          </div>
+          <p class="ev-project-detail-card__text">
+            This project involved the supply and installation of eight 7kW electric vehicle chargers at a premium residential development in Galston,
+            within the Hornsby region of New South Wales. The installation was designed to support the growing demand for sustainable transport infrastructure
+            within residential communities and aligns with the NSW Government’s EV-ready initiative.
+          </p>
+          <ul class="ev-project-detail-card__list">
+            <li>Supply and installation of 8 x 7kW EV chargers</li>
+            <li>Delivered for a premium residential development</li>
+            <li>Improved EV readiness for residential users</li>
+            <li>Supported sustainable transport infrastructure goals</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="ev-project-detail-card">
+        <div class="ev-project-detail-card__image">
+          <img src="{% static 'images/banner/slide2.avif' %}" alt="Geoff Pout EV charger supply">
+        </div>
+        <div class="ev-project-detail-card__content">
+            <div class="ev-project-detail-card__label">PROJECT 03</div>
+          <h2 class="ev-project-detail-card__title">Geoff Pout EV Charger Supply</h2>
+          <div class="ev-project-detail-card__meta">
+            <span><i class="fa-solid fa-location-dot"></i> Warrimoo, NSW</span>
+          </div>
+          <p class="ev-project-detail-card__text">
+            This project involved the supply of four 7kW electric vehicle chargers to Mr. Geoff Pout in Warrimoo, New South Wales, Australia.
+            The objective was to support the increasing demand for electric vehicle infrastructure in the region by providing high-quality charging equipment
+            suitable for residential or commercial use.
+          </p>
+          <ul class="ev-project-detail-card__list">
+            <li>Supply of 4 x 7kW EV chargers</li>
+            <li>Delivered for use in Warrimoo, NSW</li>
+            <li>Suitable for residential or small commercial charging needs</li>
+            <li>Focused on reliable and quality EV charging equipment supply</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="ev-project-detail-card ev-project-detail-card--reverse">
+        <div class="ev-project-detail-card__image">
+          <img src="{% static 'images/pro4.jpg' %}" alt="Prakash Pala EV charger supply">
+        </div>
+        <div class="ev-project-detail-card__content">
+            <div class="ev-project-detail-card__label">PROJECT 04</div>
+          <h2 class="ev-project-detail-card__title">EV Charger Supply for Prakash Pala</h2>
+          <div class="ev-project-detail-card__meta">
+            <span><i class="fa-solid fa-location-dot"></i> Australia and Fiji</span>
+          </div>
+          <p class="ev-project-detail-card__text">
+            This project involved the supply of four 22kW electric vehicle chargers to Mr. Prakash Pala across Australia and Fiji.
+            The goal was to support the growing demand for EV infrastructure by providing high-quality chargers suitable for commercial or residential applications.
+          </p>
+          <ul class="ev-project-detail-card__list">
+            <li>Supply of 4 x 22kW EV chargers</li>
+            <li>Delivered across Australia and Fiji</li>
+            <li>Supported wider EV infrastructure adoption</li>
+            <li>Provided high-quality charging solutions for multiple applications</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  {% include 'footer.html' %}
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script defer src="{% static 'js/demo_form.js' %}"></script>
+  <script defer src="{% static 'js/main.js' %}"></script>
+  <script defer src="{% static 'js/ev.js' %}"></script>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKQV8LKX" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+</body>
+
+</html>
