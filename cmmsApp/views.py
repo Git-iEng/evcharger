@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse, FileResponse, Http404
+from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
 from django.conf import settings
 from django.core.validators import validate_email
@@ -7,27 +7,68 @@ from django.core.exceptions import ValidationError
 from django.core.mail import get_connection, EmailMultiAlternatives
 from django.contrib import messages
 from django.utils import timezone
-from django.views.decorators.http import require_POST
-from django.core import signing
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.contrib.staticfiles import finders
 
+import requests
 from threading import Thread
 from pathlib import Path
-import mimetypes
 import re
 
 import phonenumbers
 import pycountry
 
-
 from .forms import ContactForm
 from .utils_contact import normalize_phone_and_country, country_name_from_alpha2
-# ---------- Validation patterns ----------
-NAME_RE  = re.compile(r"^[A-Za-z\s'.-]{2,}$")
+
+
+NAME_RE = re.compile(r"^[A-Za-z\s'.-]{2,}$")
 PHONE_RE = re.compile(r"^\+?\d[\d\s\-()]{6,}$")
 
 
+def build_countries():
+    countries = []
+    for c in pycountry.countries:
+        try:
+            cc = phonenumbers.country_code_for_region(c.alpha_2)
+        except Exception:
+            cc = None
+        if cc:
+            countries.append({
+                "alpha2": c.alpha_2,
+                "name": c.name,
+                "dial": f"+{cc}"
+            })
+    countries.sort(key=lambda x: x["name"])
+    return countries
+
+
+def captcha_context():
+    return {
+        "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY,
+    }
+
+
+def verify_recaptcha(request):
+    captcha_response = (request.POST.get("g-recaptcha-response") or "").strip()
+
+    if not captcha_response:
+        return False
+
+    data = {
+        "secret": settings.RECAPTCHA_SECRET_KEY,
+        "response": captcha_response,
+    }
+
+    try:
+        response = requests.post(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data=data,
+            timeout=10,
+        )
+        result = response.json()
+        return result.get("success", False)
+    except requests.RequestException:
+        return False
 
 
 def sitemap(request):
@@ -35,12 +76,9 @@ def sitemap(request):
         return HttpResponse(f.read(), content_type="application/xml")
 
 
-# ---------- Email helpers ----------
 def _send_email(subject: str, text_body: str, html_body: str | None, recipients: list[str] | None):
-    """Low-level sender used by async wrappers."""
     try:
         if not recipients:
-            # last-resort fallback
             fallback = getattr(settings, "EMAIL_HOST_USER", None) or getattr(settings, "DEFAULT_FROM_EMAIL", None)
             recipients = [fallback] if fallback else []
 
@@ -62,35 +100,88 @@ def _send_email(subject: str, text_body: str, html_body: str | None, recipients:
     except Exception as e:
         print("EMAIL ERROR:", repr(e))
 
+
 def _send_demo_email_async(subject: str, text_body: str, html_body: str | None = None):
     recipients = getattr(settings, "DEMO_RECIPIENTS", None) or getattr(settings, "CONTACT_RECIPIENTS", None)
     Thread(target=_send_email, args=(subject, text_body, html_body, recipients), daemon=True).start()
 
 
 def _send_contact_email_async(subject: str, text_body: str, html_body: str | None = None):
-    """Fire-and-forget email for Contact form."""
     recipients = getattr(settings, "CONTACT_RECIPIENTS", None)
     Thread(target=_send_email, args=(subject, text_body, html_body, recipients), daemon=True).start()
 
 
-# ---------- Views ----------
+def home(request):
+    return render(request, "index.html", captcha_context())
+
+
+def about(request):
+    return render(request, "about.html", captcha_context())
+
+
+def request_demo(request):
+    return render(request, "request_demo_modal.html", captcha_context())
+
+
+def dc_charging_station(request):
+    context = {
+        "countries": build_countries(),
+        "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY,
+    }
+    return render(request, "dc-charging-station.html", context)
+
+
+def ac_charging_station(request):
+    return render(request, "ac-charging-station.html", captcha_context())
+
+
+def emr_charging_station(request):
+    return render(request, "emr-charging-station.html", captcha_context())
+
+
+def portable_charging_station(request):
+    return render(request, "portable-charging-station.html", captcha_context())
+
+
+def pantograph_system(request):
+    return render(request, "pantograph-system.html", captcha_context())
+
+
+def contact(request):
+    context = {
+        "countries": build_countries(),
+        "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY,
+    }
+    return render(request, "contact.html", context)
+
+
+def products(request):
+    return render(request, "products.html", captcha_context())
+
+
+def project(request):
+    return render(request, "project.html", captcha_context())
+
+
 def request_demo_view(request):
     if request.method != "POST":
         return redirect("/")
 
-    # Pull fields
-    full_name = request.POST.get("full_name", "").strip()
-    company   = request.POST.get("company", "").strip()
-    email     = request.POST.get("email", "").strip()
-    phone     = request.POST.get("phone", "").strip()
-    country   = request.POST.get("country", "").strip()  # "IN|+91"
-    address   = request.POST.get("address", "").strip()
-    message   = request.POST.get("message", "").strip()
+    if not verify_recaptcha(request):
+        messages.error(request, "Please complete the CAPTCHA correctly.")
+        return redirect(request.META.get("HTTP_REFERER", "/"))
 
-    # Validate
+    full_name = request.POST.get("full_name", "").strip()
+    company = request.POST.get("company", "").strip()
+    email = request.POST.get("email", "").strip()
+    phone = request.POST.get("phone", "").strip()
+    country = request.POST.get("country", "").strip()
+    address = request.POST.get("address", "").strip()
+    message = request.POST.get("message", "").strip()
+
     errors = {}
     if not NAME_RE.match(full_name):
-        errors["full_name"] = "Please enter a valid full name (letters only)."
+        errors["full_name"] = "Please enter a valid full name."
     if not company:
         errors["company"] = "Company is required."
     try:
@@ -103,22 +194,18 @@ def request_demo_view(request):
         errors["country"] = "Select a country."
 
     if errors:
-        # Raise toasts on next page load
         for msg in errors.values():
             messages.error(request, msg)
-        # Go back to the page that opened the modal (so your JS toast can show)
         return redirect(request.META.get("HTTP_REFERER", "/"))
 
-    # Split "IN|+91"
     country_code, dial = (country.split("|", 1) + [""])[:2]
 
-    # Build email
     ts = timezone.now().strftime("%Y-%m-%d %H:%M:%S %Z")
     subject = "New EV charger Request"
     text_body = (
         "A new EV charger request was submitted.\n\n"
         f"Submitted: {ts}\n"
-        f"IP: {request.META.get('REMOTE_ADDR','')}\n\n"
+        f"IP: {request.META.get('REMOTE_ADDR', '')}\n\n"
         f"Full name: {full_name}\n"
         f"Company: {company}\n"
         f"Email: {email}\n"
@@ -128,6 +215,7 @@ def request_demo_view(request):
         "Message:\n"
         f"{message or '(none)'}\n"
     )
+
     html_body = f"""
         <h2 style="margin:0 0 8px">New EV charger Request</h2>
         <p style="margin:0 0 12px;color:#334">Submitted {ts} from {request.META.get('REMOTE_ADDR','')}</p>
@@ -144,34 +232,8 @@ def request_demo_view(request):
     """
 
     _send_demo_email_async(subject, text_body, html_body)
-
-    # Success -> thanks page
+    messages.success(request, "Thanks! Your demo request was submitted successfully.")
     return redirect(reverse("cmmsApp:contact_thanks"))
-
-
-def home(request):
-    return render(request, "index.html")
-def about(request):
-    return render(request, "about.html")
-
-def request_demo(request):
-    return render(request, "request_demo_modal.html")
-
-
-def dc_charging_station(request):    return render(request, "dc-charging-station.html")
-def ac_charging_station(request):    return render(request, "ac-charging-station.html")
-
-def contact(request):     return render(request, "contact.html")
-
-def products(request):       return render(request, "products.html")
-def project(request):       return render(request, "project.html")
-
-
-
-
-def emr_charging_station(request):     return render(request, "emr-charging-station.html")
-def portable_charging_station(request):     return render(request, "portable-charging-station.html")
-def pantograph_system(request):     return render(request, "pantograph-system.html")
 
 
 def contact_section(request):
@@ -183,43 +245,30 @@ def contact_section(request):
     if request.method == "POST" and form.is_valid():
         cd = form.cleaned_data
 
-        # Normalize phone & resolve country name
         e164_phone, resolved_alpha2, resolved_country_name = normalize_phone_and_country(
             cd.get("phone", ""), cd.get("country", "")
         )
 
-        # Append to Excel
-        xlsx_path = Path(
-            getattr(settings, "CONTACT_SUBMISSIONS_XLSX", Path(settings.BASE_DIR) / "contact_submissions.xlsx")
-        )
-       
-
-        # Email body
         subject = "New website contact submission for EV Chargers"
-        text_body = "\n".join(
-            [
-                "New contact submission for EV Chargers:",
-                f"Name: {cd['first_name']} {cd.get('last_name','')}".strip(),
-                f"Company: {cd.get('company','')}",
-                f"Email: {cd['email']}",
-                f"Country: {resolved_country_name or country_name_from_alpha2(resolved_alpha2) or cd.get('country','')}",
-                f"Phone: {e164_phone or cd.get('phone','')}",
-                "",
-                "Message:",
-                cd.get("message", ""),
-            ]
-        )
+        text_body = "\n".join([
+            "New contact submission for EV Chargers:",
+            f"Name: {cd['first_name']} {cd.get('last_name', '')}".strip(),
+            f"Company: {cd.get('company', '')}",
+            f"Email: {cd['email']}",
+            f"Country: {resolved_country_name or country_name_from_alpha2(resolved_alpha2) or cd.get('country', '')}",
+            f"Phone: {e164_phone or cd.get('phone', '')}",
+            "",
+            "Message:",
+            cd.get("message", ""),
+        ])
 
         _send_contact_email_async(subject, text_body, None)
-
         return redirect(reverse("cmmsApp:contact_thanks"))
 
     return render(request, "contact_section.html", {"form": form, "sent": request.GET.get("sent")})
 
 
-# ---------- NEW: helper (not a view) ----------
 def _dial_code_from_alpha2(alpha2: str) -> str:
-    """Return '+<code>' from a country alpha2 code."""
     if not alpha2:
         return ""
     try:
@@ -229,20 +278,13 @@ def _dial_code_from_alpha2(alpha2: str) -> str:
         return ""
 
 
-# ---------- NEW: JSON helper endpoint ----------
 def phone_info(request):
-    """
-    Optional helper called by the form JS to keep Country <-> Phone in sync.
-    Accepts ?phone=+.. OR ?country=Name/Alpha2
-    Returns: e164 phone, country (full name), alpha2, dial_code, example
-    """
     phone = (request.GET.get("phone") or "").strip()
     country = (request.GET.get("country") or "").strip()
 
     e164, resolved_alpha2, resolved_country_name = normalize_phone_and_country(phone, country)
     dial = _dial_code_from_alpha2(resolved_alpha2)
 
-    # simple example for UI: prefill with a dial code if user typed only country
     example = ""
     if dial and phone and not phone.startswith("+"):
         example = f"{dial} 4xxxxxxxx"
@@ -254,40 +296,35 @@ def phone_info(request):
         "country": resolved_country_name,
         "alpha2": resolved_alpha2,
         "dial_code": dial,
-        "example": example
+        "example": example,
     })
 
 
-# ---------- NEW: consulting/contact form submit ----------
 def contact_block_submit(request):
-    """
-    Handles the 'Get Free Consulting' form shown in the new block.
-    - Normalizes Country <-> Phone
-    - Appends a row to CONTACT_SUBMISSIONS_XLSX
-    - Sends email to CONTACT_RECIPIENTS
-    """
     if request.method != "POST":
         return redirect(request.META.get("HTTP_REFERER", "/"))
 
-    name    = (request.POST.get("name")    or "").strip()
-    email   = (request.POST.get("email")   or "").strip()
-    phone   = (request.POST.get("phone")   or "").strip()
+    if not verify_recaptcha(request):
+        messages.error(request, "Please complete the CAPTCHA correctly.")
+        return redirect(request.META.get("HTTP_REFERER", "/"))
+
+    name = (request.POST.get("name") or "").strip()
+    email = (request.POST.get("email") or "").strip()
+    phone = (request.POST.get("phone") or "").strip()
     country = (request.POST.get("country") or "").strip()
     service = (request.POST.get("service") or "").strip()
     message = (request.POST.get("message") or "").strip()
 
-    # --- Basic validation (lightweight) ---
     errors = []
-    if not re.match(r"^[A-Za-z\s'.-]{2,}$", name):
+    if not NAME_RE.match(name):
         errors.append("Please enter a valid name.")
     try:
         validate_email(email)
     except ValidationError:
         errors.append("Enter a valid email address.")
-    if not re.match(r"^\+?\d[\d\s\-()]{6,}$", phone):
+    if not PHONE_RE.match(phone):
         errors.append("Enter a valid phone number.")
     if not country and not phone.startswith("+"):
-        # If there's no +code in phone, we do need a country hint
         errors.append("Please enter your country.")
 
     if errors:
@@ -295,13 +332,10 @@ def contact_block_submit(request):
             messages.error(request, e)
         return redirect(request.META.get("HTTP_REFERER", "/"))
 
-    # --- Normalize country/phone ---
     e164_phone, alpha2, country_name = normalize_phone_and_country(phone, country)
     dial_code = _dial_code_from_alpha2(alpha2)
 
-
-    # --- Email notification ---
-    subject = f"[Website] Consulting request: {name} – {service or 'General'}"
+    subject = f"[Website] Consulting request: {name} - {service or 'General'}"
     text_body = "\n".join([
         "A new consulting request was submitted:",
         f"Name: {name}",
@@ -313,41 +347,19 @@ def contact_block_submit(request):
         "Message:",
         message or "(none)",
         "",
-        f"From: {request.META.get('HTTP_REFERER','')}",
-        f"IP:   {request.META.get('REMOTE_ADDR','')}",
+        f"From: {request.META.get('HTTP_REFERER', '')}",
+        f"IP:   {request.META.get('REMOTE_ADDR', '')}",
     ])
-    # Reuse your async sender
+
     _send_contact_email_async(subject, text_body, None)
 
     messages.success(request, "Thanks! Your request was submitted successfully.")
     return redirect(reverse("cmmsApp:contact_thanks"))
 
-def dc_charging_station(request):
-    # Build once here
-    countries = []
-    for c in pycountry.countries:
-        try:
-            cc = phonenumbers.country_code_for_region(c.alpha_2)
-        except Exception:
-            cc = None
-        if cc:
-            countries.append({"alpha2": c.alpha_2, "name": c.name, "dial": f"+{cc}"})
-    countries.sort(key=lambda x: x["name"])
-
-    return render(request, "dc-charging-station.html", {"countries": countries})
-
 
 def country_list(request):
-  """Return [{alpha2,name,dial}] sorted by name."""
-  data = []
-  for c in pycountry.countries:
-      try:
-          cc = phonenumbers.country_code_for_region(c.alpha_2)
-      except Exception:
-          cc = None
-      if cc:
-          data.append({"alpha2": c.alpha_2, "name": c.name, "dial": f"+{cc}"})
-  data.sort(key=lambda x: x["name"])
-  return JsonResponse(data, safe=False)
+    return JsonResponse(build_countries(), safe=False)
+
+
 def contact_thanks(request):
     return render(request, "contact_thanks.html", {})

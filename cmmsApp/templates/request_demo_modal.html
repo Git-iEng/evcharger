@@ -1,5 +1,28 @@
 {% load static %}
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+  .demo-captcha{
+    margin: 15px 0 18px;
+    width: 100%;
+  }
+
+  .demo-captcha .g-recaptcha{
+    transform-origin: left top;
+  }
+
+  @media (max-width: 768px){
+    .demo-captcha{
+      overflow-x: auto;
+    }
+  }
+
+  @media (max-width: 480px){
+    .demo-captcha .g-recaptcha{
+      transform: scale(0.92);
+    }
+  }
+</style>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <!-- Request Demo Modal -->
 <div class="modal" id="demoModal" aria-hidden="true">
@@ -11,7 +34,7 @@
     <h2 id="demoTitle" class="modal__title">Request a Demo</h2>
     <p class="modal__subtitle">Fill in the details below and we’ll get you started.</p>
 
-   <form id="demoForm" method="post" action="{% url 'cmmsApp:request_demo' %}" novalidate>
+    <form id="demoForm" method="post" action="{% url 'cmmsApp:request_demo' %}" novalidate>
       {% csrf_token %}
 
       <div class="grid">
@@ -60,16 +83,19 @@
         Your privacy is important to us. We’ll only use your information to arrange the demo and to communicate about EV Chargers.
       </p>
 
+      <div class="demo-captcha">
+        <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_SITE_KEY }}"></div>
+      </div>
+
       <div class="modal__footer">
-  <button class="btn-submit" id="submitBtn" type="submit" form="demoForm">
-    <span class="btn-label">Submit</span>
-    <span class="spinner" aria-hidden="true"></span>
-  </button>
-</div>
+        <button class="btn-submit" id="submitBtn" type="submit" form="demoForm">
+          <span class="btn-label">Submit</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </div>
     </form>
-    
-<!-- New footer OUTSIDE the form -->
 
   </div>
 </div>
+
 <div id="cmmsToastRoot" class="cmms-toast-wrap" aria-live="polite" aria-atomic="true"></div>

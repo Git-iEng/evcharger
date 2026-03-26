@@ -6,7 +6,14 @@
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
 }
+.consult-captcha{
+  grid-column: 1 / -1;
+  margin: 8px 0 6px;
+}
 
+.consult-captcha .g-recaptcha{
+  transform-origin: left top;
+}
 .ev-text-strip__wrap {
   overflow: hidden;
   white-space: nowrap;
