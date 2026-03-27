@@ -36,7 +36,7 @@
   }
 
   @media (max-width: 480px){
-    
+
     .consult-captcha .g-recaptcha{
       transform: scale(0.90);
     }
@@ -71,6 +71,7 @@
             <form id="consult-form" class="consult-grid" method="post" action="{% url 'cmmsApp:contact_submit' %}" novalidate>
                 {% csrf_token %}
 
+                
                 <input type="text" name="name" placeholder="Your Name * " required>
                 <input type="email" name="email" placeholder="Your Email Address *" required>
 

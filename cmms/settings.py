@@ -35,7 +35,7 @@ else:
     SESSION_COOKIE_SECURE = True
 
 
-ALLOWED_HOSTS = ["evcharger.ieng.tech", ".ieng.tech", "*"]
+ALLOWED_HOSTS = ["evcharger.ieng.tech", ".ieng.tech"]
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
