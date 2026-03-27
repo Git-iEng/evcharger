@@ -1,3 +1,141 @@
+.ev-text-strip {
+  width: 100%;
+  overflow: hidden;
+  background: #b6f426;
+  padding: 5px 0;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.ev-text-strip__wrap {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ev-text-strip__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 48px;
+  white-space: nowrap;
+  animation: evTextStripMove 40s linear infinite;
+}
+
+.ev-text-strip__track span {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  animation: textBlinkColor 1.8s infinite linear;
+  opacity: 1;
+}
+
+/* optional: different timing for second line to make it more dynamic */
+.ev-text-strip:nth-of-type(2) .ev-text-strip__track span {
+  animation: textBlinkColor 1.4s infinite linear;
+}
+
+.ev-text-strip__icon {
+  font-size: clamp(26px, 4vw, 60px);
+  line-height: 1;
+  animation: iconBlinkColor 1.8s infinite linear;
+}
+
+@keyframes evTextStripMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* 4-color blinking text */
+@keyframes textBlinkColor {
+  0% {
+    color: #ff1e1e;
+    text-shadow: 0 0 6px rgba(255, 30, 30, 0.35);
+  }
+  25% {
+    color: #ff00ff;
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.35);
+  }
+  50% {
+    color: #005eff;
+    text-shadow: 0 0 8px rgba(0, 94, 255, 0.35);
+  }
+  75% {
+    color: #ff7a00;
+    text-shadow: 0 0 8px rgba(255, 122, 0, 0.35);
+  }
+  100% {
+    color: #ff1e1e;
+    text-shadow: 0 0 6px rgba(255, 30, 30, 0.35);
+  }
+}
+
+/* icon color animation */
+@keyframes iconBlinkColor {
+  0% {
+    color: #111111;
+  }
+  25% {
+    color: #ff00ff;
+  }
+  50% {
+    color: #005eff;
+  }
+  75% {
+    color: #ff7a00;
+  }
+  100% {
+    color: #111111;
+  }
+}
+
+:root {
+  --primary-color: #becb0a;
+  --secondary-color: #161515;
+}
+.image-row-ev-charger-ac-station{
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: clamp(12px, 2vw, 18px);
+  margin: clamp(14px, 2vw, 18px) 0 clamp(18px, 2.4vw, 24px);
+  flex-wrap: wrap;
+}
+
+.imgcard-ev-charger-ac-station{
+  width: min(520px, 100%);
+  min-height: 300px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line-ev-charger-ac-station);
+  background: var(--soft-ev-charger-ac-station);
+  box-shadow: var(--shadow-ev-charger-ac-station);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+}
+
+.img-ev-charger-ac-station{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Mobile */
+@media (max-width: 640px){
+  .imgcard-ev-charger-ac-station{
+    flex-basis: 200px;
+    max-width: 200px;
+  }
+}
 /* ===================== DC CHARGER HERO (RESPONSIVE) ===================== */
 
 html, body {
@@ -1179,7 +1317,8 @@ html, body {
 }
 @media (max-width: 420px){
   .imgcard-ev-charger-ac-station{
-    height: clamp(280px, 85vw, 420px);
+    height: auto;
+    min-height: auto;
   }
 }
 /* ===================== SECTION 2: FEATURES ===================== */
@@ -1325,10 +1464,22 @@ html, body {
   .dlb-grid-ev-charger-ac-station{ grid-template-columns: 1fr; }
   .dlb-copy-ev-charger-ac-station{ text-align: center; }
 }
-
 @media (max-width: 640px){
-  .container-ev-charger-ac-station{ width: min(1180px, calc(100% - 26px)); }
-  .img-ev-charger-ac-station{ height: 220px; }
+  .container-ev-charger-ac-station{
+    width: min(1180px, calc(100% - 26px));
+  }
+
+  .imgcard-ev-charger-ac-station{
+    width: 100%;
+    min-height: auto;
+    padding: 10px;
+  }
+
+  .img-ev-charger-ac-station{
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+  }
 }
 
 /* reduced motion */
@@ -1353,3 +1504,760 @@ html, body {
   border:0;
 }
 
+/* ===== AC HERO SLIDER ===== */
+#ac-charger-hero-dc{
+  position: relative;
+  width: 100%;
+  min-height: clamp(620px, 88vh, 980px);
+  overflow: hidden;
+  background: #000;
+}
+
+/* slides wrapper */
+.ac-hero-slides{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* each slide fills full area */
+.ac-hero-slide{
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms ease;
+  background-image: var(--ac-hero-bg);
+  background-size: cover;          /* IMPORTANT: removes empty space */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* visible slide */
+.ac-hero-slide.is-active{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* keep your overlay above slides */
+.ac-charger-hero-overlay-dc{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* your content above overlay */
+.ac-charger-hero-inner-dc{
+  position: relative;
+  z-index: 2;
+}
+
+/* dots */
+.ac-hero-dots{
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.ac-hero-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.85);
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.ac-hero-dot.is-active{
+  background: rgba(255,255,255,0.98);
+  opacity: 1;
+}
+
+/* =========================
+   PROD HERO (Slider) CSS
+   Paste this into your dc-charging-station.css (or reuse product.css)
+   ========================= */
+
+:root{
+  --prod-nav-h: 72px;
+  --prod-accent: #becb0a;
+  --prod-text: #fff;
+
+  /* overlay strength */
+  --prod-overlay-1: rgba(0,0,0,0.90);
+  --prod-overlay-2: rgba(0,0,0,0.62);
+  --prod-overlay-3: rgba(0,0,0,0.00);
+
+  --prod-max: 1180px;
+}
+
+.prod-hero{
+  font-family: inherit;
+  position: relative;
+}
+
+/* Slider wrapper */
+.prod-hero__slider{
+  position: relative;
+  overflow: hidden;
+  background: #000;
+
+  /* Hero height */
+  min-height: clamp(520px, calc(100vh - var(--prod-nav-h)), 760px);
+}
+
+/* Each slide fills full hero */
+.prod-hero__slide{
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms ease;
+  overflow: hidden;
+
+  /* Overlay (layer 1) + image (layer 2) */
+  background-image:
+    linear-gradient(
+      90deg,
+      var(--prod-overlay-1) 0%,
+      var(--prod-overlay-2) 44%,
+      rgba(0,0,0,0.15) 62%,
+      var(--prod-overlay-3) 74%
+    ),
+    var(--prod-bg);
+
+  background-repeat: no-repeat, no-repeat;
+
+  /* IMPORTANT:
+     If you want the image to occupy ALL area (no side empty space), use cover.
+     This may crop a little depending on screen ratio.
+  */
+  background-size: 100% 100%, cover;
+  background-position: 0 0, center center;
+}
+
+.prod-hero__slide.is-active{
+  opacity: 1;
+  pointer-events: auto;
+}
+.prod-hero__container{
+  height: 100%;
+  max-width: var(--prod-max);
+  margin: 0 auto;
+  padding: clamp(20px, 3.2vw, 52px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.prod-hero__content{
+  max-width: 540px;
+}
+
+.prod-hero__title{
+  margin: 0 0 14px;
+  font-weight: 850;
+  line-height: 1.02;
+  color: var(--prod-text);
+  font-size: clamp(34px, 4.6vw, 64px);
+}
+
+.prod-hero__subtitle{
+  margin: 0 0 20px;
+  color: rgba(255,255,255,0.82);
+  font-size: clamp(14px, 1.15vw, 17px);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+/* Button */
+.prod-hero__btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 26px;
+  background: var(--prod-accent);
+  color: #111;
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+}
+
+/* Dots */
+.prod-hero__dots{
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+
+.prod-hero__dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.85);
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.prod-hero__dot.is-active{
+  background: rgba(255,255,255,0.98);
+  opacity: 1;
+}
+
+/* Reveal animation */
+.prod-hero__reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms ease, transform 650ms ease;
+  will-change: transform, opacity;
+}
+
+.prod-hero__reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile tuning */
+@media (max-width: 768px){
+  .prod-hero__slide{
+    background-size: 100% 100%, cover;
+    background-position: 0 0, center top;
+  }
+
+  .prod-hero__title{
+    font-size: clamp(34px, 8vw, 54px);
+    line-height: 1.02;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .prod-hero__slide,
+  .prod-hero__reveal{
+    transition: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   MOBILE FIX OVERRIDES
+   Paste this at the VERY END of your CSS file
+========================================================= */
+
+/* safer sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* prevent images from overflowing */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ================= HERO FIX ================= */
+.prod-hero__slider {
+  min-height: clamp(520px, 88svh, 760px);
+}
+
+.prod-hero__slide {
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center center, center center;
+}
+
+.prod-hero__container {
+  min-height: inherit;
+  width: min(1180px, calc(100% - 32px));
+  padding: 24px 16px 70px;
+  align-items: center;
+}
+
+.prod-hero__content {
+  width: 100%;
+  max-width: 560px;
+}
+
+.prod-hero__title {
+  margin: 0 0 14px;
+  font-size: clamp(34px, 8vw, 78px);
+  line-height: 1.02;
+}
+
+.prod-hero__subtitle {
+  margin: 0 0 18px;
+  font-size: clamp(14px, 3.8vw, 18px);
+  line-height: 1.6;
+}
+
+.prod-hero__btn {
+  padding: 12px 18px;
+  font-size: 13px;
+}
+
+.prod-hero__dots {
+  bottom: 12px;
+}
+
+/* ================= TEXT STRIP FIX ================= */
+.ev-text-strip {
+  width: 100%;
+  overflow: hidden;
+}
+
+.ev-text-strip__wrap {
+  width: 100%;
+  overflow: hidden;
+}
+
+.ev-text-strip__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  min-width: max-content;
+}
+
+.ev-text-strip__track span {
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* ================= SECTION CONTAINERS ================= */
+.ac-charger-copy__container-all-products,
+.our-work__container-all-products,
+.container-ev-charger-ac-station,
+.ipower-suite__container-all-products {
+  width: min(1180px, calc(100% - 24px));
+  margin: 0 auto;
+}
+
+/* ================= IMAGE CARD FIX ================= */
+.image-row-ev-charger-ac-station {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 18px 0 24px;
+}
+
+.imgcard-ev-charger-ac-station {
+  width: min(520px, 100%);
+  min-height: 300px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(17,18,20,.12);
+  background: #f6f7f7;
+  box-shadow: 0 18px 48px rgba(2, 8, 23, .06);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+}
+
+.img-ev-charger-ac-station {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+/* DLB image box */
+.dlb-media-ev-charger-ac-station .img-ev-charger-ac-station {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ================= COPY SECTIONS ================= */
+.ac-charger-grid-all-products,
+.feature-grid-ev-charger-ac-station,
+.dlb-grid-ev-charger-ac-station,
+.our-work__grid-all-products,
+.ipower-suite__grid-all-products,
+.ipower-suite__bottomGrid-all-products {
+  gap: 18px;
+}
+
+/* ================= MOBILE LAYOUT ================= */
+@media (max-width: 768px) {
+  .prod-hero__slider {
+    min-height: 78svh;
+  }
+
+  .prod-hero__slide {
+    background-size: cover, cover;
+    background-position: 68% center, 68% center;
+  }
+
+  .prod-hero__container {
+    width: calc(100% - 24px);
+    padding: 18px 12px 64px;
+    align-items: center;
+  }
+
+  .prod-hero__content {
+    max-width: 92%;
+  }
+
+  .prod-hero__kicker {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  .prod-hero__title {
+    font-size: clamp(28px, 9vw, 42px);
+    line-height: 1.04;
+  }
+
+  .prod-hero__subtitle {
+    font-size: 14px;
+    line-height: 1.55;
+    max-width: 100%;
+  }
+
+  .prod-hero__btn {
+    font-size: 12px;
+    padding: 11px 16px;
+  }
+
+  .ev-text-strip__track span {
+    font-size: 13px;
+    letter-spacing: .6px;
+  }
+
+  .ac-charger-grid-all-products,
+  .our-work__grid-all-products,
+  .feature-grid-ev-charger-ac-station,
+  .dlb-grid-ev-charger-ac-station,
+  .ipower-suite__grid-all-products,
+  .ipower-suite__bottomGrid-all-products {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ac-charger-side-all-products {
+    position: static;
+  }
+
+  .head-ev-charger-ac-station,
+  .dlb-copy-ev-charger-ac-station {
+    text-align: center;
+  }
+
+  .imgcard-ev-charger-ac-station {
+    width: 100%;
+    min-height: 240px;
+    padding: 14px;
+  }
+
+  .img-ev-charger-ac-station {
+    max-height: 320px;
+  }
+
+  .our-work__imgwrap-all-products {
+    aspect-ratio: 16 / 10;
+  }
+
+  .spec-table-ev-charger-ac-station td {
+    grid-template-columns: 110px 1fr;
+    gap: 8px;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .prod-hero__slider {
+    min-height: 72svh;
+  }
+
+  .prod-hero__slide {
+    background-position: 72% center, 72% center;
+  }
+
+  .prod-hero__content {
+    max-width: 100%;
+  }
+
+  .prod-hero__title {
+    font-size: clamp(24px, 8.6vw, 34px);
+  }
+
+  .prod-hero__subtitle {
+    font-size: 13px;
+  }
+
+  .prod-hero__btn {
+    width: auto;
+    min-width: 160px;
+    text-align: center;
+  }
+
+  .imgcard-ev-charger-ac-station {
+    min-height: 220px;
+  }
+
+  .img-ev-charger-ac-station {
+    max-height: 260px;
+  }
+
+  .title-ev-charger-ac-station,
+  .ac-charger-title-all-products,
+  .our-work__title-all-products,
+  .ipower-suite__title-all-products {
+    font-size: clamp(24px, 7vw, 32px);
+    line-height: 1.12;
+  }
+
+  .lead-ev-charger-ac-station,
+  .ac-charger-lead-all-products,
+  .our-work__lead-all-products,
+  .text-ev-charger-ac-station,
+  .ac-charger-card__text-all-products {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .spec-table-ev-charger-ac-station td {
+    grid-template-columns: 1fr;
+  }
+
+  .spec-table-ev-charger-ac-station td::before {
+    margin-bottom: 4px;
+  }
+}
+
+/* ================= REVEAL SAFETY FALLBACK ================= */
+/* so content never stays invisible on mobile if JS delays */
+@media (max-width: 768px) {
+  .ac-reveal-all-products,
+  .reveal-wrap-ev-charger-ac-station .reveal-ev-charger-ac-station,
+  .our-reveal-all-products,
+  [data-reveal-dc],
+  .prod-hero__reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ===== FINAL HERO FIX ===== */
+.prod-hero__slider{
+  min-height: clamp(520px, 82svh, 760px);
+  overflow: hidden;
+}
+
+.prod-hero__slide{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.prod-hero__container{
+  min-height: inherit;
+  width: min(1180px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 24px 14px 70px;
+  display: flex;
+  align-items: center;
+}
+
+.prod-hero__content{
+  width: 100%;
+  max-width: 560px;
+}
+
+.prod-hero__title{
+  margin: 0 0 12px;
+  font-size: clamp(30px, 7vw, 64px);
+  line-height: 1.05;
+  font-weight: 850;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.prod-hero__subtitle{
+  font-size: clamp(14px, 2.8vw, 18px);
+  line-height: 1.55;
+  max-width: 42ch;
+}
+
+.prod-hero__btn{
+  padding: 12px 18px;
+  font-size: 13px;
+}
+
+@media (max-width: 768px){
+  .prod-hero__slider{
+    min-height: 70svh;
+  }
+
+  .prod-hero__slide{
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .prod-hero__content{
+    max-width: 100%;
+  }
+
+  .prod-hero__title{
+    font-size: clamp(24px, 8vw, 40px);
+    line-height: 1.08;
+  }
+
+  .prod-hero__subtitle{
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px){
+  .prod-hero__slider{
+    min-height: 64svh;
+  }
+
+  .prod-hero__container{
+    width: calc(100% - 20px);
+    padding: 16px 10px 60px;
+  }
+
+  .prod-hero__title{
+    font-size: clamp(22px, 8.5vw, 34px);
+    line-height: 1.08;
+  }
+
+  .prod-hero__subtitle{
+    font-size: 13px;
+  }
+}
+
+/* ===================== DC CHARGER HERO (RESPONSIVE) ===================== */
+
+html, body {
+  margin: 0;               /* remove default 8px margin that causes scroll with full-bleed rows */
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;      /* belt-and-suspenders: stop any stray overflow */
+}
+.portable-charger-hero-dc{
+  position: relative;
+  min-height: clamp(360px, 90vh, 640px);
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: #0b0b0b;
+  margin-top: 40px;
+  padding-top: 40px;
+}
+
+/* Set your background image here */
+.portable-charger-hero-bg-dc{
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/banner/slide1.avif");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+}
+
+/* Dark overlay for contrast */
+.portable-charger-hero-overlay-dc{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.35) 45%,
+    rgba(0,0,0,.55) 100%
+  );
+}
+
+/* Container to keep content centered and readable */
+.portable-charger-hero-inner-dc{
+  position: relative;
+  z-index: 2;
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: clamp(36px, 6vw, 72px) 0;
+  padding-top: 75px;
+}
+
+.portable-charger-hero-content-dc{
+  max-width: 980px;
+}
+
+/* Kicker */
+.portable-charger-hero-kicker-dc{
+  font-size: 12px;
+  letter-spacing: .22em;
+  font-weight: 700;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 10px;
+}
+
+/* Title */
+.portable-charger-hero-title-dc{
+  margin: 0;
+  font-weight: 900;
+  line-height: 1.03;
+  color: #fff;
+  font-size: clamp(28px, 4.6vw, 64px);
+  text-wrap: balance;
+}
+
+/* Subtitle */
+.portable-charger-hero-subtitle-dc{
+  margin: 14px 0 0;
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: rgba(255,255,255,.82);
+  line-height: 1.55;
+}
+
+/* ===== Reveal animation (replays on scroll up/down) ===== */
+[data-reveal-dc]{
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .6s ease, transform .6s ease;
+  will-change: opacity, transform;
+}
+
+[data-reveal-dc].is-inview-dc{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile tweaks */
+@media (max-width: 640px){
+  .portable-charger-hero-inner-dc{
+    width: min(1180px, calc(100% - 26px));
+  }
+  .portable-charger-hero-title-dc{
+    font-size: clamp(26px, 7vw, 44px);
+  }
+}

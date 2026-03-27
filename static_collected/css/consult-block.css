@@ -11,6 +11,14 @@
   --c-shadow: 0 20px 70px rgba(2, 8, 23, .24);
 }
 
+.consult-captcha{
+  grid-column: 1 / -1;
+  margin: 8px 0 6px;
+}
+
+.consult-captcha .g-recaptcha{
+  transform-origin: left top;
+}
 /* ===== WRAPPER ===== */
 
 .consult-block {
